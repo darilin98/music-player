@@ -23,7 +23,7 @@ struct TrackInfo {
 
 class GenericTrack {
     public:
-    virtual ~GenericTrack() = 0;
+    virtual ~GenericTrack() = default;
     virtual TrackInfo getTrackInfo() const = 0;
 };
 
@@ -178,7 +178,7 @@ int main(int argc, char *argv[]) {
     name_t track_name = argv[1];
     Decoder dec;
     track_ptr_t track = dec.decode_mp3(track_name);
-    if (typeid(*track) == typeid(ErrorTrack))
+    if (dynamic_cast<ErrorTrack*>(track.get()) != nullptr) //Check type of returned track
     {
         std::cerr << "Error decoding audio file!" << std::endl;
         return 1;
