@@ -9,7 +9,8 @@ include_directories(/opt/homebrew/include)
 
 # Add executable
 add_executable(music-player main.cpp
-        player.cpp)
+        player.cpp
+        minimp3/minimp3.c)
 
 # Link RtAudio
 target_link_libraries(music-player ${RTAUDIO_LIB} pthread)
