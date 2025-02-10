@@ -49,5 +49,5 @@ track_ptr_t Decoder::decode_mp3(const name_t& track_name)
 
     // GET METADATA
 
-    return std::make_unique<MP3Track>(track_name, audioData);
+    return std::make_unique<MP3Track>(track_name, audioData, mp3dec.info.hz);
 };

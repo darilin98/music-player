@@ -24,6 +24,7 @@ struct AudioData {
 struct TrackInfo {
     name_t name;
     AudioData data;
+    unsigned int sample_rate;
 };
 class GenericTrack;
 using track_ptr_t = std::unique_ptr<GenericTrack>;
@@ -41,12 +42,13 @@ public:
 
 class MP3Track : public GenericTrack {
 public:
-    explicit MP3Track(const name_t& name, const AudioData& data)
-        : name_(name), audio_data_(data){}
-    TrackInfo getTrackInfo() const override { return TrackInfo {name_, audio_data_};}
+    explicit MP3Track(const name_t& name, const AudioData& data, const unsigned int sample_rate)
+        : name_(name), audio_data_(data), sample_rate_(sample_rate) {}
+    TrackInfo getTrackInfo() const override { return TrackInfo {name_, audio_data_, sample_rate_};}
 private:
     name_t name_;
     AudioData audio_data_;
+    unsigned int sample_rate_;
 };
 
 class ErrorTrack : public GenericTrack {

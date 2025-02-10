@@ -12,6 +12,7 @@ Player::Player()
     params_.deviceId = audio_.getDefaultOutputDevice();
     params_.nChannels = 1;
     params_.firstChannel = 0;
+
 }
 
 void Player::load_track(track_ptr_t& track)
@@ -25,9 +26,15 @@ void Player::play_track()
     {
         throw std::runtime_error("No track found!");
     }
+    if (audio_.isStreamOpen()) {
+        std::cout << "Closing previous audio stream..." << std::endl;
+        audio_.closeStream();
+    }
 
     TrackInfo info = track_->getTrackInfo();
     name_t name = info.name;
+    SAMPLE_RATE = info.sample_rate;
+    params_.nChannels = info.data.channels;
     AudioData audio_data = info.data;
 
     try {
@@ -48,15 +55,15 @@ int Player::audioCallback(void *outputBuffer, void *, unsigned int nFrames,
     if(!audio_data) return 0;
 
     int16_t *buffer = static_cast<int16_t *>(outputBuffer);
+    size_t channels = audio_data->channels;
 
-    for (unsigned int i = 0; i < nFrames; i++)
-    {
-        if (audio_data->current_sample < audio_data->total_samples)
-        {
-            buffer[i] = audio_data->pcmData[audio_data->current_sample++];
-        } else
-        {
-            buffer[i] = 0;
+    for (unsigned int i = 0; i < nFrames; i++) {
+        for (size_t ch = 0; ch < channels; ch++) {
+            if (audio_data->current_sample < audio_data->total_samples) {
+                buffer[i * channels + ch] = audio_data->pcmData[audio_data->current_sample++];
+            } else {
+                buffer[i * channels + ch] = 0;
+            }
         }
     }
     return 0;
