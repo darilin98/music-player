@@ -32,12 +32,15 @@ add_executable(music-player
         decoder.cpp
 )
 
+set_target_properties(music-player PROPERTIES
+    INSTALL_RPATH "/usr/local/lib"
+)
+
 # Link RtAudio
 target_link_libraries(music-player PRIVATE rtaudio pthread)
 
 # INSTALLATION RULES
 install(TARGETS music-player DESTINATION bin)  # Install the binary to /usr/local/bin or equivalent
-install(DIRECTORY assets DESTINATION share/music-player)  # Install assets or config files
 
 # Packaging Support
 include(CPack)
