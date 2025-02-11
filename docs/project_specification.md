@@ -38,7 +38,7 @@ Make the app compatible with Linux and macOS systems.
 1. MP3 File Handling
 
    - MP3 files are encoded in a very complex way. This means I need to use an external library to decode them.
-   - My options are either **libmpg123** or **minimp3**:
+   - **minimp3**:
      - minimp3 is a very minimalistic single-header library written in C
      - libmpg123 is slightly more high level
 
