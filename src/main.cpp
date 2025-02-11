@@ -1,12 +1,5 @@
 #include <iostream>
 
-#include <cmath>
-#include <thread>
-
-#include "rtaudio/RtAudio.h"
-#include "rtaudio/rtaudio_c.h"
-#include "minimp3/minimp3.h"
-#include "minimp3/minimp3_ex.h"
 #include "decoder.hpp"
 #include "player.hpp"
 
