@@ -2,6 +2,7 @@
 
 #include "decoder.hpp"
 #include "player.hpp"
+#include <ncurses.h>
 
 
 int main(int argc, char *argv[]) {

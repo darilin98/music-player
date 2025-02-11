@@ -22,6 +22,14 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(minimp3)
 
+# Fetch ncurses
+FetchContent_Declare(
+        ncurses
+        GIT_REPOSITORY https://github.com/mirror/ncurses.git
+        GIT_TAG master
+)
+FetchContent_MakeAvailable(ncurses)
+
 # Add executable
 add_executable(music-player
         main.cpp
@@ -37,7 +45,7 @@ set_target_properties(music-player PROPERTIES
 )
 
 # Link RtAudio
-target_link_libraries(music-player PRIVATE rtaudio pthread)
+target_link_libraries(music-player PRIVATE rtaudio pthread ncurses)
 
 # INSTALLATION RULES
 install(TARGETS music-player DESTINATION bin)  # Install the binary to /usr/local/bin or equivalent
