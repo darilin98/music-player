@@ -40,7 +40,6 @@ Make the app compatible with Linux and macOS systems.
    - MP3 files are encoded in a very complex way. This means I need to use an external library to decode them.
    - **minimp3**:
      - minimp3 is a very minimalistic single-header library written in C
-     - libmpg123 is slightly more high level
 
 2. Audio hardware API
 
