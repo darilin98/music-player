@@ -3,7 +3,7 @@
 //
 #include "player.hpp"
 
-Player::Player()
+Player::Player() : paused_(false)
 {
     if (audio_.getDeviceCount() == 0) {
         throw std::runtime_error("No audio devices found!");
@@ -12,12 +12,30 @@ Player::Player()
     params_.deviceId = audio_.getDefaultOutputDevice();
     params_.nChannels = 1;
     params_.firstChannel = 0;
+}
 
+bool Player::is_paused() const
+{
+    return paused_;
+}
+
+
+void Player::pause_track()
+{
+    paused_ = true;
+}
+
+void Player::resume_track()
+{
+    if (paused_) {
+        paused_ = false;
+    }
 }
 
 void Player::load_track(track_ptr_t& track)
 {
     track_ = std::move(track);
+    paused_ = false;
 }
 
 void Player::play_track()
@@ -41,9 +59,22 @@ void Player::play_track()
         audio_.openStream(&params_, nullptr, RTAUDIO_SINT16, SAMPLE_RATE, &BUFFER_SIZE, audioCallback, &audio_data);
         audio_.startStream();
         while (audio_.isStreamRunning()) {
+            if (is_paused())
+                audio_.stopStream();
+
+            while (is_paused())
+            {
+                std::this_thread::sleep_for(std::chrono::milliseconds(100));
+            }
+
+            if (!audio_.isStreamRunning())
+            {
+                audio_.startStream();
+            }
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
         }
         audio_.closeStream();
+        track_->setCurrentSample(audio_data.current_sample);
     } catch (RtAudioErrorType &e) {
         if (audio_.isStreamOpen()) audio_.closeStream();
     }

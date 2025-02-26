@@ -7,6 +7,7 @@
 #include <ncurses.h>
 
 #include <filesystem>
+#include <thread>
 
 #ifndef RENDERER_HPP
 #define RENDERER_HPP
@@ -16,6 +17,7 @@ public:
     UiController();
     void beginRenderLoop();
 private:
-
+    Decoder dec;
+    Player player;
 };
 #endif //RENDERER_HPP
