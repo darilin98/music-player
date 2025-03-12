@@ -2,6 +2,7 @@
 // Created by Darek Rudiš on 25.02.2025.
 //
 #include "ui_controller.hpp"
+constexpr char KEY_QUIT = 'q';
 
 UiController::UiController()
 {
@@ -23,7 +24,6 @@ void UiController::beginRenderLoop()
     }
 
     int highlight = 0;
-    int ch;
     std::thread playback_thread;
     bool playing = false;
 
@@ -41,30 +41,18 @@ void UiController::beginRenderLoop()
         }
         refresh();
 
-        ch = getch();
-        if (ch == KEY_UP && highlight > 0) {
+        int pressed_key = getch();
+        if (pressed_key == KEY_UP && highlight > 0) {
             highlight--;
-        } else if (ch == KEY_DOWN && highlight < files.size() - 1) {
+        } else if (pressed_key == KEY_DOWN && highlight < files.size() - 1) {
             highlight++;
-        } else if (ch == '\n') {
+        } else if (pressed_key == '\n') {
             if (playing && playback_thread.joinable())
             {
                 continue;
             }
-            name_t& track_name = files[highlight];
-            track_ptr_t track = dec.decode_mp3(track_name);
-            if (dynamic_cast<ErrorTrack*>(track.get()) != nullptr) //Check type of returned track
-            {
-                std::cerr << "Error decoding audio file!" << std::endl;
-            }
-            player.load_track(track);
-
-            playing = true;
-            playback_thread = std::thread([this, &playing]() {
-                player.play_track();
-                playing = false;
-            });
-        } else if (ch == ' ')
+            beginTrackPlayback(playback_thread, highlight, files,  playing);
+        } else if (pressed_key == ' ')
         {
             if (playing) {
                 if (player.is_paused()) {
@@ -74,15 +62,33 @@ void UiController::beginRenderLoop()
                 }
             }
         }
-        else if (ch == 'q') {
+        else if (pressed_key == KEY_QUIT) {
             /*
             if (playing && playback_thread.joinable()) {
                 playback_thread.join();
             }
             */
             playing = false;
-            break; // Exit on 'q'
+            break;
         }
     }
     endwin();
 }
+
+void UiController::beginTrackPlayback(std::thread& playback_thread, const int& highlight, std::vector<std::string>& files, bool& playing)
+{
+    name_t& track_name = files[highlight];
+    track_ptr_t track = dec.decode_mp3(track_name);
+    if (dynamic_cast<ErrorTrack*>(track.get()) != nullptr) //Check type of returned track
+    {
+        std::cerr << "Error decoding audio file!" << std::endl;
+    }
+    player.load_track(track);
+
+    playing = true;
+    playback_thread = std::thread([this, &playing]() {
+        player.play_track();
+        playing = false;
+    });
+}
+

@@ -17,6 +17,7 @@ public:
     UiController();
     void beginRenderLoop();
 private:
+    void beginTrackPlayback(std::thread& playback_thread, const int& highlight, std::vector<std::string>& files, bool& playing);
     Decoder dec;
     Player player;
 };
