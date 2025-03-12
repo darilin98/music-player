@@ -43,7 +43,7 @@ void UiController::beginRenderLoop()
             {
                 if (playing)
                     stopTrackPlayback(playback_thread, playing);
-                beginTrackPlayback(playback_thread, highlight, files,  playing);
+                beginTrackPlayback(playback_thread, highlight, files,  playing, path);
             }
         } else if (pressed_key == ' ')
         {
@@ -63,9 +63,9 @@ void UiController::beginRenderLoop()
     endwin();
 }
 
-void UiController::beginTrackPlayback(std::thread& playback_thread, const int& highlight, std::vector<std::string>& files, bool& playing)
+void UiController::beginTrackPlayback(std::thread& playback_thread, const int& highlight, std::vector<std::string>& files, bool& playing, const std::string& path)
 {
-    name_t& track_name = files[highlight];
+    name_t track_name = path + "/" + files[highlight];
     track_ptr_t track = dec.decode_mp3(track_name);
     if (dynamic_cast<ErrorTrack*>(track.get()) != nullptr) //Check type of returned track
     {

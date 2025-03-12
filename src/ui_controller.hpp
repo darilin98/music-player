@@ -17,7 +17,7 @@ public:
     UiController();
     void beginRenderLoop();
 private:
-    void beginTrackPlayback(std::thread& playback_thread, const int& highlight, std::vector<std::string>& files, bool& playing);
+    void beginTrackPlayback(std::thread& playback_thread, const int& highlight, std::vector<std::string>& files, bool& playing, const std::string& path);
     void stopTrackPlayback(std::thread& playback_thread, bool& playing);
     void updateFileList(std::vector<std::string>& files, const std::string& path);
     void renderFileList(const std::vector<std::string>& files, const int& highlight);
