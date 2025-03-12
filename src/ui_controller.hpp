@@ -9,8 +9,8 @@
 #include <filesystem>
 #include <thread>
 
-#ifndef RENDERER_HPP
-#define RENDERER_HPP
+#ifndef UICONTROLLER_HPP
+#define UICONTROLLER_HPP
 
 class UiController {
 public:
@@ -19,7 +19,10 @@ public:
 private:
     void beginTrackPlayback(std::thread& playback_thread, const int& highlight, std::vector<std::string>& files, bool& playing);
     void stopTrackPlayback(std::thread& playback_thread, bool& playing);
+    void updateFileList(std::vector<std::string>& files, const std::string& path);
+    void renderFileList(const std::vector<std::string>& files, const int& highlight);
+
     Decoder dec;
     Player player;
 };
-#endif //RENDERER_HPP
+#endif //UICONTROLLER_HPP

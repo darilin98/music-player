@@ -16,40 +16,35 @@ void UiController::beginRenderLoop()
 {
 
     std::vector<std::string> files;
-    std::string path = ".";
-
-    for (const auto& entry : std::filesystem::directory_iterator(path))
-    {
-        files.push_back(entry.path().filename().string());
-    }
-
+    std::string path = std::filesystem::current_path().string();
     int highlight = 0;
     std::thread playback_thread;
     bool playing = false;
 
+    updateFileList(files, path);
+
     while (true)
     {
-        clear();
-        for (size_t i = 0; i < files.size(); ++i) {
-            if (i == highlight) {
-                attron(A_REVERSE); // Highlight selected file
-            }
-            mvprintw(i, 0, files[i].c_str());
-            if (i == highlight) {
-                attroff(A_REVERSE);
-            }
-        }
-        refresh();
-
+        renderFileList(files, highlight);
         int pressed_key = getch();
         if (pressed_key == KEY_UP && highlight > 0) {
             highlight--;
         } else if (pressed_key == KEY_DOWN && highlight < files.size() - 1) {
             highlight++;
         } else if (pressed_key == '\n') {
-            if (playing)
-                stopTrackPlayback(playback_thread, playing);
-            beginTrackPlayback(playback_thread, highlight, files,  playing);
+            std::string selected = files[highlight];
+            std::string new_path = (selected == "..") ? std::filesystem::path(path).parent_path().string() : path + "/" + selected;
+            if (std::filesystem::is_directory(new_path))
+            {
+                path = new_path;
+                highlight = 0;
+                updateFileList(files, path);
+            } else
+            {
+                if (playing)
+                    stopTrackPlayback(playback_thread, playing);
+                beginTrackPlayback(playback_thread, highlight, files,  playing);
+            }
         } else if (pressed_key == ' ')
         {
             if (playing) {
@@ -94,5 +89,32 @@ void UiController::stopTrackPlayback(std::thread &playback_thread, bool &playing
         playing = false;
     }
 }
+
+void UiController::updateFileList(std::vector<std::string> &files, const std::string &path)
+{
+    files.clear();
+    files.emplace_back(".."); // For going up a directory
+    for (const auto& entry : std::filesystem::directory_iterator(path))
+    {
+        files.push_back(entry.path().filename().string());
+    }
+}
+
+void UiController::renderFileList(const std::vector<std::string> &files, const int &highlight)
+{
+    clear();
+    for (size_t i = 0; i < files.size(); ++i) {
+        if (i == highlight) {
+            attron(A_REVERSE); // Highlight selected file
+        }
+        mvprintw(i, 0, files[i].c_str());
+        if (i == highlight) {
+            attroff(A_REVERSE);
+        }
+    }
+    refresh();
+}
+
+
 
 
