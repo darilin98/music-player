@@ -47,10 +47,8 @@ void UiController::beginRenderLoop()
         } else if (pressed_key == KEY_DOWN && highlight < files.size() - 1) {
             highlight++;
         } else if (pressed_key == '\n') {
-            if (playing && playback_thread.joinable())
-            {
-                continue;
-            }
+            if (playing)
+                stopTrackPlayback(playback_thread, playing);
             beginTrackPlayback(playback_thread, highlight, files,  playing);
         } else if (pressed_key == ' ')
         {
@@ -63,12 +61,7 @@ void UiController::beginRenderLoop()
             }
         }
         else if (pressed_key == KEY_QUIT) {
-            /*
-            if (playing && playback_thread.joinable()) {
-                playback_thread.join();
-            }
-            */
-            playing = false;
+            stopTrackPlayback(playback_thread, playing);
             break;
         }
     }
@@ -91,4 +84,15 @@ void UiController::beginTrackPlayback(std::thread& playback_thread, const int& h
         playing = false;
     });
 }
+void UiController::stopTrackPlayback(std::thread &playback_thread, bool &playing)
+{
+    if (playing)
+    {
+        player.stop_track();
+        if (playback_thread.joinable())
+            playback_thread.join();
+        playing = false;
+    }
+}
+
 

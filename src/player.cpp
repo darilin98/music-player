@@ -14,6 +14,17 @@ Player::Player() : paused_(false)
     params_.firstChannel = 0;
 }
 
+void Player::stop_track()
+{
+    stop_playback_ = true;
+}
+
+bool Player::is_stopped() const
+{
+    return stop_playback_;
+}
+
+
 bool Player::is_paused() const
 {
     return paused_;
@@ -40,6 +51,8 @@ void Player::load_track(track_ptr_t& track)
 
 void Player::play_track()
 {
+    stop_playback_ = false;
+
     if (track_ == nullptr)
     {
         throw std::runtime_error("No track found!");
@@ -58,16 +71,16 @@ void Player::play_track()
     try {
         audio_.openStream(&params_, nullptr, RTAUDIO_SINT16, SAMPLE_RATE, &BUFFER_SIZE, audioCallback, &audio_data);
         audio_.startStream();
-        while (audio_.isStreamRunning()) {
+        while (audio_.isStreamRunning() && !stop_playback_) {
             if (is_paused())
                 audio_.stopStream();
 
-            while (is_paused())
+            while (is_paused() && !stop_playback_)
             {
                 std::this_thread::sleep_for(std::chrono::milliseconds(100));
             }
 
-            if (!audio_.isStreamRunning())
+            if (!audio_.isStreamRunning() && !stop_playback_)
             {
                 audio_.startStream();
             }

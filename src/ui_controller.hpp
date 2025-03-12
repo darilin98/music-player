@@ -18,6 +18,7 @@ public:
     void beginRenderLoop();
 private:
     void beginTrackPlayback(std::thread& playback_thread, const int& highlight, std::vector<std::string>& files, bool& playing);
+    void stopTrackPlayback(std::thread& playback_thread, bool& playing);
     Decoder dec;
     Player player;
 };
