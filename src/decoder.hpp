@@ -33,6 +33,7 @@ class GenericTrack {
 public:
     virtual ~GenericTrack() = default;
     virtual TrackInfo getTrackInfo() const = 0;
+    virtual void setCurrentSample(const size_t& position) = 0;
 };
 
 class Decoder {
@@ -45,6 +46,7 @@ public:
     explicit MP3Track(const name_t& name, const AudioData& data, const unsigned int sample_rate)
         : name_(name), audio_data_(data), sample_rate_(sample_rate) {}
     TrackInfo getTrackInfo() const override { return TrackInfo {name_, audio_data_, sample_rate_};}
+    void setCurrentSample(const size_t& position) override { audio_data_.current_sample = position; }
 private:
     name_t name_;
     AudioData audio_data_;
@@ -56,6 +58,7 @@ public:
     explicit ErrorTrack(const name_t& message)
         : error_message_(message) {}
     TrackInfo getTrackInfo() const override { return TrackInfo {error_message_, AudioData()};}
+    void setCurrentSample(const size_t& position) override {}
 private:
     name_t error_message_;
 };

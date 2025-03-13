@@ -4,6 +4,7 @@
 #include "rtaudio/RtAudio.h"
 #include "rtaudio/rtaudio_c.h"
 #include "decoder.hpp"
+#include <atomic>
 
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
@@ -13,10 +14,17 @@ public:
     explicit Player();
     void load_track(track_ptr_t& track);
     void play_track();
+    void pause_track();
+    void resume_track();
+    [[nodiscard]] bool is_paused() const;
+    void stop_track();
+    bool is_stopped() const;
 
 private:
     static int audioCallback(void *outputBuffer, void *, unsigned int nFrames,
                              double, RtAudioStreamStatus, void *userData);
+    std::atomic<bool> stop_playback_{false};
+    bool paused_;
     RtAudio audio_;
     RtAudio::StreamParameters params_;
     unsigned int BUFFER_SIZE = 512;
