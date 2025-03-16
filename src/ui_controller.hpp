@@ -22,6 +22,7 @@ private:
     void updateFileList(std::vector<std::string>& files, const std::string& path);
     void renderFileList(const std::vector<std::string>& files, const int& highlight);
     void showErrorPopup(const std::string& message);
+    void processTrackSelection(std::vector<std::string>& files, int& highlight, name_t& path, std::thread& playback_thread, bool& playing );
 
     Decoder dec;
     Player player;

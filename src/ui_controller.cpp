@@ -2,8 +2,15 @@
 // Created by Darek Rudiš on 25.02.2025.
 //
 #include "ui_controller.hpp"
+
+#include <queue>
 constexpr char KEY_QUIT = 'q';
 constexpr char KEY_PAUSE = ' ';
+constexpr char KEY_NEXT_QUEUE = 'n';
+constexpr char KEY_ADD_QUEUE = 'a';
+constexpr char KEY_PLAY_TRACK = '\n';
+
+using queue_t = std::queue<track_ptr_t>;
 
 UiController::UiController()
 {
@@ -17,54 +24,37 @@ UiController::UiController()
 void UiController::beginRenderLoop()
 {
     std::vector<std::string> files;
+    queue_t track_queue;
     std::string path = std::filesystem::current_path().string();
     int highlight = 0;
     std::thread playback_thread;
     bool playing = false;
+    bool running = true;
 
     updateFileList(files, path);
 
-    while (true)
+    while (running)
     {
         renderFileList(files, highlight);
-        int pressed_key = getch();
-        if (pressed_key == KEY_UP && highlight > 0) {
-            highlight--;
-        } else if (pressed_key == KEY_DOWN && highlight < files.size() - 1) {
-            highlight++;
-        } else if (pressed_key == '\n') {
-            std::string selected = files[highlight];
-            std::string new_path = (selected == "..") ? std::filesystem::path(path).parent_path().string() : path + "/" + selected;
-            if (std::filesystem::is_directory(new_path))
-            {
-                path = new_path;
-                highlight = 0;
-                updateFileList(files, path);
-            } else
-            {
-                if (playing)
-                    stopTrackPlayback(playback_thread, playing);
-                try
-                {
-                    beginTrackPlayback(playback_thread, highlight, files,  playing, path);
-                } catch (const std::exception& e)
-                {
-                    showErrorPopup("Error opening file!");
+        switch (int pressed_key = getch()) {
+            case KEY_UP:
+                if (highlight > 0) highlight--;
+                break;
+            case KEY_DOWN:
+                if (highlight < files.size() - 1) highlight++;
+                break;
+            case KEY_PLAY_TRACK:
+                processTrackSelection(files, highlight, path, playback_thread, playing);
+                break;
+            case KEY_PAUSE:
+                if (playing) {
+                    player.is_paused() ? player.resume_track() : player.pause_track();
                 }
-            }
-        } else if (pressed_key == KEY_PAUSE)
-        {
-            if (playing) {
-                if (player.is_paused()) {
-                    player.resume_track();
-                } else {
-                    player.pause_track();
-                }
-            }
-        }
-        else if (pressed_key == KEY_QUIT) {
-            stopTrackPlayback(playback_thread, playing);
-            break;
+                break;
+            case KEY_QUIT:
+                stopTrackPlayback(playback_thread, playing);
+                running = false;
+                break;
         }
     }
     endwin();
@@ -140,6 +130,30 @@ void UiController::showErrorPopup(const std::string &message)
     clear();
     refresh();
 }
+
+void UiController::processTrackSelection(std::vector<std::string>& files, int& highlight, name_t& path, std::thread& playback_thread, bool& playing)
+{
+    name_t selected = files[highlight];
+    name_t new_path = (selected == "..") ? std::filesystem::path(path).parent_path().string() : path + "/" + selected;
+    if (std::filesystem::is_directory(new_path))
+    {
+        path = new_path;
+        highlight = 0;
+        updateFileList(files, path);
+    } else
+    {
+        if (playing)
+            stopTrackPlayback(playback_thread, playing);
+        try
+        {
+            beginTrackPlayback(playback_thread, highlight, files,  playing, path);
+        } catch (const std::exception& e)
+        {
+            showErrorPopup("Error opening file!");
+        }
+    }
+}
+
 
 
 
