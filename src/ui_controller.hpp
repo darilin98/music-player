@@ -21,6 +21,7 @@ private:
     void stopTrackPlayback(std::thread& playback_thread, bool& playing);
     void updateFileList(std::vector<std::string>& files, const std::string& path);
     void renderFileList(const std::vector<std::string>& files, const int& highlight);
+    void showErrorPopup(const std::string& message);
 
     Decoder dec;
     Player player;

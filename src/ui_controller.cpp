@@ -3,6 +3,7 @@
 //
 #include "ui_controller.hpp"
 constexpr char KEY_QUIT = 'q';
+constexpr char KEY_PAUSE = ' ';
 
 UiController::UiController()
 {
@@ -10,11 +11,11 @@ UiController::UiController()
     noecho();
     cbreak();
     keypad(stdscr, true);
+    curs_set(0);
 }
 
 void UiController::beginRenderLoop()
 {
-
     std::vector<std::string> files;
     std::string path = std::filesystem::current_path().string();
     int highlight = 0;
@@ -43,9 +44,15 @@ void UiController::beginRenderLoop()
             {
                 if (playing)
                     stopTrackPlayback(playback_thread, playing);
-                beginTrackPlayback(playback_thread, highlight, files,  playing, path);
+                try
+                {
+                    beginTrackPlayback(playback_thread, highlight, files,  playing, path);
+                } catch (const std::exception& e)
+                {
+                    showErrorPopup("Error opening file!");
+                }
             }
-        } else if (pressed_key == ' ')
+        } else if (pressed_key == KEY_PAUSE)
         {
             if (playing) {
                 if (player.is_paused()) {
@@ -69,7 +76,7 @@ void UiController::beginTrackPlayback(std::thread& playback_thread, const int& h
     track_ptr_t track = dec.decode_mp3(track_name);
     if (dynamic_cast<ErrorTrack*>(track.get()) != nullptr) //Check type of returned track
     {
-        std::cerr << "Error decoding audio file!" << std::endl;
+        throw std::runtime_error("Error decoding track!");
     }
     player.load_track(track);
 
@@ -112,6 +119,25 @@ void UiController::renderFileList(const std::vector<std::string> &files, const i
             attroff(A_REVERSE);
         }
     }
+    refresh();
+}
+
+void UiController::showErrorPopup(const std::string &message)
+{
+    size_t height = 3;
+    size_t width = message.size() + 4;
+    size_t starty = (LINES - height) / 2;
+    size_t startx = (COLS - width) / 2;
+
+    WINDOW* popup = newwin(height, width, starty, startx);
+    box(popup, 0, 0);
+    mvwprintw(popup, 1, 2, "%s", message.c_str());
+    wrefresh(popup);
+
+    napms(1500);
+
+    delwin(popup);
+    clear();
     refresh();
 }
 
