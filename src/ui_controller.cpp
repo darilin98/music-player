@@ -3,15 +3,6 @@
 //
 #include "ui_controller.hpp"
 
-#include <queue>
-constexpr char KEY_QUIT = 'q';
-constexpr char KEY_PAUSE = ' ';
-constexpr char KEY_NEXT_QUEUE = 'n';
-constexpr char KEY_ADD_QUEUE = 'a';
-constexpr char KEY_PLAY_TRACK = '\n';
-
-using queue_t = std::queue<track_ptr_t>;
-
 UiController::UiController()
 {
     initscr();
@@ -23,19 +14,13 @@ UiController::UiController()
 
 void UiController::beginRenderLoop()
 {
-    std::vector<std::string> files;
-    queue_t track_queue;
-    std::string path = std::filesystem::current_path().string();
-    int highlight = 0;
-    std::thread playback_thread;
-    bool playing = false;
-    bool running = true;
+    path = std::filesystem::current_path().string();
 
-    updateFileList(files, path);
+    updateFileList();
 
     while (running)
     {
-        renderFileList(files, highlight);
+        renderFileList();
         switch (int pressed_key = getch()) {
             case KEY_UP:
                 if (highlight > 0) highlight--;
@@ -44,7 +29,7 @@ void UiController::beginRenderLoop()
                 if (highlight < files.size() - 1) highlight++;
                 break;
             case KEY_PLAY_TRACK:
-                processTrackSelection(files, highlight, path, playback_thread, playing);
+                processTrackSelection();
                 break;
             case KEY_PAUSE:
                 if (playing) {
@@ -52,7 +37,7 @@ void UiController::beginRenderLoop()
                 }
                 break;
             case KEY_QUIT:
-                stopTrackPlayback(playback_thread, playing);
+                stopTrackPlayback();
                 running = false;
                 break;
         }
@@ -60,7 +45,7 @@ void UiController::beginRenderLoop()
     endwin();
 }
 
-void UiController::beginTrackPlayback(std::thread& playback_thread, const int& highlight, std::vector<std::string>& files, bool& playing, const std::string& path)
+void UiController::beginTrackPlayback()
 {
     name_t track_name = path + "/" + files[highlight];
     track_ptr_t track = dec.decode_mp3(track_name);
@@ -71,12 +56,12 @@ void UiController::beginTrackPlayback(std::thread& playback_thread, const int& h
     player.load_track(track);
 
     playing = true;
-    playback_thread = std::thread([this, &playing]() {
+    playback_thread = std::thread([this]() {
         player.play_track();
         playing = false;
     });
 }
-void UiController::stopTrackPlayback(std::thread &playback_thread, bool &playing)
+void UiController::stopTrackPlayback()
 {
     if (playing)
     {
@@ -87,7 +72,7 @@ void UiController::stopTrackPlayback(std::thread &playback_thread, bool &playing
     }
 }
 
-void UiController::updateFileList(std::vector<std::string> &files, const std::string &path)
+void UiController::updateFileList()
 {
     files.clear();
     files.emplace_back(".."); // For going up a directory
@@ -97,7 +82,7 @@ void UiController::updateFileList(std::vector<std::string> &files, const std::st
     }
 }
 
-void UiController::renderFileList(const std::vector<std::string> &files, const int &highlight)
+void UiController::renderFileList()
 {
     clear();
     for (size_t i = 0; i < files.size(); ++i) {
@@ -131,7 +116,7 @@ void UiController::showErrorPopup(const std::string &message)
     refresh();
 }
 
-void UiController::processTrackSelection(std::vector<std::string>& files, int& highlight, name_t& path, std::thread& playback_thread, bool& playing)
+void UiController::processTrackSelection()
 {
     name_t selected = files[highlight];
     name_t new_path = (selected == "..") ? std::filesystem::path(path).parent_path().string() : path + "/" + selected;
@@ -139,14 +124,14 @@ void UiController::processTrackSelection(std::vector<std::string>& files, int& h
     {
         path = new_path;
         highlight = 0;
-        updateFileList(files, path);
+        updateFileList();
     } else
     {
         if (playing)
-            stopTrackPlayback(playback_thread, playing);
+            stopTrackPlayback();
         try
         {
-            beginTrackPlayback(playback_thread, highlight, files,  playing, path);
+            beginTrackPlayback();
         } catch (const std::exception& e)
         {
             showErrorPopup("Error opening file!");
