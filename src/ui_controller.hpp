@@ -32,14 +32,13 @@ private:
     void showErrorPopup(const std::string& message);
     void processTrackSelection();
 
-    Decoder dec;
-    Player player;
-    std::vector<std::string> files;
-    queue_t track_queue;
-    std::string path;
-    int highlight = 0;
-    std::thread playback_thread;
-    bool playing = false;
-    bool running = true;
+    Decoder dec_;
+    Player player_;
+    std::vector<std::string> files_;
+    queue_t track_queue_;
+    std::string path_;
+    int highlight_ = 0;
+    std::thread playback_thread_;
+    bool playing_ = false;
 };
 #endif //UICONTROLLER_HPP

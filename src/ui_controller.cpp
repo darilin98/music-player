@@ -14,26 +14,27 @@ UiController::UiController()
 
 void UiController::beginRenderLoop()
 {
-    path = std::filesystem::current_path().string();
+    path_ = std::filesystem::current_path().string();
 
     updateFileList();
 
+    bool running = true;
     while (running)
     {
         renderFileList();
         switch (int pressed_key = getch()) {
             case KEY_UP:
-                if (highlight > 0) highlight--;
+                if (highlight_ > 0) highlight_--;
                 break;
             case KEY_DOWN:
-                if (highlight < files.size() - 1) highlight++;
+                if (highlight_ < files_.size() - 1) highlight_++;
                 break;
             case KEY_PLAY_TRACK:
                 processTrackSelection();
                 break;
             case KEY_PAUSE:
-                if (playing) {
-                    player.is_paused() ? player.resume_track() : player.pause_track();
+                if (playing_) {
+                    player_.is_paused() ? player_.resume_track() : player_.pause_track();
                 }
                 break;
             case KEY_QUIT:
@@ -47,50 +48,50 @@ void UiController::beginRenderLoop()
 
 void UiController::beginTrackPlayback()
 {
-    name_t track_name = path + "/" + files[highlight];
-    track_ptr_t track = dec.decode_mp3(track_name);
+    name_t track_name = path_ + "/" + files_[highlight_];
+    track_ptr_t track = dec_.decode_mp3(track_name);
     if (dynamic_cast<ErrorTrack*>(track.get()) != nullptr) //Check type of returned track
     {
         throw std::runtime_error("Error decoding track!");
     }
-    player.load_track(track);
+    player_.load_track(track);
 
-    playing = true;
-    playback_thread = std::thread([this]() {
-        player.play_track();
-        playing = false;
+    playing_ = true;
+    playback_thread_ = std::thread([this]() {
+        player_.play_track();
+        playing_ = false;
     });
 }
 void UiController::stopTrackPlayback()
 {
-    if (playing)
+    if (playing_)
     {
-        player.stop_track();
-        if (playback_thread.joinable())
-            playback_thread.join();
-        playing = false;
+        player_.stop_track();
+        if (playback_thread_.joinable())
+            playback_thread_.join();
+        playing_ = false;
     }
 }
 
 void UiController::updateFileList()
 {
-    files.clear();
-    files.emplace_back(".."); // For going up a directory
-    for (const auto& entry : std::filesystem::directory_iterator(path))
+    files_.clear();
+    files_.emplace_back(".."); // For going up a directory
+    for (const auto& entry : std::filesystem::directory_iterator(path_))
     {
-        files.push_back(entry.path().filename().string());
+        files_.push_back(entry.path().filename().string());
     }
 }
 
 void UiController::renderFileList()
 {
     clear();
-    for (size_t i = 0; i < files.size(); ++i) {
-        if (i == highlight) {
+    for (size_t i = 0; i < files_.size(); ++i) {
+        if (i == highlight_) {
             attron(A_REVERSE); // Highlight selected file
         }
-        mvprintw(i, 0, files[i].c_str());
-        if (i == highlight) {
+        mvprintw(i, 0, files_[i].c_str());
+        if (i == highlight_) {
             attroff(A_REVERSE);
         }
     }
@@ -118,16 +119,16 @@ void UiController::showErrorPopup(const std::string &message)
 
 void UiController::processTrackSelection()
 {
-    name_t selected = files[highlight];
-    name_t new_path = (selected == "..") ? std::filesystem::path(path).parent_path().string() : path + "/" + selected;
+    name_t selected = files_[highlight_];
+    name_t new_path = (selected == "..") ? std::filesystem::path(path_).parent_path().string() : path_ + "/" + selected;
     if (std::filesystem::is_directory(new_path))
     {
-        path = new_path;
-        highlight = 0;
+        path_ = new_path;
+        highlight_ = 0;
         updateFileList();
     } else
     {
-        if (playing)
+        if (playing_)
             stopTrackPlayback();
         try
         {
