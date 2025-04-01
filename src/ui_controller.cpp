@@ -7,7 +7,6 @@ UiController::UiController()
 {
     initscr();
     refresh();
-    napms(1000);
     noecho();
     cbreak();
     keypad(stdscr, true);
