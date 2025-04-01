@@ -6,10 +6,14 @@
 UiController::UiController()
 {
     initscr();
+    refresh();
+    napms(1000);
     noecho();
     cbreak();
     keypad(stdscr, true);
     curs_set(0);
+    // Explicit initialization of the renderer after all setup ncurses functions have been called
+    ui_ = UiRenderer();
 }
 
 void UiController::beginRenderLoop()
@@ -21,7 +25,9 @@ void UiController::beginRenderLoop()
     bool running = true;
     while (running)
     {
-        renderFileList();
+        ui_.renderFileList(files_, highlight_);
+        ui_.renderTrackQueue(track_queue_);
+        ui_.renderStatusBar(current_track_, playing_);
         switch (int pressed_key = getch()) {
             case KEY_UP:
                 if (highlight_ > 0) highlight_--;
@@ -81,21 +87,6 @@ void UiController::updateFileList()
     {
         files_.push_back(entry.path().filename().string());
     }
-}
-
-void UiController::renderFileList()
-{
-    clear();
-    for (size_t i = 0; i < files_.size(); ++i) {
-        if (i == highlight_) {
-            attron(A_REVERSE); // Highlight selected file
-        }
-        mvprintw(i, 0, files_[i].c_str());
-        if (i == highlight_) {
-            attroff(A_REVERSE);
-        }
-    }
-    refresh();
 }
 
 void UiController::showErrorPopup(const std::string &message)

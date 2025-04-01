@@ -4,6 +4,7 @@
 
 #include "decoder.hpp"
 #include "player.hpp"
+#include "ui_renderer.hpp"
 #include <ncurses.h>
 #include <queue>
 #include <filesystem>
@@ -18,7 +19,7 @@ constexpr char KEY_NEXT_QUEUE = 'n';
 constexpr char KEY_ADD_QUEUE = 'a';
 constexpr char KEY_PLAY_TRACK = '\n';
 
-using queue_t = std::queue<track_ptr_t>;
+using queue_t = std::vector<track_ptr_t>;
 
 class UiController {
 public:
@@ -28,14 +29,15 @@ private:
     void beginTrackPlayback();
     void stopTrackPlayback();
     void updateFileList();
-    void renderFileList();
     void showErrorPopup(const std::string& message);
     void processTrackSelection();
 
     Decoder dec_;
     Player player_;
+    UiRenderer ui_;
     std::vector<std::string> files_;
     queue_t track_queue_;
+    track_ptr_t current_track_;
     std::string path_;
     int highlight_ = 0;
     std::thread playback_thread_;
