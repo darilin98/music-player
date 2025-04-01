@@ -8,13 +8,15 @@
 #include <ncurses.h>
 #include <string>
 #include <vector>
+#include <queue>
+#include "decoder.hpp"
 
 class UiRenderer {
 public:
     UiRenderer();
     void renderFileList(const std::vector<std::string>& files, size_t highlight) const;
-    void renderTrackQueue(const std::vector<std::string>& queue) const;
-    void renderStatusBar(const std::string& current_track, bool playing) const;
+    void renderTrackQueue(const std::vector<track_ptr_t>& queue) const;
+    void renderStatusBar(const track_ptr_t& current_track, bool playing) const;
     void refreshAll() const;
 
 private:
