@@ -40,6 +40,8 @@ add_executable(music-player
         decoder.cpp
         ui_controller.hpp
         ui_controller.cpp
+        ui_renderer.hpp
+        ui_renderer.cpp
 )
 
 set_target_properties(music-player PROPERTIES
