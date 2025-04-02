@@ -31,6 +31,7 @@ private:
     void updateFileList();
     void showErrorPopup(const std::string& message);
     void processTrackSelection();
+    void addTrackToQueue();
 
     Decoder dec_;
     Player player_;

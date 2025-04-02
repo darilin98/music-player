@@ -26,7 +26,7 @@ void UiController::beginRenderLoop()
     {
         ui_.renderFileList(files_, highlight_);
         ui_.renderTrackQueue(track_queue_);
-        ui_.renderStatusBar(current_track_, playing_);
+        ui_.renderStatusBar(current_track_, playing_, player_.is_paused());
         switch (int pressed_key = getch()) {
             case KEY_UP:
                 if (highlight_ > 0) highlight_--;
@@ -36,6 +36,9 @@ void UiController::beginRenderLoop()
                 break;
             case KEY_PLAY_TRACK:
                 processTrackSelection();
+                break;
+            case KEY_ADD_QUEUE:
+                addTrackToQueue();
                 break;
             case KEY_PAUSE:
                 if (playing_) {
@@ -60,8 +63,8 @@ void UiController::beginTrackPlayback()
         throw std::runtime_error("Error decoding track!");
     }
     player_.load_track(track);
-
     playing_ = true;
+    current_track_ = track;
     playback_thread_ = std::thread([this]() {
         player_.play_track();
         playing_ = false;
@@ -128,6 +131,18 @@ void UiController::processTrackSelection()
             showErrorPopup("Error opening file!");
         }
     }
+}
+
+void UiController::addTrackToQueue()
+{
+    name_t track_path = path_ + "/" + files_[highlight_];
+    track_ptr_t track = dec_.decode_mp3(track_path);
+    if (dynamic_cast<ErrorTrack*>(track.get()) != nullptr) //Check type of returned track
+    {
+        showErrorPopup("Error opening file!");
+        return;
+    }
+    track_queue_.emplace_back(track);
 }
 
 
