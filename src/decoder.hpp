@@ -20,14 +20,19 @@ struct AudioData {
     size_t current_sample;
     int channels;
 };
-
+struct MetaData {
+    name_t track_name;
+    name_t artist;
+    name_t album;
+    double duration;
+};
 struct TrackInfo {
-    name_t name;
+    MetaData meta_data;
     AudioData data;
-    unsigned int sample_rate;
+    uint32_t sample_rate;
 };
 class GenericTrack;
-using track_ptr_t = std::unique_ptr<GenericTrack>;
+using track_ptr_t = std::shared_ptr<GenericTrack>;
 
 class GenericTrack {
 public:
@@ -39,16 +44,18 @@ public:
 class Decoder {
 public:
     static track_ptr_t decode_mp3(const name_t& track_name);
+private:
+    static MetaData parse_id3v1(const name_t& file_name);
 };
 
 class MP3Track : public GenericTrack {
 public:
-    explicit MP3Track(const name_t& name, const AudioData& data, const unsigned int sample_rate)
-        : name_(name), audio_data_(data), sample_rate_(sample_rate) {}
-    TrackInfo getTrackInfo() const override { return TrackInfo {name_, audio_data_, sample_rate_};}
+    explicit MP3Track(const MetaData& meta_data, const AudioData& data, const unsigned int sample_rate)
+        : meta_data_(meta_data), audio_data_(data), sample_rate_(sample_rate) {}
+    TrackInfo getTrackInfo() const override { return TrackInfo {meta_data_, audio_data_, sample_rate_};}
     void setCurrentSample(const size_t& position) override { audio_data_.current_sample = position; }
 private:
-    name_t name_;
+    MetaData meta_data_;
     AudioData audio_data_;
     unsigned int sample_rate_;
 };
@@ -57,7 +64,7 @@ class ErrorTrack : public GenericTrack {
 public:
     explicit ErrorTrack(const name_t& message)
         : error_message_(message) {}
-    TrackInfo getTrackInfo() const override { return TrackInfo {error_message_, AudioData()};}
+    TrackInfo getTrackInfo() const override { return TrackInfo {error_message_, "", "",0, AudioData()};}
     void setCurrentSample(const size_t& position) override {}
 private:
     name_t error_message_;
