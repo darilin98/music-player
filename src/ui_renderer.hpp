@@ -15,7 +15,7 @@ class UiRenderer {
 public:
     UiRenderer();
     void renderFileList(const std::vector<std::string>& files, size_t highlight) const;
-    void renderTrackQueue(const std::vector<track_ptr_t>& queue) const;
+    void renderTrackQueue(const std::deque<track_ptr_t>& queue) const;
     void renderStatusBar(const track_ptr_t& current_track, const bool& playing, const bool& paused) const;
     void refreshAll() const;
     void updateAnimationFrame(const bool& playing, const bool& paused) const;

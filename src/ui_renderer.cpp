@@ -27,7 +27,7 @@ void UiRenderer::renderFileList(const std::vector<std::string> &files, size_t hi
     }
     wrefresh(file_list_win_);
 }
-void UiRenderer::renderTrackQueue(const std::vector<track_ptr_t> &queue) const
+void UiRenderer::renderTrackQueue(const std::deque<track_ptr_t> &queue) const
 {
     wclear(track_queue_win_);
     box(track_queue_win_, 0, 0);
