@@ -30,6 +30,11 @@ void UiController::beginRenderLoop()
     {
         ui_.updateAnimationFrame(playing_, player_.is_paused());
         napms(50);
+        if (!playing_ && !track_queue_.empty())
+        {
+            processNextTrackFromQueue();
+        }
+
         switch (int pressed_key = getch()) {
             case KEY_UP:
                 if (highlight_ > 0) highlight_--;
@@ -52,10 +57,8 @@ void UiController::beginRenderLoop()
                 ui_.renderStatusBar(current_track_, playing_, player_.is_paused());
                 break;
             case KEY_NEXT_QUEUE:
-                if (playing_)
-                    stopTrackPlayback();
-                if (track_queue_.size() > 0)
-
+                processNextTrackFromQueue();
+                break;
             case KEY_QUIT:
                 stopTrackPlayback();
                 running = false;
@@ -83,6 +86,7 @@ void UiController::stopTrackPlayback()
         if (playback_thread_.joinable())
             playback_thread_.join();
         playing_ = false;
+        current_track_ = nullptr;
     }
 }
 
@@ -154,6 +158,21 @@ void UiController::addTrackToQueue()
         return;
     }
     track_queue_.emplace_back(track);
+    ui_.renderTrackQueue(track_queue_);
+}
+
+void UiController::processNextTrackFromQueue()
+{
+    if (playing_)
+        stopTrackPlayback();
+    if (!track_queue_.empty()) {
+        auto next_track = track_queue_.front();
+        track_queue_.pop_front();
+        beginTrackPlayback(next_track);
+    } else {
+        current_track_ = nullptr;
+    }
+    ui_.renderStatusBar(current_track_, playing_, player_.is_paused());
     ui_.renderTrackQueue(track_queue_);
 }
 

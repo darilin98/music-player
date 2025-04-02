@@ -19,7 +19,7 @@ constexpr char KEY_NEXT_QUEUE = 'n';
 constexpr char KEY_ADD_QUEUE = 'a';
 constexpr char KEY_PLAY_TRACK = '\n';
 
-using queue_t = std::vector<track_ptr_t>;
+using queue_t = std::deque<track_ptr_t>;
 
 class UiController {
 public:
@@ -32,6 +32,7 @@ private:
     void showErrorPopup(const std::string& message) const;
     void processTrackSelection();
     void addTrackToQueue();
+    void processNextTrackFromQueue();
 
     Decoder dec_;
     Player player_;
