@@ -34,16 +34,26 @@ void UiRenderer::renderTrackQueue(const std::vector<track_ptr_t> &queue) const
     mvwprintw(track_queue_win_, 0, 2, "Track Queue");
     for(size_t i = 0; i < queue.size(); ++i)
     {
-        mvwprintw(track_queue_win_, i + 1, 2, "sample_text");
+        mvwprintw(track_queue_win_, i + 1, 2, "%s", queue[i]->getTrackInfo().meta_data.track_name.c_str());
     }
     wrefresh(track_queue_win_);
 }
-void UiRenderer::renderStatusBar(const track_ptr_t& current_track, bool playing) const
+void UiRenderer::renderStatusBar(const track_ptr_t& current_track, const bool& playing, const bool& paused) const
 {
     wclear(status_bar_win_);
     box(status_bar_win_, 0, 0);
-    if (playing)
+    if (playing) {
         mvwprintw(status_bar_win_, 0, 2, "Now Playing: ");
+        if (paused)
+            mvwprintw(status_bar_win_, 2, 2, "||");
+        else
+            mvwprintw(status_bar_win_, 2, 2, "|>");
+        if (current_track != nullptr)
+        {
+            MetaData metaData = current_track->getTrackInfo().meta_data;
+            mvwprintw(status_bar_win_, 2, 6 , "%s by: %s on: %s ", metaData.track_name.c_str(), metaData.artist.c_str(), metaData.album.c_str());
+        }
+    }
     else
         mvwprintw(status_bar_win_, 0, 2, "Select a track and press ENTER to play");
     mvwprintw(status_bar_win_, 4, 2 , "[Q] Quit  [SPACE] Pause  [A] Add  [N] Next");
