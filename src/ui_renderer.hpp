@@ -18,8 +18,11 @@ public:
     void renderTrackQueue(const std::vector<track_ptr_t>& queue) const;
     void renderStatusBar(const track_ptr_t& current_track, const bool& playing, const bool& paused) const;
     void refreshAll() const;
+    void updateAnimationFrame(const bool& playing, const bool& paused) const;
 
 private:
+    void renderTrackPlayingText(const MetaData& meta_data) const;
+
     WINDOW *file_list_win_;
     WINDOW *track_queue_win_;
     WINDOW *status_bar_win_;
