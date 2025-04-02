@@ -20,19 +20,24 @@ void UiController::beginRenderLoop()
     path_ = std::filesystem::current_path().string();
 
     updateFileList();
+    nodelay(stdscr, TRUE);
+    ui_.renderFileList(files_, highlight_);
+    ui_.renderTrackQueue(track_queue_);
+    ui_.renderStatusBar(current_track_, playing_, player_.is_paused());
 
     bool running = true;
     while (running)
     {
-        ui_.renderFileList(files_, highlight_);
-        ui_.renderTrackQueue(track_queue_);
-        ui_.renderStatusBar(current_track_, playing_, player_.is_paused());
+        ui_.updateAnimationFrame(playing_, player_.is_paused());
+        napms(50);
         switch (int pressed_key = getch()) {
             case KEY_UP:
                 if (highlight_ > 0) highlight_--;
+                ui_.renderFileList(files_, highlight_);
                 break;
             case KEY_DOWN:
                 if (highlight_ < files_.size() - 1) highlight_++;
+                ui_.renderFileList(files_, highlight_);
                 break;
             case KEY_PLAY_TRACK:
                 processTrackSelection();
@@ -44,6 +49,7 @@ void UiController::beginRenderLoop()
                 if (playing_) {
                     player_.is_paused() ? player_.resume_track() : player_.pause_track();
                 }
+                ui_.renderStatusBar(current_track_, playing_, player_.is_paused());
                 break;
             case KEY_QUIT:
                 stopTrackPlayback();
@@ -91,7 +97,7 @@ void UiController::updateFileList()
     }
 }
 
-void UiController::showErrorPopup(const std::string &message)
+void UiController::showErrorPopup(const std::string &message) const
 {
     size_t height = 3;
     size_t width = message.size() + 4;
@@ -108,6 +114,9 @@ void UiController::showErrorPopup(const std::string &message)
     delwin(popup);
     clear();
     refresh();
+    ui_.renderFileList(files_, highlight_);
+    ui_.renderTrackQueue(track_queue_);
+    ui_.renderStatusBar(current_track_, playing_, player_.is_paused());
 }
 
 void UiController::processTrackSelection()
@@ -131,6 +140,8 @@ void UiController::processTrackSelection()
             showErrorPopup("Error opening file!");
         }
     }
+    ui_.renderStatusBar(current_track_, playing_, player_.is_paused());
+    ui_.renderFileList(files_, highlight_);
 }
 
 void UiController::addTrackToQueue()
@@ -143,6 +154,7 @@ void UiController::addTrackToQueue()
         return;
     }
     track_queue_.emplace_back(track);
+    ui_.renderTrackQueue(track_queue_);
 }
 
 

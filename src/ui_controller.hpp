@@ -29,7 +29,7 @@ private:
     void beginTrackPlayback();
     void stopTrackPlayback();
     void updateFileList();
-    void showErrorPopup(const std::string& message);
+    void showErrorPopup(const std::string& message) const;
     void processTrackSelection();
     void addTrackToQueue();
 
