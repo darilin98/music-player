@@ -12,7 +12,7 @@
 class Player {
 public:
     explicit Player();
-    void load_track(track_ptr_t& track);
+    void load_track(const track_ptr_t& track);
     void play_track();
     void pause_track();
     void resume_track();

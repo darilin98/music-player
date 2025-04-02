@@ -43,9 +43,9 @@ void Player::resume_track()
     }
 }
 
-void Player::load_track(track_ptr_t& track)
+void Player::load_track(const track_ptr_t& track)
 {
-    track_ = std::move(track);
+    track_ = track;
     paused_ = false;
 }
 
@@ -63,7 +63,7 @@ void Player::play_track()
     }
 
     TrackInfo info = track_->getTrackInfo();
-    name_t name = info.name;
+    name_t name = info.meta_data.track_name;
     SAMPLE_RATE = info.sample_rate;
     params_.nChannels = info.data.channels;
     AudioData audio_data = info.data;
