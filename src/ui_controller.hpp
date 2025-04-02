@@ -26,7 +26,7 @@ public:
     UiController();
     void beginRenderLoop();
 private:
-    void beginTrackPlayback();
+    void beginTrackPlayback(const track_ptr_t& track);
     void stopTrackPlayback();
     void updateFileList();
     void showErrorPopup(const std::string& message) const;

@@ -51,6 +51,11 @@ void UiController::beginRenderLoop()
                 }
                 ui_.renderStatusBar(current_track_, playing_, player_.is_paused());
                 break;
+            case KEY_NEXT_QUEUE:
+                if (playing_)
+                    stopTrackPlayback();
+                if (track_queue_.size() > 0)
+
             case KEY_QUIT:
                 stopTrackPlayback();
                 running = false;
@@ -60,14 +65,8 @@ void UiController::beginRenderLoop()
     endwin();
 }
 
-void UiController::beginTrackPlayback()
+void UiController::beginTrackPlayback(const track_ptr_t& track)
 {
-    name_t track_name = path_ + "/" + files_[highlight_];
-    track_ptr_t track = dec_.decode_mp3(track_name);
-    if (dynamic_cast<ErrorTrack*>(track.get()) != nullptr) //Check type of returned track
-    {
-        throw std::runtime_error("Error decoding track!");
-    }
     player_.load_track(track);
     playing_ = true;
     current_track_ = track;
@@ -132,13 +131,14 @@ void UiController::processTrackSelection()
     {
         if (playing_)
             stopTrackPlayback();
-        try
-        {
-            beginTrackPlayback();
-        } catch (const std::exception& e)
-        {
+        name_t track_name = path_ + "/" + selected;
+        track_ptr_t track = dec_.decode_mp3(track_name);
+        if (dynamic_cast<ErrorTrack*>(track.get()) != nullptr){
+            //Check type of returned track
             showErrorPopup("Error opening file!");
+            return;
         }
+        beginTrackPlayback(track);
     }
     ui_.renderStatusBar(current_track_, playing_, player_.is_paused());
     ui_.renderFileList(files_, highlight_);
