@@ -55,6 +55,7 @@ void Player::raise_volume()
     {
         AudioData& audio_data = track_->getAudioDataRef();
         audio_data.volume = std::clamp(audio_data.volume + 0.02f, 0.0f, 1.0f);
+        saved_volume_ = audio_data.volume;
     }
 }
 void Player::lower_volume()
@@ -63,6 +64,7 @@ void Player::lower_volume()
     {
         AudioData& audio_data = track_->getAudioDataRef();
         audio_data.volume = std::clamp(audio_data.volume - 0.02f, 0.0f, 1.0f);
+        saved_volume_ = audio_data.volume;
     }
 }
 
@@ -85,6 +87,7 @@ void Player::play_track()
     SAMPLE_RATE = info.sample_rate;
     params_.nChannels = info.data.channels;
     AudioData& audio_data = track_->getAudioDataRef();
+    audio_data.volume = saved_volume_;
 
     try {
         audio_.openStream(&params_, nullptr, RTAUDIO_SINT16, SAMPLE_RATE, &BUFFER_SIZE, audioCallback, &audio_data);

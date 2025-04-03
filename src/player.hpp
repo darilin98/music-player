@@ -31,6 +31,7 @@ private:
     RtAudio::StreamParameters params_;
     unsigned int BUFFER_SIZE = 512;
     unsigned int SAMPLE_RATE = 44100;
+    float saved_volume_ = DEFAULT_VOLUME;
     track_ptr_t track_;
 };
 
