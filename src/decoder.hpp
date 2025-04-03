@@ -24,7 +24,7 @@ struct MetaData {
     name_t track_name;
     name_t artist;
     name_t album;
-    double duration;
+    uint32_t duration;
 };
 struct TrackInfo {
     MetaData meta_data;
@@ -38,6 +38,7 @@ class GenericTrack {
 public:
     virtual ~GenericTrack() = default;
     virtual TrackInfo getTrackInfo() const = 0;
+    virtual AudioData& getAudioDataRef() = 0;
     virtual void setCurrentSample(const size_t& position) = 0;
 };
 
@@ -53,6 +54,7 @@ public:
     explicit MP3Track(const MetaData& meta_data, const AudioData& data, const unsigned int sample_rate)
         : meta_data_(meta_data), audio_data_(data), sample_rate_(sample_rate) {}
     TrackInfo getTrackInfo() const override { return TrackInfo {meta_data_, audio_data_, sample_rate_};}
+    AudioData& getAudioDataRef() override { return audio_data_; }
     void setCurrentSample(const size_t& position) override { audio_data_.current_sample = position; }
 private:
     MetaData meta_data_;
@@ -65,8 +67,10 @@ public:
     explicit ErrorTrack(const name_t& message)
         : error_message_(message) {}
     TrackInfo getTrackInfo() const override { return TrackInfo {error_message_, "", "",0, AudioData()};}
+    AudioData& getAudioDataRef() override { return error_data_; }
     void setCurrentSample(const size_t& position) override {}
 private:
+    AudioData error_data_ = AudioData();
     name_t error_message_;
 };
 
