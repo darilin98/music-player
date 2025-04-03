@@ -6,9 +6,9 @@
 UiRenderer::UiRenderer()
 {
     int mid_x = COLS / 2;
-    file_list_win_ = newwin(LINES - 5, mid_x, 0, 0);
-    track_queue_win_ = newwin(LINES - 5, COLS - mid_x, 0, mid_x);
-    status_bar_win_ = newwin(5, COLS, LINES - 5, 0);
+    file_list_win_ = newwin(LINES - 6, mid_x, 0, 0);
+    track_queue_win_ = newwin(LINES - 6, COLS - mid_x, 0, mid_x);
+    status_bar_win_ = newwin(6, COLS, LINES - 6, 0);
 }
 
 
@@ -61,7 +61,7 @@ void UiRenderer::renderStatusBar(const track_ptr_t& current_track, const bool& p
     }
     else
         mvwprintw(status_bar_win_, 0, 2, "Select a track and press ENTER to play");
-    mvwprintw(status_bar_win_, 4, 2 , "[Q] Quit  [SPACE] Pause  [A] Add  [N] Next");
+    mvwprintw(status_bar_win_, 5, 2 , "[Q] Quit  [SPACE] Pause  [A] Add  [N] Next  [U/D] Volume Control");
     wrefresh(status_bar_win_);
 }
 void UiRenderer::renderTrackPlayingText(const MetaData& metaData) const
