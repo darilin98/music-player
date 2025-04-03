@@ -3,6 +3,8 @@
 //
 #include "decoder.hpp"
 
+#include <__filesystem/path.h>
+
 using name_t = std::string;
 
 track_ptr_t Decoder::decode_mp3(const name_t& track_name)
@@ -55,28 +57,29 @@ track_ptr_t Decoder::decode_mp3(const name_t& track_name)
 };
 
 MetaData Decoder::parse_id3v1(const std::string& filename) {
+    std::filesystem::path fallback_name(filename);
     FILE* f = fopen(filename.c_str(), "rb");
     if (!f) {
         perror("Failed to open file");
-        return {"Unknown", "Unknown Artist", "Unknown", 0};
+        return {fallback_name.stem(), "Unknown Artist", "Unknown", 0};
     }
 
     // Seek to the last 128 bytes - ID3v1 location
     if (fseek(f, -128, SEEK_END) != 0) {
         fclose(f);
-        return {"Unknown", "Unknown Artist", "Unknown", 0};
+        return {fallback_name.stem(), "Unknown Artist", "Unknown", 0};
     }
 
     char tag[128] = {0};
     if (fread(tag, 1, 128, f) != 128) {
         fclose(f);
-        return {"Unknown", "Unknown Artist", "Unknown", 0};
+        return {fallback_name.stem(), "Unknown Artist", "Unknown", 0};
     }
     fclose(f);
 
     // Validate Tag
     if (strncmp(tag, "TAG", 3) != 0) {
-        return {"Unknown", "Unknown Artist", "Unknown", 0};
+        return {fallback_name.stem(), "Unknown Artist", "Unknown", 0};
     }
 
     MetaData meta;
