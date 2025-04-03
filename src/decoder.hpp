@@ -13,13 +13,14 @@
 #ifndef DECODER_HPP
 #define DECODER_HPP
 
+constexpr float DEFAULT_VOLUME = 0.5f;
 using name_t = std::string;
 struct AudioData {
     int16_t* pcmData;
     size_t total_samples;
     size_t current_sample;
     int channels;
-    float volume = 0.5f;
+    float volume = DEFAULT_VOLUME;
 };
 struct MetaData {
     name_t track_name;
