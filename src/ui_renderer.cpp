@@ -54,8 +54,8 @@ void UiRenderer::renderStatusBar(const track_ptr_t& current_track, const bool& p
         }
         if (current_track != nullptr)
         {
-            MetaData metaData = current_track->getTrackInfo().meta_data;
-            renderTrackPlayingText(metaData);
+            TrackInfo track_info = current_track->getTrackInfo();
+            renderTrackPlayingText(track_info.meta_data);
         }
         wattroff(status_bar_win_, A_BOLD);
     }
@@ -78,14 +78,13 @@ void UiRenderer::renderTrackPlayingText(const MetaData& metaData) const
     mvwprintw(status_bar_win_, 2, 17 + metaData.track_name.length() + metaData.artist.length(), "%s", metaData.album.c_str());
     wattroff(status_bar_win_, A_BOLD);
 }
-void UiRenderer::updateAnimationFrame(const bool& playing, const bool& paused) const
+void UiRenderer::updateAnimationFrame(const track_ptr_t& current_track, const bool& playing, const bool& paused) const
 {
     static const char *frames[] = {
         ".!||!.!|||!.", "!|!||!.!||!.", "!|!!|!.!|!..", "||.!||!.!!..", "|!..!||!!.!.", "!....!|!..!|", "..!.!...!!.!", "..!!...!|!..", ".!|!...!||!."
     };
-    static int frame = 0;
-    static int frame_counter = 0;
-    const int frame_delay = 5;
+    static size_t frame = 0;
+    static size_t frame_counter = 0;
     if (playing)
     {
         if (!paused)
@@ -93,10 +92,18 @@ void UiRenderer::updateAnimationFrame(const bool& playing, const bool& paused) c
             frame_counter++;
             if (frame_counter >= frame_delay) {
                 frame_counter = 0;
-                frame = (frame + 1) % (sizeof(frames) / sizeof(frames[0]));
+                frame = (frame + 1) % std::size(frames);
             }
         }
-
+        if (current_track != nullptr)
+        {
+            TrackInfo track_info = current_track->getTrackInfo();
+            uint32_t elapsed_time_minutes = track_info.data.current_sample / track_info.sample_rate / track_info.data.channels / 60;
+            uint32_t elapsed_time_seconds = track_info.data.current_sample / track_info.data.channels / track_info.sample_rate % 60;
+            uint32_t total_minutes = track_info.meta_data.duration / 60;
+            uint32_t total_seconds = track_info.meta_data.duration % 60;
+            mvwprintw(status_bar_win_, 3, 6, "%d:%02d / %d:%02d",elapsed_time_minutes, elapsed_time_seconds, total_minutes, total_seconds);
+        }
         mvwprintw(status_bar_win_, 0, 15, frames[frame]);
         wrefresh(status_bar_win_);
     }
