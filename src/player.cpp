@@ -66,12 +66,15 @@ void Player::play_track()
     name_t name = info.meta_data.track_name;
     SAMPLE_RATE = info.sample_rate;
     params_.nChannels = info.data.channels;
-    AudioData audio_data = info.data;
+    AudioData& audio_data = track_->getAudioDataRef();
 
     try {
         audio_.openStream(&params_, nullptr, RTAUDIO_SINT16, SAMPLE_RATE, &BUFFER_SIZE, audioCallback, &audio_data);
         audio_.startStream();
         while (audio_.isStreamRunning() && !stop_playback_) {
+            if (audio_data.current_sample >= audio_data.total_samples) {
+                stop_playback_ = true;
+            }
             if (is_paused())
                 audio_.stopStream();
 
@@ -87,7 +90,6 @@ void Player::play_track()
             std::this_thread::sleep_for(std::chrono::milliseconds(100));
         }
         audio_.closeStream();
-        track_->setCurrentSample(audio_data.current_sample);
     } catch (RtAudioErrorType &e) {
         if (audio_.isStreamOpen()) audio_.closeStream();
     }
