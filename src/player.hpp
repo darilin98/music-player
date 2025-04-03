@@ -14,6 +14,8 @@ public:
     explicit Player();
     void load_track(const track_ptr_t& track);
     void play_track();
+    void raise_volume();
+    void lower_volume();
     void pause_track();
     void resume_track();
     [[nodiscard]] bool is_paused() const;

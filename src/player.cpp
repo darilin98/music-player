@@ -49,6 +49,24 @@ void Player::load_track(const track_ptr_t& track)
     paused_ = false;
 }
 
+void Player::raise_volume()
+{
+    if (track_)
+    {
+        AudioData& audio_data = track_->getAudioDataRef();
+        audio_data.volume = std::clamp(audio_data.volume + 0.02f, 0.0f, 1.0f);
+    }
+}
+void Player::lower_volume()
+{
+    if (track_)
+    {
+        AudioData& audio_data = track_->getAudioDataRef();
+        audio_data.volume = std::clamp(audio_data.volume - 0.02f, 0.0f, 1.0f);
+    }
+}
+
+
 void Player::play_track()
 {
     stop_playback_ = false;
@@ -102,11 +120,13 @@ int Player::audioCallback(void *outputBuffer, void *, unsigned int nFrames,
 
     int16_t *buffer = static_cast<int16_t *>(outputBuffer);
     size_t channels = audio_data->channels;
+    float volume = audio_data->volume;
 
     for (unsigned int i = 0; i < nFrames; i++) {
         for (size_t ch = 0; ch < channels; ch++) {
             if (audio_data->current_sample < audio_data->total_samples) {
-                buffer[i * channels + ch] = audio_data->pcmData[audio_data->current_sample++];
+                buffer[i * channels + ch] = static_cast<int16_t>(
+                    audio_data->pcmData[audio_data->current_sample++] * volume);
             } else {
                 buffer[i * channels + ch] = 0;
             }
