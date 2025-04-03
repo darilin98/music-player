@@ -19,6 +19,7 @@ struct AudioData {
     size_t total_samples;
     size_t current_sample;
     int channels;
+    float volume = 0.5f;
 };
 struct MetaData {
     name_t track_name;
