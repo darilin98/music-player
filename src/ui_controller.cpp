@@ -59,6 +59,12 @@ void UiController::beginRenderLoop()
             case KEY_NEXT_QUEUE:
                 processNextTrackFromQueue();
                 break;
+            case KEY_VOLUME_UP:
+                player_.raise_volume();
+                break;
+            case KEY_VOLUME_DOWN:
+                player_.lower_volume();
+                break;
             case KEY_QUIT:
                 stopTrackPlayback();
                 running = false;

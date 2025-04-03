@@ -18,6 +18,8 @@ constexpr char KEY_PAUSE = ' ';
 constexpr char KEY_NEXT_QUEUE = 'n';
 constexpr char KEY_ADD_QUEUE = 'a';
 constexpr char KEY_PLAY_TRACK = '\n';
+constexpr char KEY_VOLUME_UP= 'u';
+constexpr char KEY_VOLUME_DOWN = 'd';
 
 using queue_t = std::deque<track_ptr_t>;
 
