@@ -50,6 +50,7 @@ void UiRenderer::renderStatusBar(const track_ptr_t& current_track, const bool& p
             wattron(status_bar_win_, A_BOLD);
             mvwprintw(status_bar_win_, 2, 2, "||");
         } else {
+            wattron(status_bar_win_, A_BOLD);
             mvwprintw(status_bar_win_, 2, 2, "|>");
         }
         if (current_track != nullptr)
