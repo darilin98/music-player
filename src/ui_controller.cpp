@@ -28,7 +28,7 @@ void UiController::beginRenderLoop()
     bool running = true;
     while (running)
     {
-        ui_.updateAnimationFrame(playing_, player_.is_paused());
+        ui_.updateAnimationFrame(current_track_, playing_, player_.is_paused());
         napms(50);
         if (!playing_ && !track_queue_.empty())
         {
@@ -70,12 +70,18 @@ void UiController::beginRenderLoop()
 
 void UiController::beginTrackPlayback(const track_ptr_t& track)
 {
+    if (playback_thread_.joinable())
+    {
+        playback_thread_.join();
+    }
     player_.load_track(track);
     playing_ = true;
     current_track_ = track;
     playback_thread_ = std::thread([this]() {
         player_.play_track();
         playing_ = false;
+        current_track_ = nullptr;
+        ui_.renderStatusBar(current_track_, playing_, player_.is_paused());
     });
 }
 void UiController::stopTrackPlayback()
@@ -165,12 +171,11 @@ void UiController::processNextTrackFromQueue()
 {
     if (playing_)
         stopTrackPlayback();
-    if (!track_queue_.empty()) {
+    if (!track_queue_.empty())
+    {
         auto next_track = track_queue_.front();
         track_queue_.pop_front();
         beginTrackPlayback(next_track);
-    } else {
-        current_track_ = nullptr;
     }
     ui_.renderStatusBar(current_track_, playing_, player_.is_paused());
     ui_.renderTrackQueue(track_queue_);
