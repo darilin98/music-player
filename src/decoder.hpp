@@ -1,6 +1,12 @@
 //
 // Created by Darek Rudiš on 10.02.2025.
 //
+/**
+ * @file Decoder.hpp
+ * @brief Contains classes and structures for decoding MP3 files into PCM audio data.
+ * @author Darek Rudiš
+ * @date 2025-02-10
+ */
 
 #include <iostream>
 
@@ -15,40 +21,80 @@
 
 constexpr float DEFAULT_VOLUME = 0.5f;
 using name_t = std::string;
+
+/**
+ * @struct AudioData
+ * @brief Contains PCM audio samples and playback-related data.
+ */
 struct AudioData {
-    int16_t* pcmData;
+    int16_t* pcmData; ///< Raw track PCM data
     size_t total_samples;
-    size_t current_sample;
+    size_t current_sample; ///< Current position during playback
     int channels;
     float volume = DEFAULT_VOLUME;
 };
+
+/**
+ * @struct MetaData
+ * @brief Holds data related to track context
+ */
 struct MetaData {
     name_t track_name;
     name_t artist;
     name_t album;
     uint32_t duration;
 };
+
+/**
+ * @struct TrackInfo
+ * @brief Couples together playback and context information for a specific track
+ */
 struct TrackInfo {
     MetaData meta_data;
     AudioData data;
     uint32_t sample_rate;
 };
+
 class GenericTrack;
 using track_ptr_t = std::shared_ptr<GenericTrack>;
 
+/**
+ * @class Decoder
+ * @brief Transforms valid file into PCM data and all necessary parameters for audio playback
+ */
+class Decoder {
+public:
+    /**
+     * @brief Attempts to decode a file as an MP3
+     * @param track_name Path to target file
+     * @return Pointer to a Track object, if decoding failed target is an ErrorTrack
+     */
+    static track_ptr_t decode_mp3(const name_t& track_name);
+private:
+    /**
+     * @brief Parses ID3v1 metadata from the file.
+     * @param file_name Path to the MP3 file.
+     * @return MetaData structure containing track info.
+     */
+    static MetaData parse_id3v1(const name_t& file_name);
+};
+
+/**
+ * @class GenericTrack
+ * @brief Abstract base class for all track types.
+ */
 class GenericTrack {
 public:
     virtual ~GenericTrack() = default;
+    /**
+     * @brief Returns a copy of the track’s metadata and audio data.
+     */
     virtual TrackInfo getTrackInfo() const = 0;
+    /**
+     * @brief Returns a reference to actual AudioData for tracking playback progress
+     */
     virtual AudioData& getAudioDataRef() = 0;
     virtual void setCurrentSample(const size_t& position) = 0;
-};
-
-class Decoder {
-public:
-    static track_ptr_t decode_mp3(const name_t& track_name);
-private:
-    static MetaData parse_id3v1(const name_t& file_name);
 };
 
 class MP3Track : public GenericTrack {
