@@ -1,4 +1,6 @@
-# UNIX Terminal Music Player
+# Project Specification 
+
+## UNIX Terminal Music Player
 
 ## Goals:
 

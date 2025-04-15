@@ -29,3 +29,5 @@ music-player
 ## Further Reading
 
 [Project specification](docs/project_specification.md).
+
+[Full documentation]()
