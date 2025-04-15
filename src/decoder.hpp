@@ -2,7 +2,7 @@
 // Created by Darek Rudiš on 10.02.2025.
 //
 /**
- * @file Decoder.hpp
+ * @file decoder.hpp
  * @brief Contains classes and structures for decoding MP3 files into PCM audio data.
  * @author Darek Rudiš
  * @date 2025-02-10
