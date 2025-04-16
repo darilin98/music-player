@@ -1,0 +1,7 @@
+<map id="TrackInfo" name="TrackInfo">
+<area shape="rect" id="Node000001" title="Couples together playback and context information for a specific track." alt="" coords="64,93,145,119"/>
+<area shape="rect" id="Node000002" href="$structMetaData.html" title="Holds data related to track context." alt="" coords="5,5,92,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="52,44,60,68,71,81,85,91,82,95,68,85,56,71,47,46"/>
+<area shape="rect" id="Node000003" href="$structAudioData.html" title="Contains PCM audio samples and playback&#45;related data." alt="" coords="117,5,207,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="151,44,135,71,117,95,112,92,130,68,147,41"/>
+</map>

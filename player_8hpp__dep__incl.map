@@ -1,0 +1,11 @@
+<map id="src/player.hpp" name="src/player.hpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="82,5,195,31"/>
+<area shape="rect" id="Node000002" href="$player_8cpp_source.html" title=" " alt="" coords="5,79,117,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,42,76,80,72,76,114,38"/>
+<area shape="rect" id="Node000003" href="$ui__controller_8hpp.html" title="Defines class and constants regarding user interface core logic." alt="" coords="141,79,294,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="163,38,206,76,203,80,160,42"/>
+<area shape="rect" id="Node000004" href="$main_8cpp_source.html" title=" " alt="" coords="87,152,193,177"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="197,115,154,154,151,150,193,111"/>
+<area shape="rect" id="Node000005" href="$ui__controller_8cpp_source.html" title=" " alt="" coords="217,152,369,177"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="241,111,283,150,279,154,238,115"/>
+</map>

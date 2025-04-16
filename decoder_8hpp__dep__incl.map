@@ -1,0 +1,21 @@
+<map id="src/decoder.hpp" name="src/decoder.hpp">
+<area shape="rect" id="Node000001" title="Contains classes and structures for decoding MP3 files into PCM audio data." alt="" coords="194,5,318,31"/>
+<area shape="rect" id="Node000002" href="$decoder_8cpp_source.html" title=" " alt="" coords="5,79,128,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="214,38,99,81,97,76,212,33"/>
+<area shape="rect" id="Node000003" href="$player_8hpp.html" title=" " alt="" coords="153,79,266,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="243,44,219,80,215,77,239,41"/>
+<area shape="rect" id="Node000005" href="$ui__controller_8hpp.html" title="Defines class and constants regarding user interface core logic." alt="" coords="227,152,381,177"/>
+<area shape="poly" id="edge7_Node000001_Node000005" title=" " alt="" coords="268,43,281,78,303,151,298,153,276,80,263,45"/>
+<area shape="rect" id="Node000008" href="$ui__renderer_8hpp.html" title="Defines class handling UI window rendering specifics." alt="" coords="341,79,488,104"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="295,34,390,76,388,81,293,39"/>
+<area shape="rect" id="Node000004" href="$player_8cpp_source.html" title=" " alt="" coords="92,152,204,177"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="192,116,160,154,156,150,188,113"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="237,110,290,150,287,154,234,114"/>
+<area shape="rect" id="Node000006" href="$main_8cpp_source.html" title=" " alt="" coords="175,225,281,251"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="284,189,242,227,239,223,280,185"/>
+<area shape="rect" id="Node000007" href="$ui__controller_8cpp_source.html" title=" " alt="" coords="305,225,457,251"/>
+<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="328,185,370,223,367,227,325,189"/>
+<area shape="poly" id="edge9_Node000008_Node000005" title=" " alt="" coords="387,114,324,154,321,150,384,109"/>
+<area shape="rect" id="Node000009" href="$ui__renderer_8cpp_source.html" title=" " alt="" coords="405,152,550,177"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="436,113,469,150,465,154,432,116"/>
+</map>

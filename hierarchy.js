@@ -1,0 +1,14 @@
+var hierarchy =
+[
+    [ "AudioData", "structAudioData.html", null ],
+    [ "Decoder", "classDecoder.html", null ],
+    [ "GenericTrack", "classGenericTrack.html", [
+      [ "ErrorTrack", "classErrorTrack.html", null ],
+      [ "MP3Track", "classMP3Track.html", null ]
+    ] ],
+    [ "MetaData", "structMetaData.html", null ],
+    [ "Player", "classPlayer.html", null ],
+    [ "TrackInfo", "structTrackInfo.html", null ],
+    [ "UiController", "classUiController.html", null ],
+    [ "UiRenderer", "classUiRenderer.html", null ]
+];

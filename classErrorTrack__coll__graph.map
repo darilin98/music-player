@@ -1,0 +1,7 @@
+<map id="ErrorTrack" name="ErrorTrack">
+<area shape="rect" id="Node000001" title=" " alt="" coords="77,93,163,119"/>
+<area shape="rect" id="Node000002" href="$classGenericTrack.html" title="Abstract base class for all track types." alt="" coords="5,5,112,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,41,114,91,109,94,73,44"/>
+<area shape="rect" id="Node000003" href="$structAudioData.html" title="Contains PCM audio samples and playback&#45;related data." alt="" coords="136,5,227,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="167,44,131,94,126,91,163,41"/>
+</map>

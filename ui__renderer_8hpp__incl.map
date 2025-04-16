@@ -1,0 +1,25 @@
+<map id="src/ui_renderer.hpp" name="src/ui_renderer.hpp">
+<area shape="rect" id="Node000001" title="Defines class handling UI window rendering specifics." alt="" coords="198,5,345,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,89,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="236,33,97,77,96,72,235,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="114,79,173,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="252,33,178,74,175,69,249,28"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="197,79,260,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="267,32,245,68,240,66,262,30"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="284,79,347,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="281,30,303,66,299,68,276,32"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="371,79,462,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="296,28,382,70,380,75,294,33"/>
+<area shape="rect" id="Node000007" href="$decoder_8hpp.html" title="Contains classes and structures for decoding MP3 files into PCM audio data." alt="" coords="486,79,587,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="315,28,481,72,480,78,313,33"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="313,152,393,177"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="508,107,397,149,395,144,506,102"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="417,152,480,177"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="524,106,475,145,472,141,521,102"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="505,152,569,177"/>
+<area shape="poly" id="edge9_Node000007_Node000010" title=" " alt="" coords="539,104,539,138,534,138,534,104"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="593,152,747,177"/>
+<area shape="poly" id="edge10_Node000007_Node000011" title=" " alt="" coords="559,102,637,143,635,148,557,106"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="772,152,949,177"/>
+<area shape="poly" id="edge11_Node000007_Node000012" title=" " alt="" coords="588,101,796,146,794,152,587,106"/>
+</map>
