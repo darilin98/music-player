@@ -9,11 +9,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Set up Doxygen
         run: sudo apt-get install doxygen graphviz
 
       - name: Generate Doxygen documentation
-        run: doxygen docs/doxygen/Doxyfile
+        run: doxygen ./docs/doxygen/Doxyfile
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
