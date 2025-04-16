@@ -21,13 +21,22 @@ Then optionally install it (in order for it to be used anywhere in the terminal)
 sudo cmake --install ./build
 ```
 
-Call the app by using:
+Call the app in your terminal by using:
 
 ```
 music-player 
 ```
+
+## Trying it out
+
+If you don't have mp3 files on hand you can go to /src/testmp3files/
+
+This directory contains some royalty-free tracks to test the app's behavior 
+
 ## Further Reading
 
 [Project specification](docs/project_specification.md).
 
-[Full documentation]()
+[Full documentation pdf](docs/doxygen/latex/refman.pdf)
+
+GitLab pages aren't enabled on this repo but the HTML documentation output can be generated using the CI job.
