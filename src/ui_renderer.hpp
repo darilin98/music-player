@@ -15,6 +15,7 @@
 #include <vector>
 #include <queue>
 #include <filesystem>
+#include <memory>
 #include "decoder.hpp"
 
 using file_t = std::filesystem::directory_entry;
