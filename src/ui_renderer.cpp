@@ -3,6 +3,8 @@
 //
 #include "ui_renderer.hpp"
 
+#include <__filesystem/operations.h>
+
 UiRenderer::UiRenderer()
 {
     int mid_x = COLS / 2;
@@ -12,18 +14,25 @@ UiRenderer::UiRenderer()
 }
 
 
-void UiRenderer::renderFileList(const std::vector<std::string> &files, size_t highlight) const
+void UiRenderer::renderFileList(const file_list_t& files, size_t highlight) const
 {
     wclear(file_list_win_);
     box(file_list_win_, 0, 0);
     for (size_t i = 0; i < files.size(); ++i) {
-        if (i == highlight) {
+        if (i == highlight)
             wattron(file_list_win_, A_REVERSE);
-        }
-        mvwprintw(file_list_win_, i + 1, 2, files[i].c_str());
-        if (i == highlight) {
+        if (std::filesystem::path(files[i]).extension() == ".mp3")
+            wattron(file_list_win_, COLOR_PAIR(1));
+
+        if (is_directory(files[i]))
+            mvwprintw(file_list_win_, i + 1, 2, "/%s", files[i].path().filename().c_str());
+        else
+            mvwprintw(file_list_win_, i + 1, 2, files[i].path().filename().c_str());
+
+        if (std::filesystem::path(files[i]).extension() == ".mp3")
+            wattroff(file_list_win_, COLOR_PAIR(1));
+        if (i == highlight)
             wattroff(file_list_win_, A_REVERSE);
-        }
     }
     wrefresh(file_list_win_);
 }

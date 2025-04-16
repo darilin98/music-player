@@ -28,6 +28,8 @@ constexpr char KEY_VOLUME_UP= 'u';
 constexpr char KEY_VOLUME_DOWN = 'd';
 
 using queue_t = std::deque<track_ptr_t>;
+using file_t = std::filesystem::directory_entry;
+using file_list_t = std::vector<file_t>;
 
 /**
  * @class UiController
@@ -60,7 +62,7 @@ private:
     Decoder dec_; ///< Decoder instance for creating Track objects
     Player player_; ///< Player instance to delegate Track playback
     UiRenderer ui_; ///< Helper renderer instance that separates concern for ncurses rendering
-    std::vector<std::string> files_; ///< Files in current directory
+    file_list_t files_; ///< Files in current directory
     queue_t track_queue_; ///< Tracks ready to be played
     track_ptr_t current_track_; ///< Track currently loaded in the player_ instance and playing
     std::string path_; ///< Current working directory

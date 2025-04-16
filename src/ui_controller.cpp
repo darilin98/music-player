@@ -10,6 +10,8 @@ UiController::UiController()
     noecho();
     cbreak();
     keypad(stdscr, true);
+    start_color();
+    init_pair(1, COLOR_CYAN, COLOR_BLACK);
     curs_set(0);
     // Explicit initialization of the renderer after all setup ncurses functions have been called
     ui_ = UiRenderer();
@@ -105,10 +107,10 @@ void UiController::stopTrackPlayback()
 void UiController::updateFileList()
 {
     files_.clear();
-    files_.emplace_back(".."); // For going up a directory
+    files_.emplace_back(std::filesystem::directory_entry(std::filesystem::path(path_) / ".."));
     for (const auto& entry : std::filesystem::directory_iterator(path_))
     {
-        files_.push_back(entry.path().filename().string());
+        files_.push_back(entry);
     }
 }
 
@@ -136,19 +138,22 @@ void UiController::showErrorPopup(const std::string &message) const
 
 void UiController::processTrackSelection()
 {
-    name_t selected = files_[highlight_];
-    name_t new_path = (selected == "..") ? std::filesystem::path(path_).parent_path().string() : path_ + "/" + selected;
-    if (std::filesystem::is_directory(new_path))
-    {
-        path_ = new_path;
+    auto& selected = files_[highlight_];
+    std::filesystem::path selected_path = selected.path();
+
+    if (selected_path.filename() == "..") {
+        path_ = std::filesystem::path(path_).parent_path().string();
+        highlight_ = 0;
+        updateFileList();
+    } else if (is_directory(selected_path)) {
+        path_ = selected_path.string();
         highlight_ = 0;
         updateFileList();
     } else
     {
         if (playing_)
             stopTrackPlayback();
-        name_t track_name = path_ + "/" + selected;
-        track_ptr_t track = dec_.decode_mp3(track_name);
+        track_ptr_t track = dec_.decode_mp3(selected_path.string());
         if (dynamic_cast<ErrorTrack*>(track.get()) != nullptr){
             //Check type of returned track
             showErrorPopup("Error opening file!");
@@ -162,7 +167,7 @@ void UiController::processTrackSelection()
 
 void UiController::addTrackToQueue()
 {
-    name_t track_path = path_ + "/" + files_[highlight_];
+    name_t track_path = files_[highlight_].path().string();
     track_ptr_t track = dec_.decode_mp3(track_path);
     if (dynamic_cast<ErrorTrack*>(track.get()) != nullptr) //Check type of returned track
     {

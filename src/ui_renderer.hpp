@@ -14,7 +14,11 @@
 #include <string>
 #include <vector>
 #include <queue>
+#include <filesystem>
 #include "decoder.hpp"
+
+using file_t = std::filesystem::directory_entry;
+using file_list_t = std::vector<file_t>;
 
 /**
  * @class UiRenderer
@@ -32,7 +36,7 @@ public:
      * @param files A list of files in the current directory
      * @param highlight Current cursor position
      */
-    void renderFileList(const std::vector<std::string>& files, size_t highlight) const;
+    void renderFileList(const file_list_t& files, size_t highlight) const;
     /**
      * @brief Refreshes track_queue_win_
      * @param queue List of tracks that are queued to be played
