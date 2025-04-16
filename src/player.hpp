@@ -12,6 +12,7 @@
 #include "rtaudio/rtaudio_c.h"
 #include "decoder.hpp"
 #include <atomic>
+#include <algorithm>
 
 #ifndef PLAYER_HPP
 #define PLAYER_HPP

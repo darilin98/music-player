@@ -3,8 +3,6 @@
 //
 #include "ui_renderer.hpp"
 
-#include <__filesystem/operations.h>
-
 UiRenderer::UiRenderer()
 {
     int mid_x = COLS / 2;

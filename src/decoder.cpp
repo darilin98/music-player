@@ -3,8 +3,6 @@
 //
 #include "decoder.hpp"
 
-#include <__filesystem/path.h>
-
 using name_t = std::string;
 
 track_ptr_t Decoder::decode_mp3(const name_t& track_name)

@@ -12,6 +12,9 @@
 
 #include <cmath>
 #include <thread>
+#include <memory>
+#include <filesystem>
+#include <cstring>
 
 #include "minimp3/minimp3.h"
 #include "minimp3/minimp3_ex.h"
