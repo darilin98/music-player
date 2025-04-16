@@ -124,7 +124,7 @@ Static Private Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Transforms valid file into PCM data and all necessary parameters for audio playback. </p>
 
-<p class="definition">Definition at line <a class="el" href="decoder_8hpp_source.html#l00065">65</a> of file <a class="el" href="decoder_8hpp_source.html">decoder.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="decoder_8hpp_source.html#l00068">68</a> of file <a class="el" href="decoder_8hpp_source.html">decoder.hpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a71cae1687140908eccfd476fcac675b8" name="a71cae1687140908eccfd476fcac675b8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a71cae1687140908eccfd476fcac675b8">&#9670;&#160;</a></span>decode_mp3()</h2>
@@ -159,57 +159,57 @@ Static Private Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to a Track object, if decoding failed target is an <a class="el" href="classErrorTrack.html">ErrorTrack</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="decoder_8cpp_source.html#l00010">10</a> of file <a class="el" href="decoder_8cpp_source.html">decoder.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   11</span>{</div>
-<div class="line"><span class="lineno">   12</span>    FILE *f = fopen(track_name.c_str(), <span class="stringliteral">&quot;rb&quot;</span>);</div>
-<div class="line"><span class="lineno">   13</span>    <span class="keywordflow">if</span> (!f)</div>
-<div class="line"><span class="lineno">   14</span>    {</div>
-<div class="line"><span class="lineno">   15</span>        <span class="keywordflow">return</span> std::make_shared&lt;ErrorTrack&gt;(<span class="stringliteral">&quot;Failed to open file&quot;</span>);</div>
-<div class="line"><span class="lineno">   16</span>    }</div>
-<div class="line"><span class="lineno">   17</span>    fseek(f, 0, SEEK_END);</div>
-<div class="line"><span class="lineno">   18</span>    <span class="keywordtype">size_t</span> filesize = ftell(f);</div>
-<div class="line"><span class="lineno">   19</span>    fseek(f, 0, SEEK_SET);</div>
-<div class="line"><span class="lineno">   20</span> </div>
-<div class="line"><span class="lineno">   21</span>    uint8_t* mp3_data = (uint8_t*)malloc(filesize);</div>
-<div class="line"><span class="lineno">   22</span>    fread(mp3_data, filesize, 1, f);</div>
-<div class="line"><span class="lineno">   23</span>    fclose(f);</div>
-<div class="line"><span class="lineno">   24</span> </div>
-<div class="line"><span class="lineno">   25</span>    mp3dec_ex_t mp3dec;</div>
-<div class="line"><span class="lineno">   26</span>    <span class="keywordflow">if</span> (mp3dec_ex_open_buf(&amp;mp3dec, mp3_data, filesize, MP3D_SEEK_TO_SAMPLE))</div>
-<div class="line"><span class="lineno">   27</span>    {</div>
-<div class="line"><span class="lineno">   28</span>        free(mp3_data);</div>
-<div class="line"><span class="lineno">   29</span>        <span class="keywordflow">return</span> std::make_shared&lt;ErrorTrack&gt;(<span class="stringliteral">&quot;Failed to open mp3 file&quot;</span>);</div>
-<div class="line"><span class="lineno">   30</span>    }</div>
-<div class="line"><span class="lineno">   31</span> </div>
-<div class="line"><span class="lineno">   32</span>    <span class="keywordtype">size_t</span> pcmBufferSize = mp3dec.samples * <span class="keyword">sizeof</span>(int16_t);</div>
-<div class="line"><span class="lineno">   33</span>    int16_t* pcmData = (int16_t*)malloc(pcmBufferSize);</div>
-<div class="line"><span class="lineno">   34</span>    <span class="keywordflow">if</span>(!pcmData)</div>
-<div class="line"><span class="lineno">   35</span>    {</div>
-<div class="line"><span class="lineno">   36</span>        mp3dec_ex_close(&amp;mp3dec);</div>
-<div class="line"><span class="lineno">   37</span>        free(mp3_data);</div>
-<div class="line"><span class="lineno">   38</span>        <span class="keywordflow">return</span> std::make_shared&lt;ErrorTrack&gt;(<span class="stringliteral">&quot;Failed to allocate memory&quot;</span>);</div>
-<div class="line"><span class="lineno">   39</span>    }</div>
-<div class="line"><span class="lineno">   40</span> </div>
-<div class="line"><span class="lineno">   41</span>    <span class="keywordtype">size_t</span> samplesRead = mp3dec_ex_read(&amp;mp3dec, pcmData, mp3dec.samples);</div>
-<div class="line"><span class="lineno">   42</span>    <span class="keywordflow">if</span> (samplesRead == 0)</div>
-<div class="line"><span class="lineno">   43</span>    {</div>
-<div class="line"><span class="lineno">   44</span>        free(pcmData);</div>
-<div class="line"><span class="lineno">   45</span>        mp3dec_ex_close(&amp;mp3dec);</div>
-<div class="line"><span class="lineno">   46</span>        free(mp3_data);</div>
-<div class="line"><span class="lineno">   47</span>        <span class="keywordflow">return</span> std::make_shared&lt;ErrorTrack&gt;(<span class="stringliteral">&quot;No samples decoded&quot;</span>);</div>
-<div class="line"><span class="lineno">   48</span>    }</div>
+<p class="definition">Definition at line <a class="el" href="decoder_8cpp_source.html#l00008">8</a> of file <a class="el" href="decoder_8cpp_source.html">decoder.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">    9</span>{</div>
+<div class="line"><span class="lineno">   10</span>    FILE *f = fopen(track_name.c_str(), <span class="stringliteral">&quot;rb&quot;</span>);</div>
+<div class="line"><span class="lineno">   11</span>    <span class="keywordflow">if</span> (!f)</div>
+<div class="line"><span class="lineno">   12</span>    {</div>
+<div class="line"><span class="lineno">   13</span>        <span class="keywordflow">return</span> std::make_shared&lt;ErrorTrack&gt;(<span class="stringliteral">&quot;Failed to open file&quot;</span>);</div>
+<div class="line"><span class="lineno">   14</span>    }</div>
+<div class="line"><span class="lineno">   15</span>    fseek(f, 0, SEEK_END);</div>
+<div class="line"><span class="lineno">   16</span>    <span class="keywordtype">size_t</span> filesize = ftell(f);</div>
+<div class="line"><span class="lineno">   17</span>    fseek(f, 0, SEEK_SET);</div>
+<div class="line"><span class="lineno">   18</span> </div>
+<div class="line"><span class="lineno">   19</span>    uint8_t* mp3_data = (uint8_t*)malloc(filesize);</div>
+<div class="line"><span class="lineno">   20</span>    fread(mp3_data, filesize, 1, f);</div>
+<div class="line"><span class="lineno">   21</span>    fclose(f);</div>
+<div class="line"><span class="lineno">   22</span> </div>
+<div class="line"><span class="lineno">   23</span>    mp3dec_ex_t mp3dec;</div>
+<div class="line"><span class="lineno">   24</span>    <span class="keywordflow">if</span> (mp3dec_ex_open_buf(&amp;mp3dec, mp3_data, filesize, MP3D_SEEK_TO_SAMPLE))</div>
+<div class="line"><span class="lineno">   25</span>    {</div>
+<div class="line"><span class="lineno">   26</span>        free(mp3_data);</div>
+<div class="line"><span class="lineno">   27</span>        <span class="keywordflow">return</span> std::make_shared&lt;ErrorTrack&gt;(<span class="stringliteral">&quot;Failed to open mp3 file&quot;</span>);</div>
+<div class="line"><span class="lineno">   28</span>    }</div>
+<div class="line"><span class="lineno">   29</span> </div>
+<div class="line"><span class="lineno">   30</span>    <span class="keywordtype">size_t</span> pcmBufferSize = mp3dec.samples * <span class="keyword">sizeof</span>(int16_t);</div>
+<div class="line"><span class="lineno">   31</span>    int16_t* pcmData = (int16_t*)malloc(pcmBufferSize);</div>
+<div class="line"><span class="lineno">   32</span>    <span class="keywordflow">if</span>(!pcmData)</div>
+<div class="line"><span class="lineno">   33</span>    {</div>
+<div class="line"><span class="lineno">   34</span>        mp3dec_ex_close(&amp;mp3dec);</div>
+<div class="line"><span class="lineno">   35</span>        free(mp3_data);</div>
+<div class="line"><span class="lineno">   36</span>        <span class="keywordflow">return</span> std::make_shared&lt;ErrorTrack&gt;(<span class="stringliteral">&quot;Failed to allocate memory&quot;</span>);</div>
+<div class="line"><span class="lineno">   37</span>    }</div>
+<div class="line"><span class="lineno">   38</span> </div>
+<div class="line"><span class="lineno">   39</span>    <span class="keywordtype">size_t</span> samplesRead = mp3dec_ex_read(&amp;mp3dec, pcmData, mp3dec.samples);</div>
+<div class="line"><span class="lineno">   40</span>    <span class="keywordflow">if</span> (samplesRead == 0)</div>
+<div class="line"><span class="lineno">   41</span>    {</div>
+<div class="line"><span class="lineno">   42</span>        free(pcmData);</div>
+<div class="line"><span class="lineno">   43</span>        mp3dec_ex_close(&amp;mp3dec);</div>
+<div class="line"><span class="lineno">   44</span>        free(mp3_data);</div>
+<div class="line"><span class="lineno">   45</span>        <span class="keywordflow">return</span> std::make_shared&lt;ErrorTrack&gt;(<span class="stringliteral">&quot;No samples decoded&quot;</span>);</div>
+<div class="line"><span class="lineno">   46</span>    }</div>
+<div class="line"><span class="lineno">   47</span> </div>
+<div class="line"><span class="lineno">   48</span>    <a class="code hl_struct" href="structAudioData.html">AudioData</a> audioData = {pcmData, samplesRead, 0, mp3dec.info.channels};</div>
 <div class="line"><span class="lineno">   49</span> </div>
-<div class="line"><span class="lineno">   50</span>    <a class="code hl_struct" href="structAudioData.html">AudioData</a> audioData = {pcmData, samplesRead, 0, mp3dec.info.channels};</div>
-<div class="line"><span class="lineno">   51</span> </div>
-<div class="line"><span class="lineno">   52</span>    <span class="comment">// GET METADATA</span></div>
-<div class="line"><span class="lineno">   53</span>    <a class="code hl_struct" href="structMetaData.html">MetaData</a> metaData = <a class="code hl_function" href="classDecoder.html#af541913b0b3908199b9d6c16d2bf1acd">parse_id3v1</a>(track_name);</div>
-<div class="line"><span class="lineno">   54</span>    metaData.duration = audioData.total_samples / (mp3dec.info.hz * audioData.channels);</div>
-<div class="line"><span class="lineno">   55</span> </div>
-<div class="line"><span class="lineno">   56</span>    <span class="keywordflow">return</span> std::make_shared&lt;MP3Track&gt;(metaData, audioData, mp3dec.info.hz);</div>
-<div class="line"><span class="lineno">   57</span>};</div>
-<div class="ttc" id="aclassDecoder_html_af541913b0b3908199b9d6c16d2bf1acd"><div class="ttname"><a href="classDecoder.html#af541913b0b3908199b9d6c16d2bf1acd">Decoder::parse_id3v1</a></div><div class="ttdeci">static MetaData parse_id3v1(const name_t &amp;file_name)</div><div class="ttdoc">Parses ID3v1 metadata from the file.</div><div class="ttdef"><b>Definition</b> <a href="decoder_8cpp_source.html#l00059">decoder.cpp:59</a></div></div>
-<div class="ttc" id="astructAudioData_html"><div class="ttname"><a href="structAudioData.html">AudioData</a></div><div class="ttdoc">Contains PCM audio samples and playback-related data.</div><div class="ttdef"><b>Definition</b> <a href="decoder_8hpp_source.html#l00029">decoder.hpp:29</a></div></div>
-<div class="ttc" id="astructMetaData_html"><div class="ttname"><a href="structMetaData.html">MetaData</a></div><div class="ttdoc">Holds data related to track context.</div><div class="ttdef"><b>Definition</b> <a href="decoder_8hpp_source.html#l00041">decoder.hpp:41</a></div></div>
+<div class="line"><span class="lineno">   50</span>    <span class="comment">// GET METADATA</span></div>
+<div class="line"><span class="lineno">   51</span>    <a class="code hl_struct" href="structMetaData.html">MetaData</a> metaData = <a class="code hl_function" href="classDecoder.html#af541913b0b3908199b9d6c16d2bf1acd">parse_id3v1</a>(track_name);</div>
+<div class="line"><span class="lineno">   52</span>    metaData.duration = audioData.total_samples / (mp3dec.info.hz * audioData.channels);</div>
+<div class="line"><span class="lineno">   53</span> </div>
+<div class="line"><span class="lineno">   54</span>    <span class="keywordflow">return</span> std::make_shared&lt;MP3Track&gt;(metaData, audioData, mp3dec.info.hz);</div>
+<div class="line"><span class="lineno">   55</span>};</div>
+<div class="ttc" id="aclassDecoder_html_af541913b0b3908199b9d6c16d2bf1acd"><div class="ttname"><a href="classDecoder.html#af541913b0b3908199b9d6c16d2bf1acd">Decoder::parse_id3v1</a></div><div class="ttdeci">static MetaData parse_id3v1(const name_t &amp;file_name)</div><div class="ttdoc">Parses ID3v1 metadata from the file.</div><div class="ttdef"><b>Definition</b> <a href="decoder_8cpp_source.html#l00057">decoder.cpp:57</a></div></div>
+<div class="ttc" id="astructAudioData_html"><div class="ttname"><a href="structAudioData.html">AudioData</a></div><div class="ttdoc">Contains PCM audio samples and playback-related data.</div><div class="ttdef"><b>Definition</b> <a href="decoder_8hpp_source.html#l00032">decoder.hpp:32</a></div></div>
+<div class="ttc" id="astructMetaData_html"><div class="ttname"><a href="structMetaData.html">MetaData</a></div><div class="ttdoc">Holds data related to track context.</div><div class="ttdef"><b>Definition</b> <a href="decoder_8hpp_source.html#l00044">decoder.hpp:44</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -246,44 +246,44 @@ Static Private Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="structMetaData.html" title="Holds data related to track context.">MetaData</a> structure containing track info. </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="decoder_8cpp_source.html#l00059">59</a> of file <a class="el" href="decoder_8cpp_source.html">decoder.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   59</span>                                                       {</div>
-<div class="line"><span class="lineno">   60</span>    std::filesystem::path fallback_name(filename);</div>
-<div class="line"><span class="lineno">   61</span>    FILE* f = fopen(filename.c_str(), <span class="stringliteral">&quot;rb&quot;</span>);</div>
-<div class="line"><span class="lineno">   62</span>    <span class="keywordflow">if</span> (!f) {</div>
-<div class="line"><span class="lineno">   63</span>        perror(<span class="stringliteral">&quot;Failed to open file&quot;</span>);</div>
-<div class="line"><span class="lineno">   64</span>        <span class="keywordflow">return</span> {fallback_name.stem(), <span class="stringliteral">&quot;Unknown Artist&quot;</span>, <span class="stringliteral">&quot;Unknown&quot;</span>, 0};</div>
-<div class="line"><span class="lineno">   65</span>    }</div>
-<div class="line"><span class="lineno">   66</span> </div>
-<div class="line"><span class="lineno">   67</span>    <span class="comment">// Seek to the last 128 bytes - ID3v1 location</span></div>
-<div class="line"><span class="lineno">   68</span>    <span class="keywordflow">if</span> (fseek(f, -128, SEEK_END) != 0) {</div>
-<div class="line"><span class="lineno">   69</span>        fclose(f);</div>
-<div class="line"><span class="lineno">   70</span>        <span class="keywordflow">return</span> {fallback_name.stem(), <span class="stringliteral">&quot;Unknown Artist&quot;</span>, <span class="stringliteral">&quot;Unknown&quot;</span>, 0};</div>
-<div class="line"><span class="lineno">   71</span>    }</div>
-<div class="line"><span class="lineno">   72</span> </div>
-<div class="line"><span class="lineno">   73</span>    <span class="keywordtype">char</span> tag[128] = {0};</div>
-<div class="line"><span class="lineno">   74</span>    <span class="keywordflow">if</span> (fread(tag, 1, 128, f) != 128) {</div>
-<div class="line"><span class="lineno">   75</span>        fclose(f);</div>
-<div class="line"><span class="lineno">   76</span>        <span class="keywordflow">return</span> {fallback_name.stem(), <span class="stringliteral">&quot;Unknown Artist&quot;</span>, <span class="stringliteral">&quot;Unknown&quot;</span>, 0};</div>
-<div class="line"><span class="lineno">   77</span>    }</div>
-<div class="line"><span class="lineno">   78</span>    fclose(f);</div>
-<div class="line"><span class="lineno">   79</span> </div>
-<div class="line"><span class="lineno">   80</span>    <span class="comment">// Validate Tag</span></div>
-<div class="line"><span class="lineno">   81</span>    <span class="keywordflow">if</span> (strncmp(tag, <span class="stringliteral">&quot;TAG&quot;</span>, 3) != 0) {</div>
-<div class="line"><span class="lineno">   82</span>        <span class="keywordflow">return</span> {fallback_name.stem(), <span class="stringliteral">&quot;Unknown Artist&quot;</span>, <span class="stringliteral">&quot;Unknown&quot;</span>, 0};</div>
-<div class="line"><span class="lineno">   83</span>    }</div>
-<div class="line"><span class="lineno">   84</span> </div>
-<div class="line"><span class="lineno">   85</span>    <a class="code hl_struct" href="structMetaData.html">MetaData</a> meta;</div>
-<div class="line"><span class="lineno">   86</span>    meta.track_name = std::string(tag + 3, 30);</div>
-<div class="line"><span class="lineno">   87</span>    meta.artist = std::string(tag + 33, 30);</div>
-<div class="line"><span class="lineno">   88</span>    meta.album = std::string(tag + 63, 30);</div>
-<div class="line"><span class="lineno">   89</span> </div>
-<div class="line"><span class="lineno">   90</span>    meta.track_name.erase(meta.track_name.find_last_not_of(<span class="charliteral">&#39;\0&#39;</span>) + 1);</div>
-<div class="line"><span class="lineno">   91</span>    meta.artist.erase(meta.artist.find_last_not_of(<span class="charliteral">&#39;\0&#39;</span>) + 1);</div>
-<div class="line"><span class="lineno">   92</span>    meta.album.erase(meta.album.find_last_not_of(<span class="charliteral">&#39;\0&#39;</span>) + 1);</div>
-<div class="line"><span class="lineno">   93</span> </div>
-<div class="line"><span class="lineno">   94</span>    <span class="keywordflow">return</span> meta;</div>
-<div class="line"><span class="lineno">   95</span>}</div>
+<p class="definition">Definition at line <a class="el" href="decoder_8cpp_source.html#l00057">57</a> of file <a class="el" href="decoder_8cpp_source.html">decoder.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   57</span>                                                       {</div>
+<div class="line"><span class="lineno">   58</span>    std::filesystem::path fallback_name(filename);</div>
+<div class="line"><span class="lineno">   59</span>    FILE* f = fopen(filename.c_str(), <span class="stringliteral">&quot;rb&quot;</span>);</div>
+<div class="line"><span class="lineno">   60</span>    <span class="keywordflow">if</span> (!f) {</div>
+<div class="line"><span class="lineno">   61</span>        perror(<span class="stringliteral">&quot;Failed to open file&quot;</span>);</div>
+<div class="line"><span class="lineno">   62</span>        <span class="keywordflow">return</span> {fallback_name.stem(), <span class="stringliteral">&quot;Unknown Artist&quot;</span>, <span class="stringliteral">&quot;Unknown&quot;</span>, 0};</div>
+<div class="line"><span class="lineno">   63</span>    }</div>
+<div class="line"><span class="lineno">   64</span> </div>
+<div class="line"><span class="lineno">   65</span>    <span class="comment">// Seek to the last 128 bytes - ID3v1 location</span></div>
+<div class="line"><span class="lineno">   66</span>    <span class="keywordflow">if</span> (fseek(f, -128, SEEK_END) != 0) {</div>
+<div class="line"><span class="lineno">   67</span>        fclose(f);</div>
+<div class="line"><span class="lineno">   68</span>        <span class="keywordflow">return</span> {fallback_name.stem(), <span class="stringliteral">&quot;Unknown Artist&quot;</span>, <span class="stringliteral">&quot;Unknown&quot;</span>, 0};</div>
+<div class="line"><span class="lineno">   69</span>    }</div>
+<div class="line"><span class="lineno">   70</span> </div>
+<div class="line"><span class="lineno">   71</span>    <span class="keywordtype">char</span> tag[128] = {0};</div>
+<div class="line"><span class="lineno">   72</span>    <span class="keywordflow">if</span> (fread(tag, 1, 128, f) != 128) {</div>
+<div class="line"><span class="lineno">   73</span>        fclose(f);</div>
+<div class="line"><span class="lineno">   74</span>        <span class="keywordflow">return</span> {fallback_name.stem(), <span class="stringliteral">&quot;Unknown Artist&quot;</span>, <span class="stringliteral">&quot;Unknown&quot;</span>, 0};</div>
+<div class="line"><span class="lineno">   75</span>    }</div>
+<div class="line"><span class="lineno">   76</span>    fclose(f);</div>
+<div class="line"><span class="lineno">   77</span> </div>
+<div class="line"><span class="lineno">   78</span>    <span class="comment">// Validate Tag</span></div>
+<div class="line"><span class="lineno">   79</span>    <span class="keywordflow">if</span> (strncmp(tag, <span class="stringliteral">&quot;TAG&quot;</span>, 3) != 0) {</div>
+<div class="line"><span class="lineno">   80</span>        <span class="keywordflow">return</span> {fallback_name.stem(), <span class="stringliteral">&quot;Unknown Artist&quot;</span>, <span class="stringliteral">&quot;Unknown&quot;</span>, 0};</div>
+<div class="line"><span class="lineno">   81</span>    }</div>
+<div class="line"><span class="lineno">   82</span> </div>
+<div class="line"><span class="lineno">   83</span>    <a class="code hl_struct" href="structMetaData.html">MetaData</a> meta;</div>
+<div class="line"><span class="lineno">   84</span>    meta.track_name = std::string(tag + 3, 30);</div>
+<div class="line"><span class="lineno">   85</span>    meta.artist = std::string(tag + 33, 30);</div>
+<div class="line"><span class="lineno">   86</span>    meta.album = std::string(tag + 63, 30);</div>
+<div class="line"><span class="lineno">   87</span> </div>
+<div class="line"><span class="lineno">   88</span>    meta.track_name.erase(meta.track_name.find_last_not_of(<span class="charliteral">&#39;\0&#39;</span>) + 1);</div>
+<div class="line"><span class="lineno">   89</span>    meta.artist.erase(meta.artist.find_last_not_of(<span class="charliteral">&#39;\0&#39;</span>) + 1);</div>
+<div class="line"><span class="lineno">   90</span>    meta.album.erase(meta.album.find_last_not_of(<span class="charliteral">&#39;\0&#39;</span>) + 1);</div>
+<div class="line"><span class="lineno">   91</span> </div>
+<div class="line"><span class="lineno">   92</span>    <span class="keywordflow">return</span> meta;</div>
+<div class="line"><span class="lineno">   93</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
