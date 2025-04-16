@@ -19,6 +19,12 @@
 /**
  * @class Player
  * @brief Manages playback of data from a Track instance
+ *
+ * Reads data from a valid Track instance and feeds the raw PCM into an audio stream
+ * Has multiple states:
+ * - Playing - audio stream is open
+ * - Paused - the player is stuck in the play_track() method and awaits resume
+ * - Stopped - playback aborts and Player returns to the initial state
  */
 class Player {
 public:
@@ -34,8 +40,14 @@ public:
     void load_track(const track_ptr_t& track);
 
     /**
-     * @warning Blocking method
-     * @brief Starts track playback and only completes after stop_track() has been called or Track reached the end
+     * @warning Blocking method, should be called in a new thread
+     * @warning First call load_track() to prime the method, otherwise no playback will proceed
+     * @brief Starts track playback
+     *
+     * Starts track playback and only completes after stop_track() has been called or Track reached the end
+     * Uses the rtaudio interface to open a stream to the primary audio output device
+     * Can be controller from other threads by utilizing the rest of the public interface e.g. pause_track()
+     *
      */
     void play_track();
     void raise_volume();
