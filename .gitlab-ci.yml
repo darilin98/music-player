@@ -1,0 +1,13 @@
+generate_docs:
+  stage: build
+  image: debian:bullseye
+  before_script:
+    - apt-get update && apt-get install -y doxygen graphviz
+  script:
+    - doxygen docs/doxygen/Doxyfile
+  artifacts:
+    paths:
+      - docs/doxygen/html
+    expire_in: 1 week
+  only:
+    - master
