@@ -19,13 +19,13 @@
 #ifndef UICONTROLLER_HPP
 #define UICONTROLLER_HPP
 
-constexpr char KEY_QUIT = 'q';
-constexpr char KEY_PAUSE = ' ';
-constexpr char KEY_NEXT_QUEUE = 'n';
-constexpr char KEY_ADD_QUEUE = 'a';
-constexpr char KEY_PLAY_TRACK = '\n';
-constexpr char KEY_VOLUME_UP= 'u';
-constexpr char KEY_VOLUME_DOWN = 'd';
+constexpr char KEY_QUIT = 'q'; ///< Quit the application
+constexpr char KEY_PAUSE = ' '; ///< Pause track playback
+constexpr char KEY_NEXT_QUEUE = 'n'; ///< Skip current track and play first in queue
+constexpr char KEY_ADD_QUEUE = 'a'; ///< Attempt to add selected file to queue
+constexpr char KEY_PLAY_TRACK = '\n'; ///< General purpose "select" button
+constexpr char KEY_VOLUME_UP= 'u'; ///< Raise playback volume
+constexpr char KEY_VOLUME_DOWN = 'd'; ///< Lower playback volume
 
 using queue_t = std::deque<track_ptr_t>;
 using file_t = std::filesystem::directory_entry;
@@ -34,6 +34,12 @@ using file_list_t = std::vector<file_t>;
 /**
  * @class UiController
  * @brief Takes care of user input handling and interaction between program components
+ *
+ * The UiController is responsible for:
+ * - Capturing user keyboard input
+ * - Managing track playback
+ * - Delegating UI rendering tasks to UiRenderer
+ * - Using Decoder and Player to start playback
  */
 class UiController {
 public:
@@ -54,6 +60,11 @@ private:
     void showErrorPopup(const std::string& message) const;
     /**
      * @brief Attempt to decode a file and start playback
+     *
+     * Handles logic behind the user pressing the KEY_PLAY_TRACK button
+     * That includes:
+     * - Moving in and out of directories inside the file explorer
+     * - Attempting to decode the currently selected file in the explorer
      */
     void processTrackSelection();
     void addTrackToQueue();
