@@ -1,13 +1,15 @@
 <map id="src/player.hpp" name="src/player.hpp">
-<area shape="rect" id="Node000001" title=" " alt="" coords="253,5,367,31"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="327,5,440,31"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,79,140,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="273,33,125,77,123,72,271,28"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="334,33,137,78,135,73,333,28"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="165,79,309,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="300,33,260,71,257,67,296,29"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="361,33,274,75,272,70,359,28"/>
 <area shape="rect" id="Node000004" href="$decoder_8hpp.html" title="Contains classes and structures for decoding MP3 files into PCM audio data." alt="" coords="333,79,434,104"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="324,29,363,67,360,71,320,33"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="386,31,386,65,381,65,381,31"/>
 <area shape="rect" id="Node000013" title=" " alt="" coords="458,79,525,104"/>
-<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="340,28,450,71,448,76,338,33"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="402,28,464,69,461,73,399,33"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="549,79,634,104"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="418,28,545,72,544,77,416,33"/>
 <area shape="rect" id="Node000005" title=" " alt="" coords="11,152,91,177"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="333,106,106,154,105,149,332,101"/>
 <area shape="rect" id="Node000006" title=" " alt="" coords="116,152,179,177"/>
