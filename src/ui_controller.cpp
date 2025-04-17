@@ -104,6 +104,9 @@ void UiController::stopTrackPlayback()
             playback_thread_.join();
         playing_ = false;
         current_track_ = nullptr;
+    } else {
+        if (playback_thread_.joinable())
+            playback_thread_.join();
     }
 }
 
