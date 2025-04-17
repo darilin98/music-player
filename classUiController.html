@@ -218,12 +218,13 @@ Private Attributes</h2></td></tr>
 <div class="line"><span class="lineno">   10</span>    noecho();</div>
 <div class="line"><span class="lineno">   11</span>    cbreak();</div>
 <div class="line"><span class="lineno">   12</span>    keypad(stdscr, <span class="keyword">true</span>);</div>
-<div class="line"><span class="lineno">   13</span>    start_color();</div>
-<div class="line"><span class="lineno">   14</span>    init_pair(1, COLOR_CYAN, COLOR_BLACK);</div>
-<div class="line"><span class="lineno">   15</span>    curs_set(0);</div>
-<div class="line"><span class="lineno">   16</span>    <span class="comment">// Explicit initialization of the renderer after all setup ncurses functions have been called</span></div>
-<div class="line"><span class="lineno">   17</span>    <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a> = <a class="code hl_class" href="classUiRenderer.html">UiRenderer</a>();</div>
-<div class="line"><span class="lineno">   18</span>}</div>
+<div class="line"><span class="lineno">   13</span>    set_escdelay(25);</div>
+<div class="line"><span class="lineno">   14</span>    start_color();</div>
+<div class="line"><span class="lineno">   15</span>    init_pair(1, COLOR_CYAN, COLOR_BLACK);</div>
+<div class="line"><span class="lineno">   16</span>    curs_set(0);</div>
+<div class="line"><span class="lineno">   17</span>    <span class="comment">// Explicit initialization of the renderer after all setup ncurses functions have been called</span></div>
+<div class="line"><span class="lineno">   18</span>    <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a> = <a class="code hl_class" href="classUiRenderer.html">UiRenderer</a>();</div>
+<div class="line"><span class="lineno">   19</span>}</div>
 <div class="ttc" id="aclassUiController_html_a06c688233d464fc707a4e237107c209d"><div class="ttname"><a href="classUiController.html#a06c688233d464fc707a4e237107c209d">UiController::ui_</a></div><div class="ttdeci">UiRenderer ui_</div><div class="ttdoc">Helper renderer instance that separates concern for ncurses rendering.</div><div class="ttdef"><b>Definition</b> <a href="ui__controller_8hpp_source.html#l00075">ui_controller.hpp:75</a></div></div>
 <div class="ttc" id="aclassUiRenderer_html"><div class="ttname"><a href="classUiRenderer.html">UiRenderer</a></div><div class="ttdoc">Renders updated UI state based on data received from controller class.</div><div class="ttdef"><b>Definition</b> <a href="ui__renderer_8hpp_source.html#l00028">ui_renderer.hpp:28</a></div></div>
 </div><!-- fragment -->
@@ -253,18 +254,18 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ui__controller_8cpp_source.html#l00168">168</a> of file <a class="el" href="ui__controller_8cpp_source.html">ui_controller.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  169</span>{</div>
-<div class="line"><span class="lineno">  170</span>    name_t track_path = <a class="code hl_variable" href="classUiController.html#afa6ad529dfaf2a7f4e4547ff3c937f1a">files_</a>[<a class="code hl_variable" href="classUiController.html#ab71527fa7f3636d0783482f32ef958bd">highlight_</a>].path().string();</div>
-<div class="line"><span class="lineno">  171</span>    track_ptr_t track = <a class="code hl_variable" href="classUiController.html#a04c3a9d240f8ae78f2a36cc03d72dc3e">dec_</a>.<a class="code hl_function" href="classDecoder.html#a71cae1687140908eccfd476fcac675b8">decode_mp3</a>(track_path);</div>
-<div class="line"><span class="lineno">  172</span>    <span class="keywordflow">if</span> (<span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classErrorTrack.html">ErrorTrack</a>*<span class="keyword">&gt;</span>(track.get()) != <span class="keyword">nullptr</span>) <span class="comment">//Check type of returned track</span></div>
-<div class="line"><span class="lineno">  173</span>    {</div>
-<div class="line"><span class="lineno">  174</span>        showErrorPopup(<span class="stringliteral">&quot;Error opening file!&quot;</span>);</div>
-<div class="line"><span class="lineno">  175</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  176</span>    }</div>
-<div class="line"><span class="lineno">  177</span>    <a class="code hl_variable" href="classUiController.html#ad06c2c367b57f6e7e74a6d6c9ec44704">track_queue_</a>.emplace_back(track);</div>
-<div class="line"><span class="lineno">  178</span>    <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a792e91b3bb123a2806cb284281f1db14">renderTrackQueue</a>(<a class="code hl_variable" href="classUiController.html#ad06c2c367b57f6e7e74a6d6c9ec44704">track_queue_</a>);</div>
-<div class="line"><span class="lineno">  179</span>}</div>
+<p class="definition">Definition at line <a class="el" href="ui__controller_8cpp_source.html#l00170">170</a> of file <a class="el" href="ui__controller_8cpp_source.html">ui_controller.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  171</span>{</div>
+<div class="line"><span class="lineno">  172</span>    name_t track_path = <a class="code hl_variable" href="classUiController.html#afa6ad529dfaf2a7f4e4547ff3c937f1a">files_</a>[<a class="code hl_variable" href="classUiController.html#ab71527fa7f3636d0783482f32ef958bd">highlight_</a>].path().string();</div>
+<div class="line"><span class="lineno">  173</span>    track_ptr_t track = <a class="code hl_variable" href="classUiController.html#a04c3a9d240f8ae78f2a36cc03d72dc3e">dec_</a>.<a class="code hl_function" href="classDecoder.html#a71cae1687140908eccfd476fcac675b8">decode_mp3</a>(track_path);</div>
+<div class="line"><span class="lineno">  174</span>    <span class="keywordflow">if</span> (<span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classErrorTrack.html">ErrorTrack</a>*<span class="keyword">&gt;</span>(track.get()) != <span class="keyword">nullptr</span>) <span class="comment">//Check type of returned track</span></div>
+<div class="line"><span class="lineno">  175</span>    {</div>
+<div class="line"><span class="lineno">  176</span>        showErrorPopup(<span class="stringliteral">&quot;Error opening file!&quot;</span>);</div>
+<div class="line"><span class="lineno">  177</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  178</span>    }</div>
+<div class="line"><span class="lineno">  179</span>    <a class="code hl_variable" href="classUiController.html#ad06c2c367b57f6e7e74a6d6c9ec44704">track_queue_</a>.emplace_back(track);</div>
+<div class="line"><span class="lineno">  180</span>    <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a792e91b3bb123a2806cb284281f1db14">renderTrackQueue</a>(<a class="code hl_variable" href="classUiController.html#ad06c2c367b57f6e7e74a6d6c9ec44704">track_queue_</a>);</div>
+<div class="line"><span class="lineno">  181</span>}</div>
 <div class="ttc" id="aclassDecoder_html_a71cae1687140908eccfd476fcac675b8"><div class="ttname"><a href="classDecoder.html#a71cae1687140908eccfd476fcac675b8">Decoder::decode_mp3</a></div><div class="ttdeci">static track_ptr_t decode_mp3(const name_t &amp;track_name)</div><div class="ttdoc">Attempts to decode a file as an MP3.</div><div class="ttdef"><b>Definition</b> <a href="decoder_8cpp_source.html#l00008">decoder.cpp:8</a></div></div>
 <div class="ttc" id="aclassErrorTrack_html"><div class="ttname"><a href="classErrorTrack.html">ErrorTrack</a></div><div class="ttdef"><b>Definition</b> <a href="decoder_8hpp_source.html#l00116">decoder.hpp:116</a></div></div>
 <div class="ttc" id="aclassUiController_html_a04c3a9d240f8ae78f2a36cc03d72dc3e"><div class="ttname"><a href="classUiController.html#a04c3a9d240f8ae78f2a36cc03d72dc3e">UiController::dec_</a></div><div class="ttdeci">Decoder dec_</div><div class="ttdoc">Decoder instance for creating Track objects.</div><div class="ttdef"><b>Definition</b> <a href="ui__controller_8hpp_source.html#l00073">ui_controller.hpp:73</a></div></div>
@@ -293,68 +294,69 @@ Private Attributes</h2></td></tr>
 <p>Starts main loop of user interface. </p>
 <dl class="section warning"><dt>Warning</dt><dd>Alive for the entire lifespan of the program </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="ui__controller_8cpp_source.html#l00020">20</a> of file <a class="el" href="ui__controller_8cpp_source.html">ui_controller.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   21</span>{</div>
-<div class="line"><span class="lineno">   22</span>    <a class="code hl_variable" href="classUiController.html#a416a0683189654af9a70bb88edd3a982">path_</a> = std::filesystem::current_path().string();</div>
-<div class="line"><span class="lineno">   23</span> </div>
-<div class="line"><span class="lineno">   24</span>    updateFileList();</div>
-<div class="line"><span class="lineno">   25</span>    nodelay(stdscr, TRUE);</div>
-<div class="line"><span class="lineno">   26</span>    <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a4c03ef885933b6e1b9ee7dce547a138c">renderFileList</a>(<a class="code hl_variable" href="classUiController.html#afa6ad529dfaf2a7f4e4547ff3c937f1a">files_</a>, <a class="code hl_variable" href="classUiController.html#ab71527fa7f3636d0783482f32ef958bd">highlight_</a>);</div>
-<div class="line"><span class="lineno">   27</span>    <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a792e91b3bb123a2806cb284281f1db14">renderTrackQueue</a>(<a class="code hl_variable" href="classUiController.html#ad06c2c367b57f6e7e74a6d6c9ec44704">track_queue_</a>);</div>
-<div class="line"><span class="lineno">   28</span>    <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a15275aff109dde3550ec37f39db2bfbf">renderStatusBar</a>(<a class="code hl_variable" href="classUiController.html#a5b04bf0fab84c5612845ed7f6e7fd665">current_track_</a>, playing_, <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.is_paused());</div>
-<div class="line"><span class="lineno">   29</span> </div>
-<div class="line"><span class="lineno">   30</span>    <span class="keywordtype">bool</span> running = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">   31</span>    <span class="keywordflow">while</span> (running)</div>
-<div class="line"><span class="lineno">   32</span>    {</div>
-<div class="line"><span class="lineno">   33</span>        <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a4240f6102ea78c0ab2c8bed965295f41">updateAnimationFrame</a>(<a class="code hl_variable" href="classUiController.html#a5b04bf0fab84c5612845ed7f6e7fd665">current_track_</a>, playing_, <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.is_paused());</div>
-<div class="line"><span class="lineno">   34</span>        napms(50);</div>
-<div class="line"><span class="lineno">   35</span>        <span class="keywordflow">if</span> (!playing_ &amp;&amp; !<a class="code hl_variable" href="classUiController.html#ad06c2c367b57f6e7e74a6d6c9ec44704">track_queue_</a>.empty())</div>
-<div class="line"><span class="lineno">   36</span>        {</div>
-<div class="line"><span class="lineno">   37</span>            processNextTrackFromQueue();</div>
-<div class="line"><span class="lineno">   38</span>        }</div>
-<div class="line"><span class="lineno">   39</span> </div>
-<div class="line"><span class="lineno">   40</span>        <span class="keywordflow">switch</span> (<span class="keywordtype">int</span> pressed_key = getch()) {</div>
-<div class="line"><span class="lineno">   41</span>            <span class="keywordflow">case</span> KEY_UP:</div>
-<div class="line"><span class="lineno">   42</span>                <span class="keywordflow">if</span> (<a class="code hl_variable" href="classUiController.html#ab71527fa7f3636d0783482f32ef958bd">highlight_</a> &gt; 0) <a class="code hl_variable" href="classUiController.html#ab71527fa7f3636d0783482f32ef958bd">highlight_</a>--;</div>
-<div class="line"><span class="lineno">   43</span>                <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a4c03ef885933b6e1b9ee7dce547a138c">renderFileList</a>(<a class="code hl_variable" href="classUiController.html#afa6ad529dfaf2a7f4e4547ff3c937f1a">files_</a>, <a class="code hl_variable" href="classUiController.html#ab71527fa7f3636d0783482f32ef958bd">highlight_</a>);</div>
-<div class="line"><span class="lineno">   44</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   45</span>            <span class="keywordflow">case</span> KEY_DOWN:</div>
-<div class="line"><span class="lineno">   46</span>                <span class="keywordflow">if</span> (<a class="code hl_variable" href="classUiController.html#ab71527fa7f3636d0783482f32ef958bd">highlight_</a> &lt; <a class="code hl_variable" href="classUiController.html#afa6ad529dfaf2a7f4e4547ff3c937f1a">files_</a>.size() - 1) <a class="code hl_variable" href="classUiController.html#ab71527fa7f3636d0783482f32ef958bd">highlight_</a>++;</div>
-<div class="line"><span class="lineno">   47</span>                <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a4c03ef885933b6e1b9ee7dce547a138c">renderFileList</a>(<a class="code hl_variable" href="classUiController.html#afa6ad529dfaf2a7f4e4547ff3c937f1a">files_</a>, <a class="code hl_variable" href="classUiController.html#ab71527fa7f3636d0783482f32ef958bd">highlight_</a>);</div>
-<div class="line"><span class="lineno">   48</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   49</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="ui__controller_8hpp.html#a627da4dcc74b60898c203cfc612171a5">KEY_PLAY_TRACK</a>:</div>
-<div class="line"><span class="lineno">   50</span>                <a class="code hl_function" href="classUiController.html#ad8eef4a540473cea11272923a7373f90">processTrackSelection</a>();</div>
-<div class="line"><span class="lineno">   51</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   52</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="ui__controller_8hpp.html#a87b4e62d4d095a4876d55dc241df7cfe">KEY_ADD_QUEUE</a>:</div>
-<div class="line"><span class="lineno">   53</span>                addTrackToQueue();</div>
-<div class="line"><span class="lineno">   54</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   55</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="ui__controller_8hpp.html#aa347d4e176d114a25575b441a640a0f7">KEY_PAUSE</a>:</div>
-<div class="line"><span class="lineno">   56</span>                <span class="keywordflow">if</span> (playing_) {</div>
-<div class="line"><span class="lineno">   57</span>                    <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.is_paused() ? <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.resume_track() : <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.pause_track();</div>
-<div class="line"><span class="lineno">   58</span>                }</div>
-<div class="line"><span class="lineno">   59</span>                <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a15275aff109dde3550ec37f39db2bfbf">renderStatusBar</a>(<a class="code hl_variable" href="classUiController.html#a5b04bf0fab84c5612845ed7f6e7fd665">current_track_</a>, playing_, <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.is_paused());</div>
-<div class="line"><span class="lineno">   60</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   61</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="ui__controller_8hpp.html#aa07ffa4c1393888706f7e1a69f7fb212">KEY_NEXT_QUEUE</a>:</div>
-<div class="line"><span class="lineno">   62</span>                processNextTrackFromQueue();</div>
-<div class="line"><span class="lineno">   63</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   64</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="ui__controller_8hpp.html#aa4dee32266c42994df3c769e3ad9de8d">KEY_VOLUME_UP</a>:</div>
-<div class="line"><span class="lineno">   65</span>                <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.raise_volume();</div>
-<div class="line"><span class="lineno">   66</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   67</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="ui__controller_8hpp.html#ab36253c6f8c3bc7ca0cfaf26c21ee2fe">KEY_VOLUME_DOWN</a>:</div>
-<div class="line"><span class="lineno">   68</span>                <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.lower_volume();</div>
-<div class="line"><span class="lineno">   69</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   70</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="ui__controller_8hpp.html#a89ebf1dd87abd8166d8c9e5c67df3cf4">KEY_QUIT</a>:</div>
-<div class="line"><span class="lineno">   71</span>                stopTrackPlayback();</div>
-<div class="line"><span class="lineno">   72</span>                running = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   73</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   74</span>        }</div>
-<div class="line"><span class="lineno">   75</span>    }</div>
-<div class="line"><span class="lineno">   76</span>    endwin();</div>
-<div class="line"><span class="lineno">   77</span>}</div>
+<p class="definition">Definition at line <a class="el" href="ui__controller_8cpp_source.html#l00021">21</a> of file <a class="el" href="ui__controller_8cpp_source.html">ui_controller.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   22</span>{</div>
+<div class="line"><span class="lineno">   23</span>    <a class="code hl_variable" href="classUiController.html#a416a0683189654af9a70bb88edd3a982">path_</a> = std::filesystem::current_path().string();</div>
+<div class="line"><span class="lineno">   24</span> </div>
+<div class="line"><span class="lineno">   25</span>    updateFileList();</div>
+<div class="line"><span class="lineno">   26</span>    nodelay(stdscr, TRUE);</div>
+<div class="line"><span class="lineno">   27</span>    <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a4c03ef885933b6e1b9ee7dce547a138c">renderFileList</a>(<a class="code hl_variable" href="classUiController.html#afa6ad529dfaf2a7f4e4547ff3c937f1a">files_</a>, <a class="code hl_variable" href="classUiController.html#ab71527fa7f3636d0783482f32ef958bd">highlight_</a>);</div>
+<div class="line"><span class="lineno">   28</span>    <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a792e91b3bb123a2806cb284281f1db14">renderTrackQueue</a>(<a class="code hl_variable" href="classUiController.html#ad06c2c367b57f6e7e74a6d6c9ec44704">track_queue_</a>);</div>
+<div class="line"><span class="lineno">   29</span>    <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a15275aff109dde3550ec37f39db2bfbf">renderStatusBar</a>(<a class="code hl_variable" href="classUiController.html#a5b04bf0fab84c5612845ed7f6e7fd665">current_track_</a>, playing_, <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.is_paused());</div>
+<div class="line"><span class="lineno">   30</span> </div>
+<div class="line"><span class="lineno">   31</span>    <span class="keywordtype">bool</span> running = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   32</span>    <span class="keywordflow">while</span> (running)</div>
+<div class="line"><span class="lineno">   33</span>    {</div>
+<div class="line"><span class="lineno">   34</span>        <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a4240f6102ea78c0ab2c8bed965295f41">updateAnimationFrame</a>(<a class="code hl_variable" href="classUiController.html#a5b04bf0fab84c5612845ed7f6e7fd665">current_track_</a>, playing_, <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.is_paused());</div>
+<div class="line"><span class="lineno">   35</span>        napms(50);</div>
+<div class="line"><span class="lineno">   36</span>        <span class="keywordflow">if</span> (!playing_ &amp;&amp; !<a class="code hl_variable" href="classUiController.html#ad06c2c367b57f6e7e74a6d6c9ec44704">track_queue_</a>.empty())</div>
+<div class="line"><span class="lineno">   37</span>        {</div>
+<div class="line"><span class="lineno">   38</span>            processNextTrackFromQueue();</div>
+<div class="line"><span class="lineno">   39</span>        }</div>
+<div class="line"><span class="lineno">   40</span> </div>
+<div class="line"><span class="lineno">   41</span>        <span class="keywordflow">switch</span> (<span class="keywordtype">int</span> pressed_key = getch()) {</div>
+<div class="line"><span class="lineno">   42</span>            <span class="keywordflow">case</span> KEY_UP:</div>
+<div class="line"><span class="lineno">   43</span>                <span class="keywordflow">if</span> (<a class="code hl_variable" href="classUiController.html#ab71527fa7f3636d0783482f32ef958bd">highlight_</a> &gt; 0) <a class="code hl_variable" href="classUiController.html#ab71527fa7f3636d0783482f32ef958bd">highlight_</a>--;</div>
+<div class="line"><span class="lineno">   44</span>                <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a4c03ef885933b6e1b9ee7dce547a138c">renderFileList</a>(<a class="code hl_variable" href="classUiController.html#afa6ad529dfaf2a7f4e4547ff3c937f1a">files_</a>, <a class="code hl_variable" href="classUiController.html#ab71527fa7f3636d0783482f32ef958bd">highlight_</a>);</div>
+<div class="line"><span class="lineno">   45</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   46</span>            <span class="keywordflow">case</span> KEY_DOWN:</div>
+<div class="line"><span class="lineno">   47</span>                <span class="keywordflow">if</span> (<a class="code hl_variable" href="classUiController.html#ab71527fa7f3636d0783482f32ef958bd">highlight_</a> &lt; <a class="code hl_variable" href="classUiController.html#afa6ad529dfaf2a7f4e4547ff3c937f1a">files_</a>.size() - 1) <a class="code hl_variable" href="classUiController.html#ab71527fa7f3636d0783482f32ef958bd">highlight_</a>++;</div>
+<div class="line"><span class="lineno">   48</span>                <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a4c03ef885933b6e1b9ee7dce547a138c">renderFileList</a>(<a class="code hl_variable" href="classUiController.html#afa6ad529dfaf2a7f4e4547ff3c937f1a">files_</a>, <a class="code hl_variable" href="classUiController.html#ab71527fa7f3636d0783482f32ef958bd">highlight_</a>);</div>
+<div class="line"><span class="lineno">   49</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   50</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="ui__controller_8hpp.html#a627da4dcc74b60898c203cfc612171a5">KEY_PLAY_TRACK</a>:</div>
+<div class="line"><span class="lineno">   51</span>                <a class="code hl_function" href="classUiController.html#ad8eef4a540473cea11272923a7373f90">processTrackSelection</a>();</div>
+<div class="line"><span class="lineno">   52</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   53</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="ui__controller_8hpp.html#a87b4e62d4d095a4876d55dc241df7cfe">KEY_ADD_QUEUE</a>:</div>
+<div class="line"><span class="lineno">   54</span>                addTrackToQueue();</div>
+<div class="line"><span class="lineno">   55</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   56</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="ui__controller_8hpp.html#aa347d4e176d114a25575b441a640a0f7">KEY_PAUSE</a>:</div>
+<div class="line"><span class="lineno">   57</span>                <span class="keywordflow">if</span> (playing_) {</div>
+<div class="line"><span class="lineno">   58</span>                    <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.is_paused() ? <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.resume_track() : <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.pause_track();</div>
+<div class="line"><span class="lineno">   59</span>                }</div>
+<div class="line"><span class="lineno">   60</span>                <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a15275aff109dde3550ec37f39db2bfbf">renderStatusBar</a>(<a class="code hl_variable" href="classUiController.html#a5b04bf0fab84c5612845ed7f6e7fd665">current_track_</a>, playing_, <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.is_paused());</div>
+<div class="line"><span class="lineno">   61</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   62</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="ui__controller_8hpp.html#aa07ffa4c1393888706f7e1a69f7fb212">KEY_NEXT_QUEUE</a>:</div>
+<div class="line"><span class="lineno">   63</span>                processNextTrackFromQueue();</div>
+<div class="line"><span class="lineno">   64</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   65</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="ui__controller_8hpp.html#aa4dee32266c42994df3c769e3ad9de8d">KEY_VOLUME_UP</a>:</div>
+<div class="line"><span class="lineno">   66</span>                <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.raise_volume();</div>
+<div class="line"><span class="lineno">   67</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   68</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="ui__controller_8hpp.html#ab36253c6f8c3bc7ca0cfaf26c21ee2fe">KEY_VOLUME_DOWN</a>:</div>
+<div class="line"><span class="lineno">   69</span>                <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.lower_volume();</div>
+<div class="line"><span class="lineno">   70</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   71</span>            <span class="keywordflow">case</span> <a class="code hl_variable" href="ui__controller_8hpp.html#a89ebf1dd87abd8166d8c9e5c67df3cf4">KEY_QUIT</a>:</div>
+<div class="line"><span class="lineno">   72</span>                stopTrackPlayback();</div>
+<div class="line"><span class="lineno">   73</span>                running = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   74</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   75</span>        }</div>
+<div class="line"><span class="lineno">   76</span>        <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.refreshAll();</div>
+<div class="line"><span class="lineno">   77</span>    }</div>
+<div class="line"><span class="lineno">   78</span>    endwin();</div>
+<div class="line"><span class="lineno">   79</span>}</div>
 <div class="ttc" id="aclassUiController_html_a416a0683189654af9a70bb88edd3a982"><div class="ttname"><a href="classUiController.html#a416a0683189654af9a70bb88edd3a982">UiController::path_</a></div><div class="ttdeci">std::string path_</div><div class="ttdoc">Current working directory.</div><div class="ttdef"><b>Definition</b> <a href="ui__controller_8hpp_source.html#l00079">ui_controller.hpp:79</a></div></div>
 <div class="ttc" id="aclassUiController_html_a5b04bf0fab84c5612845ed7f6e7fd665"><div class="ttname"><a href="classUiController.html#a5b04bf0fab84c5612845ed7f6e7fd665">UiController::current_track_</a></div><div class="ttdeci">track_ptr_t current_track_</div><div class="ttdoc">Track currently loaded in the player_ instance and playing.</div><div class="ttdef"><b>Definition</b> <a href="ui__controller_8hpp_source.html#l00078">ui_controller.hpp:78</a></div></div>
 <div class="ttc" id="aclassUiController_html_a956531f51cf086301916b8ffd5e80f35"><div class="ttname"><a href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">UiController::player_</a></div><div class="ttdeci">Player player_</div><div class="ttdoc">Player instance to delegate Track playback.</div><div class="ttdef"><b>Definition</b> <a href="ui__controller_8hpp_source.html#l00074">ui_controller.hpp:74</a></div></div>
-<div class="ttc" id="aclassUiController_html_ad8eef4a540473cea11272923a7373f90"><div class="ttname"><a href="classUiController.html#ad8eef4a540473cea11272923a7373f90">UiController::processTrackSelection</a></div><div class="ttdeci">void processTrackSelection()</div><div class="ttdoc">Attempt to decode a file and start playback.</div><div class="ttdef"><b>Definition</b> <a href="ui__controller_8cpp_source.html#l00139">ui_controller.cpp:139</a></div></div>
+<div class="ttc" id="aclassUiController_html_ad8eef4a540473cea11272923a7373f90"><div class="ttname"><a href="classUiController.html#ad8eef4a540473cea11272923a7373f90">UiController::processTrackSelection</a></div><div class="ttdeci">void processTrackSelection()</div><div class="ttdoc">Attempt to decode a file and start playback.</div><div class="ttdef"><b>Definition</b> <a href="ui__controller_8cpp_source.html#l00141">ui_controller.cpp:141</a></div></div>
 <div class="ttc" id="aclassUiRenderer_html_a15275aff109dde3550ec37f39db2bfbf"><div class="ttname"><a href="classUiRenderer.html#a15275aff109dde3550ec37f39db2bfbf">UiRenderer::renderStatusBar</a></div><div class="ttdeci">void renderStatusBar(const track_ptr_t &amp;current_track, const bool &amp;playing, const bool &amp;paused) const</div><div class="ttdoc">Renders status bar in its stationary state.</div><div class="ttdef"><b>Definition</b> <a href="ui__renderer_8cpp_source.html#l00048">ui_renderer.cpp:48</a></div></div>
 <div class="ttc" id="aclassUiRenderer_html_a4240f6102ea78c0ab2c8bed965295f41"><div class="ttname"><a href="classUiRenderer.html#a4240f6102ea78c0ab2c8bed965295f41">UiRenderer::updateAnimationFrame</a></div><div class="ttdeci">void updateAnimationFrame(const track_ptr_t &amp;current_track, const bool &amp;playing, const bool &amp;paused) const</div><div class="ttdoc">Updates animations in the status bar window.</div><div class="ttdef"><b>Definition</b> <a href="ui__renderer_8cpp_source.html#l00089">ui_renderer.cpp:89</a></div></div>
 <div class="ttc" id="aclassUiRenderer_html_a4c03ef885933b6e1b9ee7dce547a138c"><div class="ttname"><a href="classUiRenderer.html#a4c03ef885933b6e1b9ee7dce547a138c">UiRenderer::renderFileList</a></div><div class="ttdeci">void renderFileList(const file_list_t &amp;files, size_t highlight) const</div><div class="ttdoc">Refreshes file_list_win_ with provided file data.</div><div class="ttdef"><b>Definition</b> <a href="ui__renderer_8cpp_source.html#l00015">ui_renderer.cpp:15</a></div></div>
@@ -392,22 +394,22 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ui__controller_8cpp_source.html#l00079">79</a> of file <a class="el" href="ui__controller_8cpp_source.html">ui_controller.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   80</span>{</div>
-<div class="line"><span class="lineno">   81</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classUiController.html#a4478159fadc8521cb21d3efe07311592">playback_thread_</a>.joinable())</div>
-<div class="line"><span class="lineno">   82</span>    {</div>
-<div class="line"><span class="lineno">   83</span>        <a class="code hl_variable" href="classUiController.html#a4478159fadc8521cb21d3efe07311592">playback_thread_</a>.join();</div>
-<div class="line"><span class="lineno">   84</span>    }</div>
-<div class="line"><span class="lineno">   85</span>    <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.<a class="code hl_function" href="classPlayer.html#a519dc1959e33e9d320e32e6be812b4e2">load_track</a>(track);</div>
-<div class="line"><span class="lineno">   86</span>    playing_ = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">   87</span>    <a class="code hl_variable" href="classUiController.html#a5b04bf0fab84c5612845ed7f6e7fd665">current_track_</a> = track;</div>
-<div class="line"><span class="lineno">   88</span>    <a class="code hl_variable" href="classUiController.html#a4478159fadc8521cb21d3efe07311592">playback_thread_</a> = std::thread([<span class="keyword">this</span>]() {</div>
-<div class="line"><span class="lineno">   89</span>        <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.<a class="code hl_function" href="classPlayer.html#aa245f322d33783fd188b30155c908321">play_track</a>();</div>
-<div class="line"><span class="lineno">   90</span>        playing_ = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">   91</span>        <a class="code hl_variable" href="classUiController.html#a5b04bf0fab84c5612845ed7f6e7fd665">current_track_</a> = <span class="keyword">nullptr</span>;</div>
-<div class="line"><span class="lineno">   92</span>        <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a15275aff109dde3550ec37f39db2bfbf">renderStatusBar</a>(<a class="code hl_variable" href="classUiController.html#a5b04bf0fab84c5612845ed7f6e7fd665">current_track_</a>, playing_, <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.is_paused());</div>
-<div class="line"><span class="lineno">   93</span>    });</div>
-<div class="line"><span class="lineno">   94</span>}</div>
+<p class="definition">Definition at line <a class="el" href="ui__controller_8cpp_source.html#l00081">81</a> of file <a class="el" href="ui__controller_8cpp_source.html">ui_controller.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   82</span>{</div>
+<div class="line"><span class="lineno">   83</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classUiController.html#a4478159fadc8521cb21d3efe07311592">playback_thread_</a>.joinable())</div>
+<div class="line"><span class="lineno">   84</span>    {</div>
+<div class="line"><span class="lineno">   85</span>        <a class="code hl_variable" href="classUiController.html#a4478159fadc8521cb21d3efe07311592">playback_thread_</a>.join();</div>
+<div class="line"><span class="lineno">   86</span>    }</div>
+<div class="line"><span class="lineno">   87</span>    <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.<a class="code hl_function" href="classPlayer.html#a519dc1959e33e9d320e32e6be812b4e2">load_track</a>(track);</div>
+<div class="line"><span class="lineno">   88</span>    playing_ = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">   89</span>    <a class="code hl_variable" href="classUiController.html#a5b04bf0fab84c5612845ed7f6e7fd665">current_track_</a> = track;</div>
+<div class="line"><span class="lineno">   90</span>    <a class="code hl_variable" href="classUiController.html#a4478159fadc8521cb21d3efe07311592">playback_thread_</a> = std::thread([<span class="keyword">this</span>]() {</div>
+<div class="line"><span class="lineno">   91</span>        <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.<a class="code hl_function" href="classPlayer.html#aa245f322d33783fd188b30155c908321">play_track</a>();</div>
+<div class="line"><span class="lineno">   92</span>        playing_ = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">   93</span>        <a class="code hl_variable" href="classUiController.html#a5b04bf0fab84c5612845ed7f6e7fd665">current_track_</a> = <span class="keyword">nullptr</span>;</div>
+<div class="line"><span class="lineno">   94</span>        <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a15275aff109dde3550ec37f39db2bfbf">renderStatusBar</a>(<a class="code hl_variable" href="classUiController.html#a5b04bf0fab84c5612845ed7f6e7fd665">current_track_</a>, playing_, <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.is_paused());</div>
+<div class="line"><span class="lineno">   95</span>    });</div>
+<div class="line"><span class="lineno">   96</span>}</div>
 <div class="ttc" id="aclassPlayer_html_a519dc1959e33e9d320e32e6be812b4e2"><div class="ttname"><a href="classPlayer.html#a519dc1959e33e9d320e32e6be812b4e2">Player::load_track</a></div><div class="ttdeci">void load_track(const track_ptr_t &amp;track)</div><div class="ttdoc">Redirects local pointer to given Track instance.</div><div class="ttdef"><b>Definition</b> <a href="player_8cpp_source.html#l00046">player.cpp:46</a></div></div>
 <div class="ttc" id="aclassPlayer_html_aa245f322d33783fd188b30155c908321"><div class="ttname"><a href="classPlayer.html#aa245f322d33783fd188b30155c908321">Player::play_track</a></div><div class="ttdeci">void play_track()</div><div class="ttdoc">Starts track playback.</div><div class="ttdef"><b>Definition</b> <a href="player_8cpp_source.html#l00072">player.cpp:72</a></div></div>
 <div class="ttc" id="aclassUiController_html_a4478159fadc8521cb21d3efe07311592"><div class="ttname"><a href="classUiController.html#a4478159fadc8521cb21d3efe07311592">UiController::playback_thread_</a></div><div class="ttdeci">std::thread playback_thread_</div><div class="ttdoc">Thread on which the player_ instance operates.</div><div class="ttdef"><b>Definition</b> <a href="ui__controller_8hpp_source.html#l00081">ui_controller.hpp:81</a></div></div>
@@ -437,19 +439,19 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ui__controller_8cpp_source.html#l00181">181</a> of file <a class="el" href="ui__controller_8cpp_source.html">ui_controller.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  182</span>{</div>
-<div class="line"><span class="lineno">  183</span>    <span class="keywordflow">if</span> (playing_)</div>
-<div class="line"><span class="lineno">  184</span>        stopTrackPlayback();</div>
-<div class="line"><span class="lineno">  185</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classUiController.html#ad06c2c367b57f6e7e74a6d6c9ec44704">track_queue_</a>.empty())</div>
-<div class="line"><span class="lineno">  186</span>    {</div>
-<div class="line"><span class="lineno">  187</span>        <span class="keyword">auto</span> next_track = <a class="code hl_variable" href="classUiController.html#ad06c2c367b57f6e7e74a6d6c9ec44704">track_queue_</a>.front();</div>
-<div class="line"><span class="lineno">  188</span>        <a class="code hl_variable" href="classUiController.html#ad06c2c367b57f6e7e74a6d6c9ec44704">track_queue_</a>.pop_front();</div>
-<div class="line"><span class="lineno">  189</span>        beginTrackPlayback(next_track);</div>
-<div class="line"><span class="lineno">  190</span>    }</div>
-<div class="line"><span class="lineno">  191</span>    <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a15275aff109dde3550ec37f39db2bfbf">renderStatusBar</a>(<a class="code hl_variable" href="classUiController.html#a5b04bf0fab84c5612845ed7f6e7fd665">current_track_</a>, playing_, <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.is_paused());</div>
-<div class="line"><span class="lineno">  192</span>    <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a792e91b3bb123a2806cb284281f1db14">renderTrackQueue</a>(<a class="code hl_variable" href="classUiController.html#ad06c2c367b57f6e7e74a6d6c9ec44704">track_queue_</a>);</div>
-<div class="line"><span class="lineno">  193</span>}</div>
+<p class="definition">Definition at line <a class="el" href="ui__controller_8cpp_source.html#l00183">183</a> of file <a class="el" href="ui__controller_8cpp_source.html">ui_controller.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  184</span>{</div>
+<div class="line"><span class="lineno">  185</span>    <span class="keywordflow">if</span> (playing_)</div>
+<div class="line"><span class="lineno">  186</span>        stopTrackPlayback();</div>
+<div class="line"><span class="lineno">  187</span>    <span class="keywordflow">if</span> (!<a class="code hl_variable" href="classUiController.html#ad06c2c367b57f6e7e74a6d6c9ec44704">track_queue_</a>.empty())</div>
+<div class="line"><span class="lineno">  188</span>    {</div>
+<div class="line"><span class="lineno">  189</span>        <span class="keyword">auto</span> next_track = <a class="code hl_variable" href="classUiController.html#ad06c2c367b57f6e7e74a6d6c9ec44704">track_queue_</a>.front();</div>
+<div class="line"><span class="lineno">  190</span>        <a class="code hl_variable" href="classUiController.html#ad06c2c367b57f6e7e74a6d6c9ec44704">track_queue_</a>.pop_front();</div>
+<div class="line"><span class="lineno">  191</span>        beginTrackPlayback(next_track);</div>
+<div class="line"><span class="lineno">  192</span>    }</div>
+<div class="line"><span class="lineno">  193</span>    <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a15275aff109dde3550ec37f39db2bfbf">renderStatusBar</a>(<a class="code hl_variable" href="classUiController.html#a5b04bf0fab84c5612845ed7f6e7fd665">current_track_</a>, playing_, <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.is_paused());</div>
+<div class="line"><span class="lineno">  194</span>    <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a792e91b3bb123a2806cb284281f1db14">renderTrackQueue</a>(<a class="code hl_variable" href="classUiController.html#ad06c2c367b57f6e7e74a6d6c9ec44704">track_queue_</a>);</div>
+<div class="line"><span class="lineno">  195</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -482,34 +484,34 @@ Private Attributes</h2></td></tr>
 <li>Attempting to decode the currently selected file in the explorer </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="ui__controller_8cpp_source.html#l00139">139</a> of file <a class="el" href="ui__controller_8cpp_source.html">ui_controller.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  140</span>{</div>
-<div class="line"><span class="lineno">  141</span>    <span class="keyword">auto</span>&amp; selected = <a class="code hl_variable" href="classUiController.html#afa6ad529dfaf2a7f4e4547ff3c937f1a">files_</a>[<a class="code hl_variable" href="classUiController.html#ab71527fa7f3636d0783482f32ef958bd">highlight_</a>];</div>
-<div class="line"><span class="lineno">  142</span>    std::filesystem::path selected_path = selected.path();</div>
-<div class="line"><span class="lineno">  143</span> </div>
-<div class="line"><span class="lineno">  144</span>    <span class="keywordflow">if</span> (selected_path.filename() == <span class="stringliteral">&quot;..&quot;</span>) {</div>
-<div class="line"><span class="lineno">  145</span>        <a class="code hl_variable" href="classUiController.html#a416a0683189654af9a70bb88edd3a982">path_</a> = std::filesystem::path(<a class="code hl_variable" href="classUiController.html#a416a0683189654af9a70bb88edd3a982">path_</a>).parent_path().string();</div>
-<div class="line"><span class="lineno">  146</span>        <a class="code hl_variable" href="classUiController.html#ab71527fa7f3636d0783482f32ef958bd">highlight_</a> = 0;</div>
-<div class="line"><span class="lineno">  147</span>        updateFileList();</div>
-<div class="line"><span class="lineno">  148</span>    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (is_directory(selected_path)) {</div>
-<div class="line"><span class="lineno">  149</span>        <a class="code hl_variable" href="classUiController.html#a416a0683189654af9a70bb88edd3a982">path_</a> = selected_path.string();</div>
-<div class="line"><span class="lineno">  150</span>        <a class="code hl_variable" href="classUiController.html#ab71527fa7f3636d0783482f32ef958bd">highlight_</a> = 0;</div>
-<div class="line"><span class="lineno">  151</span>        updateFileList();</div>
-<div class="line"><span class="lineno">  152</span>    } <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">  153</span>    {</div>
-<div class="line"><span class="lineno">  154</span>        <span class="keywordflow">if</span> (playing_)</div>
-<div class="line"><span class="lineno">  155</span>            stopTrackPlayback();</div>
-<div class="line"><span class="lineno">  156</span>        track_ptr_t track = <a class="code hl_variable" href="classUiController.html#a04c3a9d240f8ae78f2a36cc03d72dc3e">dec_</a>.<a class="code hl_function" href="classDecoder.html#a71cae1687140908eccfd476fcac675b8">decode_mp3</a>(selected_path.string());</div>
-<div class="line"><span class="lineno">  157</span>        <span class="keywordflow">if</span> (<span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classErrorTrack.html">ErrorTrack</a>*<span class="keyword">&gt;</span>(track.get()) != <span class="keyword">nullptr</span>){</div>
-<div class="line"><span class="lineno">  158</span>            <span class="comment">//Check type of returned track</span></div>
-<div class="line"><span class="lineno">  159</span>            showErrorPopup(<span class="stringliteral">&quot;Error opening file!&quot;</span>);</div>
-<div class="line"><span class="lineno">  160</span>            <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">  161</span>        }</div>
-<div class="line"><span class="lineno">  162</span>        beginTrackPlayback(track);</div>
-<div class="line"><span class="lineno">  163</span>    }</div>
-<div class="line"><span class="lineno">  164</span>    <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a15275aff109dde3550ec37f39db2bfbf">renderStatusBar</a>(<a class="code hl_variable" href="classUiController.html#a5b04bf0fab84c5612845ed7f6e7fd665">current_track_</a>, playing_, <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.is_paused());</div>
-<div class="line"><span class="lineno">  165</span>    <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a4c03ef885933b6e1b9ee7dce547a138c">renderFileList</a>(<a class="code hl_variable" href="classUiController.html#afa6ad529dfaf2a7f4e4547ff3c937f1a">files_</a>, <a class="code hl_variable" href="classUiController.html#ab71527fa7f3636d0783482f32ef958bd">highlight_</a>);</div>
-<div class="line"><span class="lineno">  166</span>}</div>
+<p class="definition">Definition at line <a class="el" href="ui__controller_8cpp_source.html#l00141">141</a> of file <a class="el" href="ui__controller_8cpp_source.html">ui_controller.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  142</span>{</div>
+<div class="line"><span class="lineno">  143</span>    <span class="keyword">auto</span>&amp; selected = <a class="code hl_variable" href="classUiController.html#afa6ad529dfaf2a7f4e4547ff3c937f1a">files_</a>[<a class="code hl_variable" href="classUiController.html#ab71527fa7f3636d0783482f32ef958bd">highlight_</a>];</div>
+<div class="line"><span class="lineno">  144</span>    std::filesystem::path selected_path = selected.path();</div>
+<div class="line"><span class="lineno">  145</span> </div>
+<div class="line"><span class="lineno">  146</span>    <span class="keywordflow">if</span> (selected_path.filename() == <span class="stringliteral">&quot;..&quot;</span>) {</div>
+<div class="line"><span class="lineno">  147</span>        <a class="code hl_variable" href="classUiController.html#a416a0683189654af9a70bb88edd3a982">path_</a> = std::filesystem::path(<a class="code hl_variable" href="classUiController.html#a416a0683189654af9a70bb88edd3a982">path_</a>).parent_path().string();</div>
+<div class="line"><span class="lineno">  148</span>        <a class="code hl_variable" href="classUiController.html#ab71527fa7f3636d0783482f32ef958bd">highlight_</a> = 0;</div>
+<div class="line"><span class="lineno">  149</span>        updateFileList();</div>
+<div class="line"><span class="lineno">  150</span>    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (is_directory(selected_path)) {</div>
+<div class="line"><span class="lineno">  151</span>        <a class="code hl_variable" href="classUiController.html#a416a0683189654af9a70bb88edd3a982">path_</a> = selected_path.string();</div>
+<div class="line"><span class="lineno">  152</span>        <a class="code hl_variable" href="classUiController.html#ab71527fa7f3636d0783482f32ef958bd">highlight_</a> = 0;</div>
+<div class="line"><span class="lineno">  153</span>        updateFileList();</div>
+<div class="line"><span class="lineno">  154</span>    } <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  155</span>    {</div>
+<div class="line"><span class="lineno">  156</span>        <span class="keywordflow">if</span> (playing_)</div>
+<div class="line"><span class="lineno">  157</span>            stopTrackPlayback();</div>
+<div class="line"><span class="lineno">  158</span>        track_ptr_t track = <a class="code hl_variable" href="classUiController.html#a04c3a9d240f8ae78f2a36cc03d72dc3e">dec_</a>.<a class="code hl_function" href="classDecoder.html#a71cae1687140908eccfd476fcac675b8">decode_mp3</a>(selected_path.string());</div>
+<div class="line"><span class="lineno">  159</span>        <span class="keywordflow">if</span> (<span class="keyword">dynamic_cast&lt;</span><a class="code hl_class" href="classErrorTrack.html">ErrorTrack</a>*<span class="keyword">&gt;</span>(track.get()) != <span class="keyword">nullptr</span>){</div>
+<div class="line"><span class="lineno">  160</span>            <span class="comment">//Check type of returned track</span></div>
+<div class="line"><span class="lineno">  161</span>            showErrorPopup(<span class="stringliteral">&quot;Error opening file!&quot;</span>);</div>
+<div class="line"><span class="lineno">  162</span>            <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">  163</span>        }</div>
+<div class="line"><span class="lineno">  164</span>        beginTrackPlayback(track);</div>
+<div class="line"><span class="lineno">  165</span>    }</div>
+<div class="line"><span class="lineno">  166</span>    <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a15275aff109dde3550ec37f39db2bfbf">renderStatusBar</a>(<a class="code hl_variable" href="classUiController.html#a5b04bf0fab84c5612845ed7f6e7fd665">current_track_</a>, playing_, <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.is_paused());</div>
+<div class="line"><span class="lineno">  167</span>    <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a4c03ef885933b6e1b9ee7dce547a138c">renderFileList</a>(<a class="code hl_variable" href="classUiController.html#afa6ad529dfaf2a7f4e4547ff3c937f1a">files_</a>, <a class="code hl_variable" href="classUiController.html#ab71527fa7f3636d0783482f32ef958bd">highlight_</a>);</div>
+<div class="line"><span class="lineno">  168</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -537,27 +539,27 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ui__controller_8cpp_source.html#l00117">117</a> of file <a class="el" href="ui__controller_8cpp_source.html">ui_controller.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  118</span>{</div>
-<div class="line"><span class="lineno">  119</span>    <span class="keywordtype">size_t</span> height = 3;</div>
-<div class="line"><span class="lineno">  120</span>    <span class="keywordtype">size_t</span> width = message.size() + 4;</div>
-<div class="line"><span class="lineno">  121</span>    <span class="keywordtype">size_t</span> starty = (LINES - height) / 2;</div>
-<div class="line"><span class="lineno">  122</span>    <span class="keywordtype">size_t</span> startx = (COLS - width) / 2;</div>
-<div class="line"><span class="lineno">  123</span> </div>
-<div class="line"><span class="lineno">  124</span>    WINDOW* popup = newwin(height, width, starty, startx);</div>
-<div class="line"><span class="lineno">  125</span>    box(popup, 0, 0);</div>
-<div class="line"><span class="lineno">  126</span>    mvwprintw(popup, 1, 2, <span class="stringliteral">&quot;%s&quot;</span>, message.c_str());</div>
-<div class="line"><span class="lineno">  127</span>    wrefresh(popup);</div>
-<div class="line"><span class="lineno">  128</span> </div>
-<div class="line"><span class="lineno">  129</span>    napms(1500);</div>
+<p class="definition">Definition at line <a class="el" href="ui__controller_8cpp_source.html#l00119">119</a> of file <a class="el" href="ui__controller_8cpp_source.html">ui_controller.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  120</span>{</div>
+<div class="line"><span class="lineno">  121</span>    <span class="keywordtype">size_t</span> height = 3;</div>
+<div class="line"><span class="lineno">  122</span>    <span class="keywordtype">size_t</span> width = message.size() + 4;</div>
+<div class="line"><span class="lineno">  123</span>    <span class="keywordtype">size_t</span> starty = (LINES - height) / 2;</div>
+<div class="line"><span class="lineno">  124</span>    <span class="keywordtype">size_t</span> startx = (COLS - width) / 2;</div>
+<div class="line"><span class="lineno">  125</span> </div>
+<div class="line"><span class="lineno">  126</span>    WINDOW* popup = newwin(height, width, starty, startx);</div>
+<div class="line"><span class="lineno">  127</span>    box(popup, 0, 0);</div>
+<div class="line"><span class="lineno">  128</span>    mvwprintw(popup, 1, 2, <span class="stringliteral">&quot;%s&quot;</span>, message.c_str());</div>
+<div class="line"><span class="lineno">  129</span>    wrefresh(popup);</div>
 <div class="line"><span class="lineno">  130</span> </div>
-<div class="line"><span class="lineno">  131</span>    delwin(popup);</div>
-<div class="line"><span class="lineno">  132</span>    clear();</div>
-<div class="line"><span class="lineno">  133</span>    refresh();</div>
-<div class="line"><span class="lineno">  134</span>    <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a4c03ef885933b6e1b9ee7dce547a138c">renderFileList</a>(<a class="code hl_variable" href="classUiController.html#afa6ad529dfaf2a7f4e4547ff3c937f1a">files_</a>, <a class="code hl_variable" href="classUiController.html#ab71527fa7f3636d0783482f32ef958bd">highlight_</a>);</div>
-<div class="line"><span class="lineno">  135</span>    <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a792e91b3bb123a2806cb284281f1db14">renderTrackQueue</a>(<a class="code hl_variable" href="classUiController.html#ad06c2c367b57f6e7e74a6d6c9ec44704">track_queue_</a>);</div>
-<div class="line"><span class="lineno">  136</span>    <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a15275aff109dde3550ec37f39db2bfbf">renderStatusBar</a>(<a class="code hl_variable" href="classUiController.html#a5b04bf0fab84c5612845ed7f6e7fd665">current_track_</a>, playing_, <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.is_paused());</div>
-<div class="line"><span class="lineno">  137</span>}</div>
+<div class="line"><span class="lineno">  131</span>    napms(1500);</div>
+<div class="line"><span class="lineno">  132</span> </div>
+<div class="line"><span class="lineno">  133</span>    delwin(popup);</div>
+<div class="line"><span class="lineno">  134</span>    clear();</div>
+<div class="line"><span class="lineno">  135</span>    refresh();</div>
+<div class="line"><span class="lineno">  136</span>    <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a4c03ef885933b6e1b9ee7dce547a138c">renderFileList</a>(<a class="code hl_variable" href="classUiController.html#afa6ad529dfaf2a7f4e4547ff3c937f1a">files_</a>, <a class="code hl_variable" href="classUiController.html#ab71527fa7f3636d0783482f32ef958bd">highlight_</a>);</div>
+<div class="line"><span class="lineno">  137</span>    <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a792e91b3bb123a2806cb284281f1db14">renderTrackQueue</a>(<a class="code hl_variable" href="classUiController.html#ad06c2c367b57f6e7e74a6d6c9ec44704">track_queue_</a>);</div>
+<div class="line"><span class="lineno">  138</span>    <a class="code hl_variable" href="classUiController.html#a06c688233d464fc707a4e237107c209d">ui_</a>.<a class="code hl_function" href="classUiRenderer.html#a15275aff109dde3550ec37f39db2bfbf">renderStatusBar</a>(<a class="code hl_variable" href="classUiController.html#a5b04bf0fab84c5612845ed7f6e7fd665">current_track_</a>, playing_, <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.is_paused());</div>
+<div class="line"><span class="lineno">  139</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -584,17 +586,17 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ui__controller_8cpp_source.html#l00095">95</a> of file <a class="el" href="ui__controller_8cpp_source.html">ui_controller.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   96</span>{</div>
-<div class="line"><span class="lineno">   97</span>    <span class="keywordflow">if</span> (playing_)</div>
-<div class="line"><span class="lineno">   98</span>    {</div>
-<div class="line"><span class="lineno">   99</span>        <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.<a class="code hl_function" href="classPlayer.html#a329cba14b52751180055a0b48cf3e1b7">stop_track</a>();</div>
-<div class="line"><span class="lineno">  100</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="classUiController.html#a4478159fadc8521cb21d3efe07311592">playback_thread_</a>.joinable())</div>
-<div class="line"><span class="lineno">  101</span>            <a class="code hl_variable" href="classUiController.html#a4478159fadc8521cb21d3efe07311592">playback_thread_</a>.join();</div>
-<div class="line"><span class="lineno">  102</span>        playing_ = <span class="keyword">false</span>;</div>
-<div class="line"><span class="lineno">  103</span>        <a class="code hl_variable" href="classUiController.html#a5b04bf0fab84c5612845ed7f6e7fd665">current_track_</a> = <span class="keyword">nullptr</span>;</div>
-<div class="line"><span class="lineno">  104</span>    }</div>
-<div class="line"><span class="lineno">  105</span>}</div>
+<p class="definition">Definition at line <a class="el" href="ui__controller_8cpp_source.html#l00097">97</a> of file <a class="el" href="ui__controller_8cpp_source.html">ui_controller.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">   98</span>{</div>
+<div class="line"><span class="lineno">   99</span>    <span class="keywordflow">if</span> (playing_)</div>
+<div class="line"><span class="lineno">  100</span>    {</div>
+<div class="line"><span class="lineno">  101</span>        <a class="code hl_variable" href="classUiController.html#a956531f51cf086301916b8ffd5e80f35">player_</a>.<a class="code hl_function" href="classPlayer.html#a329cba14b52751180055a0b48cf3e1b7">stop_track</a>();</div>
+<div class="line"><span class="lineno">  102</span>        <span class="keywordflow">if</span> (<a class="code hl_variable" href="classUiController.html#a4478159fadc8521cb21d3efe07311592">playback_thread_</a>.joinable())</div>
+<div class="line"><span class="lineno">  103</span>            <a class="code hl_variable" href="classUiController.html#a4478159fadc8521cb21d3efe07311592">playback_thread_</a>.join();</div>
+<div class="line"><span class="lineno">  104</span>        playing_ = <span class="keyword">false</span>;</div>
+<div class="line"><span class="lineno">  105</span>        <a class="code hl_variable" href="classUiController.html#a5b04bf0fab84c5612845ed7f6e7fd665">current_track_</a> = <span class="keyword">nullptr</span>;</div>
+<div class="line"><span class="lineno">  106</span>    }</div>
+<div class="line"><span class="lineno">  107</span>}</div>
 <div class="ttc" id="aclassPlayer_html_a329cba14b52751180055a0b48cf3e1b7"><div class="ttname"><a href="classPlayer.html#a329cba14b52751180055a0b48cf3e1b7">Player::stop_track</a></div><div class="ttdeci">void stop_track()</div><div class="ttdoc">Only way to abort the execution of play_track() method from outside of Player class.</div><div class="ttdef"><b>Definition</b> <a href="player_8cpp_source.html#l00017">player.cpp:17</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -622,15 +624,15 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="ui__controller_8cpp_source.html#l00107">107</a> of file <a class="el" href="ui__controller_8cpp_source.html">ui_controller.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  108</span>{</div>
-<div class="line"><span class="lineno">  109</span>    <a class="code hl_variable" href="classUiController.html#afa6ad529dfaf2a7f4e4547ff3c937f1a">files_</a>.clear();</div>
-<div class="line"><span class="lineno">  110</span>    <a class="code hl_variable" href="classUiController.html#afa6ad529dfaf2a7f4e4547ff3c937f1a">files_</a>.emplace_back(std::filesystem::directory_entry(std::filesystem::path(<a class="code hl_variable" href="classUiController.html#a416a0683189654af9a70bb88edd3a982">path_</a>) / <span class="stringliteral">&quot;..&quot;</span>));</div>
-<div class="line"><span class="lineno">  111</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; entry : std::filesystem::directory_iterator(<a class="code hl_variable" href="classUiController.html#a416a0683189654af9a70bb88edd3a982">path_</a>))</div>
-<div class="line"><span class="lineno">  112</span>    {</div>
-<div class="line"><span class="lineno">  113</span>        <a class="code hl_variable" href="classUiController.html#afa6ad529dfaf2a7f4e4547ff3c937f1a">files_</a>.push_back(entry);</div>
-<div class="line"><span class="lineno">  114</span>    }</div>
-<div class="line"><span class="lineno">  115</span>}</div>
+<p class="definition">Definition at line <a class="el" href="ui__controller_8cpp_source.html#l00109">109</a> of file <a class="el" href="ui__controller_8cpp_source.html">ui_controller.cpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  110</span>{</div>
+<div class="line"><span class="lineno">  111</span>    <a class="code hl_variable" href="classUiController.html#afa6ad529dfaf2a7f4e4547ff3c937f1a">files_</a>.clear();</div>
+<div class="line"><span class="lineno">  112</span>    <a class="code hl_variable" href="classUiController.html#afa6ad529dfaf2a7f4e4547ff3c937f1a">files_</a>.emplace_back(std::filesystem::directory_entry(std::filesystem::path(<a class="code hl_variable" href="classUiController.html#a416a0683189654af9a70bb88edd3a982">path_</a>) / <span class="stringliteral">&quot;..&quot;</span>));</div>
+<div class="line"><span class="lineno">  113</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; entry : std::filesystem::directory_iterator(<a class="code hl_variable" href="classUiController.html#a416a0683189654af9a70bb88edd3a982">path_</a>))</div>
+<div class="line"><span class="lineno">  114</span>    {</div>
+<div class="line"><span class="lineno">  115</span>        <a class="code hl_variable" href="classUiController.html#afa6ad529dfaf2a7f4e4547ff3c937f1a">files_</a>.push_back(entry);</div>
+<div class="line"><span class="lineno">  116</span>    }</div>
+<div class="line"><span class="lineno">  117</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>

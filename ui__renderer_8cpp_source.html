@@ -118,7 +118,7 @@ $(document).ready(function(){initNavTree('ui__renderer_8cpp_source.html',''); in
 <div class="foldopen" id="foldopen00015" data-start="{" data-end="}">
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classUiRenderer.html#a4c03ef885933b6e1b9ee7dce547a138c">   15</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classUiRenderer.html#a4c03ef885933b6e1b9ee7dce547a138c">UiRenderer::renderFileList</a>(<span class="keyword">const</span> file_list_t&amp; files, <span class="keywordtype">size_t</span> highlight)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    wclear(<a class="code hl_variable" href="classUiRenderer.html#a32e9d0d461230677035df2f0e0d184ab">file_list_win_</a>);</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    werase(<a class="code hl_variable" href="classUiRenderer.html#a32e9d0d461230677035df2f0e0d184ab">file_list_win_</a>);</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    box(<a class="code hl_variable" href="classUiRenderer.html#a32e9d0d461230677035df2f0e0d184ab">file_list_win_</a>, 0, 0);</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; files.size(); ++i) {</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        <span class="keywordflow">if</span> (i == highlight)</div>
@@ -136,26 +136,26 @@ $(document).ready(function(){initNavTree('ui__renderer_8cpp_source.html',''); in
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>        <span class="keywordflow">if</span> (i == highlight)</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>            wattroff(<a class="code hl_variable" href="classUiRenderer.html#a32e9d0d461230677035df2f0e0d184ab">file_list_win_</a>, A_REVERSE);</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    }</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    wrefresh(<a class="code hl_variable" href="classUiRenderer.html#a32e9d0d461230677035df2f0e0d184ab">file_list_win_</a>);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    wnoutrefresh(<a class="code hl_variable" href="classUiRenderer.html#a32e9d0d461230677035df2f0e0d184ab">file_list_win_</a>);</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>}</div>
 </div>
 <div class="foldopen" id="foldopen00037" data-start="{" data-end="}">
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classUiRenderer.html#a792e91b3bb123a2806cb284281f1db14">   37</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classUiRenderer.html#a792e91b3bb123a2806cb284281f1db14">UiRenderer::renderTrackQueue</a>(<span class="keyword">const</span> std::deque&lt;track_ptr_t&gt; &amp;queue)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    wclear(<a class="code hl_variable" href="classUiRenderer.html#a67c934308696cf885d0bd2c12dff37c5">track_queue_win_</a>);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    werase(<a class="code hl_variable" href="classUiRenderer.html#a67c934308696cf885d0bd2c12dff37c5">track_queue_win_</a>);</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    box(<a class="code hl_variable" href="classUiRenderer.html#a67c934308696cf885d0bd2c12dff37c5">track_queue_win_</a>, 0, 0);</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    mvwprintw(<a class="code hl_variable" href="classUiRenderer.html#a67c934308696cf885d0bd2c12dff37c5">track_queue_win_</a>, 0, 2, <span class="stringliteral">&quot;Track Queue&quot;</span>);</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordflow">for</span>(<span class="keywordtype">size_t</span> i = 0; i &lt; queue.size(); ++i)</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    {</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        mvwprintw(<a class="code hl_variable" href="classUiRenderer.html#a67c934308696cf885d0bd2c12dff37c5">track_queue_win_</a>, i + 1, 2, <span class="stringliteral">&quot;%s&quot;</span>, queue[i]-&gt;getTrackInfo().meta_data.track_name.c_str());</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    }</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    wrefresh(<a class="code hl_variable" href="classUiRenderer.html#a67c934308696cf885d0bd2c12dff37c5">track_queue_win_</a>);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    wnoutrefresh(<a class="code hl_variable" href="classUiRenderer.html#a67c934308696cf885d0bd2c12dff37c5">track_queue_win_</a>);</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>}</div>
 </div>
 <div class="foldopen" id="foldopen00048" data-start="{" data-end="}">
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classUiRenderer.html#a15275aff109dde3550ec37f39db2bfbf">   48</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classUiRenderer.html#a15275aff109dde3550ec37f39db2bfbf">UiRenderer::renderStatusBar</a>(<span class="keyword">const</span> track_ptr_t&amp; current_track, <span class="keyword">const</span> <span class="keywordtype">bool</span>&amp; playing, <span class="keyword">const</span> <span class="keywordtype">bool</span>&amp; paused)<span class="keyword"> const</span></div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    wclear(<a class="code hl_variable" href="classUiRenderer.html#a7c6185a458eb8ff9aafb08d3f8b93a2e">status_bar_win_</a>);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    werase(<a class="code hl_variable" href="classUiRenderer.html#a7c6185a458eb8ff9aafb08d3f8b93a2e">status_bar_win_</a>);</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    box(<a class="code hl_variable" href="classUiRenderer.html#a7c6185a458eb8ff9aafb08d3f8b93a2e">status_bar_win_</a>, 0, 0);</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordflow">if</span> (playing) {</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>        mvwprintw(<a class="code hl_variable" href="classUiRenderer.html#a7c6185a458eb8ff9aafb08d3f8b93a2e">status_bar_win_</a>, 0, 2, <span class="stringliteral">&quot;Now Playing: &quot;</span>);</div>
@@ -178,7 +178,7 @@ $(document).ready(function(){initNavTree('ui__renderer_8cpp_source.html',''); in
 <div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keywordflow">else</span></div>
 <div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        mvwprintw(<a class="code hl_variable" href="classUiRenderer.html#a7c6185a458eb8ff9aafb08d3f8b93a2e">status_bar_win_</a>, 0, 2, <span class="stringliteral">&quot;Select a track and press ENTER to play&quot;</span>);</div>
 <div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    mvwprintw(<a class="code hl_variable" href="classUiRenderer.html#a7c6185a458eb8ff9aafb08d3f8b93a2e">status_bar_win_</a>, 5, 2 , <span class="stringliteral">&quot;[Q] Quit  [SPACE] Pause  [A] Add  [N] Next  [U/D] Volume Control&quot;</span>);</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    wrefresh(<a class="code hl_variable" href="classUiRenderer.html#a7c6185a458eb8ff9aafb08d3f8b93a2e">status_bar_win_</a>);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    wnoutrefresh(<a class="code hl_variable" href="classUiRenderer.html#a7c6185a458eb8ff9aafb08d3f8b93a2e">status_bar_win_</a>);</div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>}</div>
 </div>
 <div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="keywordtype">void</span> UiRenderer::renderTrackPlayingText(<span class="keyword">const</span> <a class="code hl_struct" href="structMetaData.html">MetaData</a>&amp; metaData)<span class="keyword"> const</span></div>
@@ -229,14 +229,15 @@ $(document).ready(function(){initNavTree('ui__renderer_8cpp_source.html',''); in
 </div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="keywordtype">void</span> UiRenderer::refreshAll()<span class="keyword"> const</span></div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span><span class="keyword"></span>{</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    wrefresh(<a class="code hl_variable" href="classUiRenderer.html#a32e9d0d461230677035df2f0e0d184ab">file_list_win_</a>);</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    wrefresh(<a class="code hl_variable" href="classUiRenderer.html#a67c934308696cf885d0bd2c12dff37c5">track_queue_win_</a>);</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    wrefresh(<a class="code hl_variable" href="classUiRenderer.html#a7c6185a458eb8ff9aafb08d3f8b93a2e">status_bar_win_</a>);</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>}</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    wnoutrefresh(<a class="code hl_variable" href="classUiRenderer.html#a32e9d0d461230677035df2f0e0d184ab">file_list_win_</a>);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    wnoutrefresh(<a class="code hl_variable" href="classUiRenderer.html#a67c934308696cf885d0bd2c12dff37c5">track_queue_win_</a>);</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    wnoutrefresh(<a class="code hl_variable" href="classUiRenderer.html#a7c6185a458eb8ff9aafb08d3f8b93a2e">status_bar_win_</a>);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    doupdate();</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>}</div>
 <div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
 <div class="ttc" id="aclassUiRenderer_html_a15275aff109dde3550ec37f39db2bfbf"><div class="ttname"><a href="classUiRenderer.html#a15275aff109dde3550ec37f39db2bfbf">UiRenderer::renderStatusBar</a></div><div class="ttdeci">void renderStatusBar(const track_ptr_t &amp;current_track, const bool &amp;playing, const bool &amp;paused) const</div><div class="ttdoc">Renders status bar in its stationary state.</div><div class="ttdef"><b>Definition</b> <a href="ui__renderer_8cpp_source.html#l00048">ui_renderer.cpp:48</a></div></div>
 <div class="ttc" id="aclassUiRenderer_html_a2943e3af313fcf2c389cfae090980cfe"><div class="ttname"><a href="classUiRenderer.html#a2943e3af313fcf2c389cfae090980cfe">UiRenderer::UiRenderer</a></div><div class="ttdeci">UiRenderer()</div><div class="ttdoc">Sets up ncurses window sizes based on the current terminal window size.</div><div class="ttdef"><b>Definition</b> <a href="ui__renderer_8cpp_source.html#l00006">ui_renderer.cpp:6</a></div></div>
 <div class="ttc" id="aclassUiRenderer_html_a32e9d0d461230677035df2f0e0d184ab"><div class="ttname"><a href="classUiRenderer.html#a32e9d0d461230677035df2f0e0d184ab">UiRenderer::file_list_win_</a></div><div class="ttdeci">WINDOW * file_list_win_</div><div class="ttdoc">Main ncurses windows that form the whole app.</div><div class="ttdef"><b>Definition</b> <a href="ui__renderer_8hpp_source.html#l00069">ui_renderer.hpp:69</a></div></div>

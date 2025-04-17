@@ -206,10 +206,11 @@ Static Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="ui__renderer_8cpp_source.html#l00119">119</a> of file <a class="el" href="ui__renderer_8cpp_source.html">ui_renderer.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">  120</span>{</div>
-<div class="line"><span class="lineno">  121</span>    wrefresh(<a class="code hl_variable" href="classUiRenderer.html#a32e9d0d461230677035df2f0e0d184ab">file_list_win_</a>);</div>
-<div class="line"><span class="lineno">  122</span>    wrefresh(<a class="code hl_variable" href="classUiRenderer.html#a67c934308696cf885d0bd2c12dff37c5">track_queue_win_</a>);</div>
-<div class="line"><span class="lineno">  123</span>    wrefresh(<a class="code hl_variable" href="classUiRenderer.html#a7c6185a458eb8ff9aafb08d3f8b93a2e">status_bar_win_</a>);</div>
-<div class="line"><span class="lineno">  124</span>}</div>
+<div class="line"><span class="lineno">  121</span>    wnoutrefresh(<a class="code hl_variable" href="classUiRenderer.html#a32e9d0d461230677035df2f0e0d184ab">file_list_win_</a>);</div>
+<div class="line"><span class="lineno">  122</span>    wnoutrefresh(<a class="code hl_variable" href="classUiRenderer.html#a67c934308696cf885d0bd2c12dff37c5">track_queue_win_</a>);</div>
+<div class="line"><span class="lineno">  123</span>    wnoutrefresh(<a class="code hl_variable" href="classUiRenderer.html#a7c6185a458eb8ff9aafb08d3f8b93a2e">status_bar_win_</a>);</div>
+<div class="line"><span class="lineno">  124</span>    doupdate();</div>
+<div class="line"><span class="lineno">  125</span>}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -250,7 +251,7 @@ Static Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="ui__renderer_8cpp_source.html#l00015">15</a> of file <a class="el" href="ui__renderer_8cpp_source.html">ui_renderer.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   16</span>{</div>
-<div class="line"><span class="lineno">   17</span>    wclear(<a class="code hl_variable" href="classUiRenderer.html#a32e9d0d461230677035df2f0e0d184ab">file_list_win_</a>);</div>
+<div class="line"><span class="lineno">   17</span>    werase(<a class="code hl_variable" href="classUiRenderer.html#a32e9d0d461230677035df2f0e0d184ab">file_list_win_</a>);</div>
 <div class="line"><span class="lineno">   18</span>    box(<a class="code hl_variable" href="classUiRenderer.html#a32e9d0d461230677035df2f0e0d184ab">file_list_win_</a>, 0, 0);</div>
 <div class="line"><span class="lineno">   19</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; files.size(); ++i) {</div>
 <div class="line"><span class="lineno">   20</span>        <span class="keywordflow">if</span> (i == highlight)</div>
@@ -268,7 +269,7 @@ Static Private Attributes</h2></td></tr>
 <div class="line"><span class="lineno">   32</span>        <span class="keywordflow">if</span> (i == highlight)</div>
 <div class="line"><span class="lineno">   33</span>            wattroff(<a class="code hl_variable" href="classUiRenderer.html#a32e9d0d461230677035df2f0e0d184ab">file_list_win_</a>, A_REVERSE);</div>
 <div class="line"><span class="lineno">   34</span>    }</div>
-<div class="line"><span class="lineno">   35</span>    wrefresh(<a class="code hl_variable" href="classUiRenderer.html#a32e9d0d461230677035df2f0e0d184ab">file_list_win_</a>);</div>
+<div class="line"><span class="lineno">   35</span>    wnoutrefresh(<a class="code hl_variable" href="classUiRenderer.html#a32e9d0d461230677035df2f0e0d184ab">file_list_win_</a>);</div>
 <div class="line"><span class="lineno">   36</span>}</div>
 </div><!-- fragment -->
 </div>
@@ -317,7 +318,7 @@ Static Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="ui__renderer_8cpp_source.html#l00048">48</a> of file <a class="el" href="ui__renderer_8cpp_source.html">ui_renderer.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   49</span>{</div>
-<div class="line"><span class="lineno">   50</span>    wclear(<a class="code hl_variable" href="classUiRenderer.html#a7c6185a458eb8ff9aafb08d3f8b93a2e">status_bar_win_</a>);</div>
+<div class="line"><span class="lineno">   50</span>    werase(<a class="code hl_variable" href="classUiRenderer.html#a7c6185a458eb8ff9aafb08d3f8b93a2e">status_bar_win_</a>);</div>
 <div class="line"><span class="lineno">   51</span>    box(<a class="code hl_variable" href="classUiRenderer.html#a7c6185a458eb8ff9aafb08d3f8b93a2e">status_bar_win_</a>, 0, 0);</div>
 <div class="line"><span class="lineno">   52</span>    <span class="keywordflow">if</span> (playing) {</div>
 <div class="line"><span class="lineno">   53</span>        mvwprintw(<a class="code hl_variable" href="classUiRenderer.html#a7c6185a458eb8ff9aafb08d3f8b93a2e">status_bar_win_</a>, 0, 2, <span class="stringliteral">&quot;Now Playing: &quot;</span>);</div>
@@ -340,7 +341,7 @@ Static Private Attributes</h2></td></tr>
 <div class="line"><span class="lineno">   70</span>    <span class="keywordflow">else</span></div>
 <div class="line"><span class="lineno">   71</span>        mvwprintw(<a class="code hl_variable" href="classUiRenderer.html#a7c6185a458eb8ff9aafb08d3f8b93a2e">status_bar_win_</a>, 0, 2, <span class="stringliteral">&quot;Select a track and press ENTER to play&quot;</span>);</div>
 <div class="line"><span class="lineno">   72</span>    mvwprintw(<a class="code hl_variable" href="classUiRenderer.html#a7c6185a458eb8ff9aafb08d3f8b93a2e">status_bar_win_</a>, 5, 2 , <span class="stringliteral">&quot;[Q] Quit  [SPACE] Pause  [A] Add  [N] Next  [U/D] Volume Control&quot;</span>);</div>
-<div class="line"><span class="lineno">   73</span>    wrefresh(<a class="code hl_variable" href="classUiRenderer.html#a7c6185a458eb8ff9aafb08d3f8b93a2e">status_bar_win_</a>);</div>
+<div class="line"><span class="lineno">   73</span>    wnoutrefresh(<a class="code hl_variable" href="classUiRenderer.html#a7c6185a458eb8ff9aafb08d3f8b93a2e">status_bar_win_</a>);</div>
 <div class="line"><span class="lineno">   74</span>}</div>
 <div class="ttc" id="astructTrackInfo_html"><div class="ttname"><a href="structTrackInfo.html">TrackInfo</a></div><div class="ttdoc">Couples together playback and context information for a specific track.</div><div class="ttdef"><b>Definition</b> <a href="decoder_8hpp_source.html#l00055">decoder.hpp:55</a></div></div>
 </div><!-- fragment -->
@@ -413,14 +414,14 @@ Static Private Attributes</h2></td></tr>
 
 <p class="definition">Definition at line <a class="el" href="ui__renderer_8cpp_source.html#l00037">37</a> of file <a class="el" href="ui__renderer_8cpp_source.html">ui_renderer.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">   38</span>{</div>
-<div class="line"><span class="lineno">   39</span>    wclear(<a class="code hl_variable" href="classUiRenderer.html#a67c934308696cf885d0bd2c12dff37c5">track_queue_win_</a>);</div>
+<div class="line"><span class="lineno">   39</span>    werase(<a class="code hl_variable" href="classUiRenderer.html#a67c934308696cf885d0bd2c12dff37c5">track_queue_win_</a>);</div>
 <div class="line"><span class="lineno">   40</span>    box(<a class="code hl_variable" href="classUiRenderer.html#a67c934308696cf885d0bd2c12dff37c5">track_queue_win_</a>, 0, 0);</div>
 <div class="line"><span class="lineno">   41</span>    mvwprintw(<a class="code hl_variable" href="classUiRenderer.html#a67c934308696cf885d0bd2c12dff37c5">track_queue_win_</a>, 0, 2, <span class="stringliteral">&quot;Track Queue&quot;</span>);</div>
 <div class="line"><span class="lineno">   42</span>    <span class="keywordflow">for</span>(<span class="keywordtype">size_t</span> i = 0; i &lt; queue.size(); ++i)</div>
 <div class="line"><span class="lineno">   43</span>    {</div>
 <div class="line"><span class="lineno">   44</span>        mvwprintw(<a class="code hl_variable" href="classUiRenderer.html#a67c934308696cf885d0bd2c12dff37c5">track_queue_win_</a>, i + 1, 2, <span class="stringliteral">&quot;%s&quot;</span>, queue[i]-&gt;getTrackInfo().meta_data.track_name.c_str());</div>
 <div class="line"><span class="lineno">   45</span>    }</div>
-<div class="line"><span class="lineno">   46</span>    wrefresh(<a class="code hl_variable" href="classUiRenderer.html#a67c934308696cf885d0bd2c12dff37c5">track_queue_win_</a>);</div>
+<div class="line"><span class="lineno">   46</span>    wnoutrefresh(<a class="code hl_variable" href="classUiRenderer.html#a67c934308696cf885d0bd2c12dff37c5">track_queue_win_</a>);</div>
 <div class="line"><span class="lineno">   47</span>}</div>
 </div><!-- fragment -->
 </div>
