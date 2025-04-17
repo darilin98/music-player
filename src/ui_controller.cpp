@@ -31,6 +31,10 @@ void UiController::beginRenderLoop()
     bool running = true;
     while (running)
     {
+        ui_.detectResize();
+        ui_.renderFileList(files_, highlight_);
+        ui_.renderTrackQueue(track_queue_);
+        ui_.renderStatusBar(current_track_, playing_, player_.is_paused());
         ui_.updateAnimationFrame(current_track_, playing_, player_.is_paused());
         napms(50);
         if (!playing_ && !track_queue_.empty())
@@ -41,11 +45,9 @@ void UiController::beginRenderLoop()
         switch (int pressed_key = getch()) {
             case KEY_UP:
                 if (highlight_ > 0) highlight_--;
-                ui_.renderFileList(files_, highlight_);
                 break;
             case KEY_DOWN:
                 if (highlight_ < files_.size() - 1) highlight_++;
-                ui_.renderFileList(files_, highlight_);
                 break;
             case KEY_PLAY_TRACK:
                 processTrackSelection();
@@ -57,7 +59,6 @@ void UiController::beginRenderLoop()
                 if (playing_) {
                     player_.is_paused() ? player_.resume_track() : player_.pause_track();
                 }
-                ui_.renderStatusBar(current_track_, playing_, player_.is_paused());
                 break;
             case KEY_NEXT_QUEUE:
                 processNextTrackFromQueue();

@@ -61,10 +61,14 @@ public:
      * @param paused Decide whether playing animation should be paused
      */
     void updateAnimationFrame( const track_ptr_t& current_track,const bool& playing, const bool& paused) const;
+    void detectResize();
 
 private:
     void renderTrackPlayingText(const MetaData& meta_data) const;
+    void resizeWindows();
     static constexpr int frame_delay = 5;
+    int current_cols_;
+    int current_lines_;
     /// Main ncurses windows that form the whole app
     WINDOW *file_list_win_; ///< File browser window
     WINDOW *track_queue_win_; ///< List of Queued Tracks

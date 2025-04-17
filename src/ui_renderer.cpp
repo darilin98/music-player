@@ -5,10 +5,9 @@
 
 UiRenderer::UiRenderer()
 {
-    int mid_x = COLS / 2;
-    file_list_win_ = newwin(LINES - 6, mid_x, 0, 0);
-    track_queue_win_ = newwin(LINES - 6, COLS - mid_x, 0, mid_x);
-    status_bar_win_ = newwin(6, COLS, LINES - 6, 0);
+    resizeWindows();
+    current_cols_ = COLS;
+    current_lines_ = LINES;
 }
 
 
@@ -116,6 +115,24 @@ void UiRenderer::updateAnimationFrame(const track_ptr_t& current_track, const bo
         wrefresh(status_bar_win_);
     }
 }
+void UiRenderer::detectResize()
+{
+    if (COLS != current_cols_ || LINES != current_lines_)
+    {
+        current_cols_ = COLS;
+        current_lines_ = LINES;
+        resize_term(0, 0);
+        resizeWindows();
+    }
+}
+void UiRenderer::resizeWindows()
+{
+    int mid_x = COLS / 2;
+    file_list_win_ = newwin(LINES - 6, mid_x, 0, 0);
+    track_queue_win_ = newwin(LINES - 6, COLS - mid_x, 0, mid_x);
+    status_bar_win_ = newwin(6, COLS, LINES - 6, 0);
+}
+
 void UiRenderer::refreshAll() const
 {
     wnoutrefresh(file_list_win_);
