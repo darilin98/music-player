@@ -14,7 +14,7 @@ UiRenderer::UiRenderer()
 
 void UiRenderer::renderFileList(const file_list_t& files, size_t highlight) const
 {
-    wclear(file_list_win_);
+    werase(file_list_win_);
     box(file_list_win_, 0, 0);
     for (size_t i = 0; i < files.size(); ++i) {
         if (i == highlight)
@@ -32,22 +32,22 @@ void UiRenderer::renderFileList(const file_list_t& files, size_t highlight) cons
         if (i == highlight)
             wattroff(file_list_win_, A_REVERSE);
     }
-    wrefresh(file_list_win_);
+    wnoutrefresh(file_list_win_);
 }
 void UiRenderer::renderTrackQueue(const std::deque<track_ptr_t> &queue) const
 {
-    wclear(track_queue_win_);
+    werase(track_queue_win_);
     box(track_queue_win_, 0, 0);
     mvwprintw(track_queue_win_, 0, 2, "Track Queue");
     for(size_t i = 0; i < queue.size(); ++i)
     {
         mvwprintw(track_queue_win_, i + 1, 2, "%s", queue[i]->getTrackInfo().meta_data.track_name.c_str());
     }
-    wrefresh(track_queue_win_);
+    wnoutrefresh(track_queue_win_);
 }
 void UiRenderer::renderStatusBar(const track_ptr_t& current_track, const bool& playing, const bool& paused) const
 {
-    wclear(status_bar_win_);
+    werase(status_bar_win_);
     box(status_bar_win_, 0, 0);
     if (playing) {
         mvwprintw(status_bar_win_, 0, 2, "Now Playing: ");
@@ -70,7 +70,7 @@ void UiRenderer::renderStatusBar(const track_ptr_t& current_track, const bool& p
     else
         mvwprintw(status_bar_win_, 0, 2, "Select a track and press ENTER to play");
     mvwprintw(status_bar_win_, 5, 2 , "[Q] Quit  [SPACE] Pause  [A] Add  [N] Next  [U/D] Volume Control");
-    wrefresh(status_bar_win_);
+    wnoutrefresh(status_bar_win_);
 }
 void UiRenderer::renderTrackPlayingText(const MetaData& metaData) const
 {
@@ -118,9 +118,10 @@ void UiRenderer::updateAnimationFrame(const track_ptr_t& current_track, const bo
 }
 void UiRenderer::refreshAll() const
 {
-    wrefresh(file_list_win_);
-    wrefresh(track_queue_win_);
-    wrefresh(status_bar_win_);
+    wnoutrefresh(file_list_win_);
+    wnoutrefresh(track_queue_win_);
+    wnoutrefresh(status_bar_win_);
+    doupdate();
 }
 
 
