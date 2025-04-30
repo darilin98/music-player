@@ -5,10 +5,13 @@ set(CMAKE_CXX_STANDARD 20)
 
 include(FetchContent)
 
+set(FETCHCONTENT_SOURCE_DIR_RTAUDIO "" CACHE STRING "")
+set(FETCHCONTENT_UPDATES_DISCONNECTED TRUE)
+
 FetchContent_Declare(
-    RtAudio
-    GIT_REPOSITORY https://github.com/thestk/rtaudio.git
-    GIT_TAG master
+        RtAudio
+        GIT_REPOSITORY https://github.com/thestk/rtaudio.git
+        GIT_TAG 6.0.1
 )
 FetchContent_MakeAvailable(RtAudio)
 
