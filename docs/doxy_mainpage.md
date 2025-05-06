@@ -44,3 +44,14 @@ Visit [architecture.md](architecture.md) for more details.
 - [`RtAudio`](https://github.com/thestk/rtaudio) — for real-time audio output
 - [`minimp3`](https://github.com/lieff/minimp3) — for MP3 decoding
 - [`ncurses`](https://github.com/mirror/ncurses) — for terminal UI
+
+## Other requirements
+
+- Only supported on `Linux` or `macOS`
+- Requires an audio backend installed and properly set-up
+  - In case of Linux: either `ALSA`, `PulseAudio`, `JACK` or `OSS`
+  - On macOS: `CoreAudio` or `JACK`
+
+## Example/Usage walkthrough
+
+In case you need further instructions and an example of the app's use scenario visit [example.md](example.md).
