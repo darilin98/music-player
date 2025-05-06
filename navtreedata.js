@@ -35,13 +35,17 @@ var NAVTREE =
       [ "UI", "md_docs_2architecture.html#autotoc_md5", [
         [ "UiController", "md_docs_2architecture.html#autotoc_md6", null ],
         [ "UiRenderer", "md_docs_2architecture.html#autotoc_md7", null ]
-      ] ]
+      ] ],
+      [ "Class design diagram", "md_docs_2architecture.html#autotoc_md8", null ],
+      [ "Role of external libraries", "md_docs_2architecture.html#autotoc_md9", null ],
+      [ "API / Further possible expansions", "md_docs_2architecture.html#autotoc_md10", null ]
     ] ],
+    [ "Use-case Example", "md_docs_2example.html", null ],
     [ "Project Specification", "md_docs_2project__specification.html", [
-      [ "UNIX Terminal Music Player", "md_docs_2project__specification.html#autotoc_md16", null ],
-      [ "Goals:", "md_docs_2project__specification.html#autotoc_md17", null ],
-      [ "Functionalities:", "md_docs_2project__specification.html#autotoc_md18", null ],
-      [ "Libraries:", "md_docs_2project__specification.html#autotoc_md19", null ]
+      [ "UNIX Terminal Music Player", "md_docs_2project__specification.html#autotoc_md24", null ],
+      [ "Goals:", "md_docs_2project__specification.html#autotoc_md25", null ],
+      [ "Functionalities:", "md_docs_2project__specification.html#autotoc_md26", null ],
+      [ "Libraries:", "md_docs_2project__specification.html#autotoc_md27", null ]
     ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],

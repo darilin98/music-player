@@ -102,7 +102,7 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="textblock"><p><a class="anchor" id="md_docs_2doxy__mainpage"></a> Welcome to the full technical documentation of music-player - a simple and lightweight UNIX terminal mp3 player app.</p>
 <p>Created for the course <b>NPRG041: Programming in C++</b> at Charles University.</p>
 <hr  />
-<h1><a class="anchor" id="autotoc_md10"></a>
+<h1><a class="anchor" id="autotoc_md13"></a>
 Features</h1>
 <ul>
 <li><b>File explorer</b><ul>
@@ -120,7 +120,7 @@ Features</h1>
 </ul>
 </li>
 </ul>
-<h2><a class="anchor" id="autotoc_md11"></a>
+<h2><a class="anchor" id="autotoc_md14"></a>
 Controls</h2>
 <ul>
 <li><code>q</code> — Quit</li>
@@ -131,7 +131,7 @@ Controls</h2>
 <li><code>Enter</code> — Play selected track</li>
 </ul>
 <hr  />
-<h1><a class="anchor" id="autotoc_md13"></a>
+<h1><a class="anchor" id="autotoc_md16"></a>
 Architecture</h1>
 <p>The program is divided into multiple components:</p><ul>
 <li><code><a class="el" href="classDecoder.html" title="Transforms valid file into PCM data and all necessary parameters for audio playback.">Decoder</a></code> — Loads and processes MP3 files</li>
@@ -140,14 +140,27 @@ Architecture</h1>
 <li><code><a class="el" href="classUiRenderer.html" title="Renders updated UI state based on data received from controller class.">UiRenderer</a></code> — Encapsulates rendering logic using ncurses</li>
 </ul>
 <p>Visit <a class="el" href="md_docs_2architecture.html">architecture.md</a> for more details.</p>
-<h1><a class="anchor" id="autotoc_md14"></a>
+<h1><a class="anchor" id="autotoc_md17"></a>
 Dependencies</h1>
 <ul>
 <li><code>C++ 20</code></li>
 <li><a href="https://github.com/thestk/rtaudio"><code>RtAudio</code></a> — for real-time audio output</li>
 <li><a href="https://github.com/lieff/minimp3"><code>minimp3</code></a> — for MP3 decoding</li>
-<li><a href="https://github.com/mirror/ncurses"><code>ncurses</code></a> — for terminal UI </li>
+<li><a href="https://github.com/mirror/ncurses"><code>ncurses</code></a> — for terminal UI</li>
 </ul>
+<h1><a class="anchor" id="autotoc_md18"></a>
+Other requirements</h1>
+<ul>
+<li>Only supported on <code>Linux</code> or <code>macOS</code></li>
+<li>Requires an audio backend installed and properly set-up<ul>
+<li>In case of Linux: either <code>ALSA</code>, <code>PulseAudio</code>, <code>JACK</code> or <code>OSS</code></li>
+<li>On macOS: <code>CoreAudio</code> or <code>JACK</code></li>
+</ul>
+</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md19"></a>
+Example/Usage walkthrough</h1>
+<p>In case you need further instructions and an example of the app's use scenario visit <a class="el" href="md_docs_2example.html">example.md</a>. </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->

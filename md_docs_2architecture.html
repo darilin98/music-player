@@ -132,7 +132,48 @@ UiController</h2>
 <h2><a class="anchor" id="autotoc_md7"></a>
 UiRenderer</h2>
 <p>Helper class for the <a class="el" href="classUiController.html" title="Takes care of user input handling and interaction between program components.">UiController</a></p>
-<p>Receives data from the controller and updates specific windows of the app </p>
+<p>Receives data from the controller and updates specific windows of the app</p>
+<h1><a class="anchor" id="autotoc_md8"></a>
+Class design diagram</h1>
+<p><img src="doxygen/html/class_ui_controller__coll__graph.svg" alt="controller" style="pointer-events: none;" class="inline"/></p>
+<p><img src="doxygen/html/class_m_p3_track__coll__graph.svg" alt="MP3_structure" style="pointer-events: none;" class="inline"/></p>
+<h1><a class="anchor" id="autotoc_md9"></a>
+Role of external libraries</h1>
+<ol type="1">
+<li><code>minimp3</code><ul>
+<li>minimp3 is used by the <code><a class="el" href="classDecoder.html" title="Transforms valid file into PCM data and all necessary parameters for audio playback.">Decoder</a></code> class specifically as the process of deciphering an mp3 file is very complex.</li>
+<li>It outputs raw PCM data that can later be used for audio streaming.</li>
+</ul>
+</li>
+<li><code>RtAudio</code><ul>
+<li>The <code><a class="el" href="classPlayer.html" title="Manages playback of data from a Track instance.">Player</a></code> class opens an audio stream with RtAudio.</li>
+<li>RtAudio automatically detects an audio backend that the user has installed and handles all communication with it.</li>
+</ul>
+</li>
+<li><code>ncurses</code><ul>
+<li>The <code><a class="el" href="classUiController.html" title="Takes care of user input handling and interaction between program components.">UiController</a></code> and <code><a class="el" href="classUiRenderer.html" title="Renders updated UI state based on data received from controller class.">UiRenderer</a></code> use ncurses display the app</li>
+<li><a class="el" href="classUiController.html" title="Takes care of user input handling and interaction between program components.">UiController</a> processes key input provided by the ncurses instance</li>
+<li><a class="el" href="classUiRenderer.html" title="Renders updated UI state based on data received from controller class.">UiRenderer</a> uses ncurses' many methods to give the app a nice and clean visual</li>
+</ul>
+</li>
+</ol>
+<h1><a class="anchor" id="autotoc_md10"></a>
+API / Further possible expansions</h1>
+<p>The <a class="el" href="classDecoder.html" title="Transforms valid file into PCM data and all necessary parameters for audio playback.">Decoder</a> currently only has one public method: decode_mp3</p>
+<p>This however could be expanded by adding more methods to the <a class="el" href="classDecoder.html" title="Transforms valid file into PCM data and all necessary parameters for audio playback.">Decoder</a> and thus the app could support more audio formats</p>
+<ul>
+<li>WAV could be simple to implement as it does not feature any compression.</li>
+<li>The object design of <code>Track</code> is prepared for this as all Tracks have a common ancestor.</li>
+</ul>
+<p>A known improvement that could be made is switch from loading tracks in the queue into memory as a whole into some kind of streaming mechanism.</p>
+<ul>
+<li>It is important to keep the transitions between tracks seamless so decoding every time a song is fetched from the queue would not be ideal.</li>
+<li>The best way to solve this would then be streaming the files.</li>
+</ul>
+<p>The <code><a class="el" href="classPlayer.html" title="Manages playback of data from a Track instance.">Player</a></code> is a modular block that could be perfectly used without the UI just by someone calling its extensive public interface.</p>
+<ul>
+<li>As shown in the demo where audio playback was just a console app with no UI features </li>
+</ul>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

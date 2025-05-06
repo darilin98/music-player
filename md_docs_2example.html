@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Music Player: Related Pages</title>
+<title>Music Player: Use-case Example</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('pages.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('md_docs_2example.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -95,18 +95,38 @@ $(document).ready(function(){initNavTree('pages.html',''); initResizable(); });
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">Related Pages</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">Use-case Example</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock">Here is a list of all related documentation pages:</div><div class="directory">
-<table class="directory">
-<tr id="row_0_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="md_docs_2architecture.html" target="_self">Architecture overview</a></td><td class="desc"></td></tr>
-<tr id="row_1_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="md_docs_2example.html" target="_self">Use-case Example</a></td><td class="desc"></td></tr>
-<tr id="row_2_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><a class="el" href="md_docs_2project__specification.html" target="_self">Project Specification</a></td><td class="desc"></td></tr>
-</table>
-</div><!-- directory -->
-</div><!-- contents -->
+<div class="textblock"><p><a class="anchor" id="autotoc_md20"></a> Once you start the app in your terminal of choice you get greeted with the following screen:</p>
+<p><img src="images/intro_screen.png" alt="intro_screen" class="inline"/></p>
+<p>Here you can go up a directory by selecting the top element in the browser: <code>/..</code></p>
+<p>Use the <code>arrow keys</code> to move up and down in the file explorer and press <code>enter</code> to go into a directory.</p>
+<p>Directories are marked by a prefix: <code>/dirname</code></p>
+<h2><a class="anchor" id="autotoc_md21"></a>
+Entering a directory with playable files</h2>
+<p><img src="images/directory_with_mp3.png" alt="populated_dir" class="inline"/></p>
+<p>Once you enter a directory where valid files for playback are located, they will be highlighted by a special color.</p>
+<p>Selecting an invalid file will result in a short error popup.</p>
+<p>Once the cursor is over a valid file you can either:</p>
+<ul>
+<li>Play it right now by pressing <code>enter</code></li>
+<li>Add it to the queue by pressing <code>a</code></li>
+</ul>
+<h2><a class="anchor" id="autotoc_md22"></a>
+Playing state</h2>
+<p><img src="images/playing_mode.png" alt="playing_state" class="inline"/></p>
+<p>When a track is playing the status bar at the bottom of the screen will keep updating showing information about the track.</p>
+<ul>
+<li>Information about the artist and album will only show up if the file has a properly set-up footer</li>
+<li>Playback timer is updating in real time</li>
+</ul>
+<p>You can press <code>space</code> to pause the track and press it again to resume playing.</p>
+<p>When a track finishes playing it will look at the queue and if something is stored in it, that track will begin playing immediately after.</p>
+<p>Press <code>n</code> to instantly skip the current track and play the next one from the queue. If no tracks are in the queue, the app just goes back to the default state. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
