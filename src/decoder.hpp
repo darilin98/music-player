@@ -61,18 +61,23 @@ struct TrackInfo {
 class GenericTrack;
 using track_ptr_t = std::shared_ptr<GenericTrack>;
 
-/**
- * @class Decoder
- * @brief Transforms valid file into PCM data and all necessary parameters for audio playback
- */
-class Decoder {
+class IDecoder {
 public:
+    virtual ~IDecoder() = default;
     /**
-     * @brief Attempts to decode a file as an MP3
+     * @brief Attempts to decode a file
      * @param track_name Path to target file
      * @return Pointer to a Track object, if decoding failed target is an ErrorTrack
      */
-    static track_ptr_t decode_mp3(const name_t& track_name);
+    virtual track_ptr_t decode(const name_t& track_name) = 0;
+};
+/**
+ * @class Mp3Decoder
+ * @brief Transforms valid file into PCM data and all necessary parameters for audio playback
+ */
+class Mp3Decoder : public IDecoder {
+public:
+    track_ptr_t decode(const name_t& track_name) override;
 private:
     /**
      * @brief Parses ID3v1 metadata from the file.

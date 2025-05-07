@@ -5,7 +5,7 @@
 
 using name_t = std::string;
 
-track_ptr_t Decoder::decode_mp3(const name_t& track_name)
+track_ptr_t Mp3Decoder::decode(const name_t& track_name)
 {
     FILE *f = fopen(track_name.c_str(), "rb");
     if (!f)
@@ -54,7 +54,7 @@ track_ptr_t Decoder::decode_mp3(const name_t& track_name)
     return std::make_shared<MP3Track>(metaData, audioData, mp3dec.info.hz);
 };
 
-MetaData Decoder::parse_id3v1(const std::string& filename) {
+MetaData Mp3Decoder::parse_id3v1(const std::string& filename) {
     std::filesystem::path fallback_name(filename);
     FILE* f = fopen(filename.c_str(), "rb");
     if (!f) {

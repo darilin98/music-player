@@ -70,7 +70,7 @@ private:
     void addTrackToQueue();
     void processNextTrackFromQueue();
 
-    Decoder dec_; ///< Decoder instance for creating Track objects
+    Mp3Decoder dec_; ///< Decoder instance for creating Track objects
     Player player_; ///< Player instance to delegate Track playback
     UiRenderer ui_; ///< Helper renderer instance that separates concern for ncurses rendering
     file_list_t files_; ///< Files in current directory

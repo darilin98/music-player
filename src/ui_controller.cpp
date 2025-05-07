@@ -159,7 +159,7 @@ void UiController::processTrackSelection()
     {
         if (playing_)
             stopTrackPlayback();
-        track_ptr_t track = dec_.decode_mp3(selected_path.string());
+        track_ptr_t track = dec_.decode(selected_path.string());
         if (dynamic_cast<ErrorTrack*>(track.get()) != nullptr){
             //Check type of returned track
             showErrorPopup("Error opening file!");
@@ -174,7 +174,7 @@ void UiController::processTrackSelection()
 void UiController::addTrackToQueue()
 {
     name_t track_path = files_[highlight_].path().string();
-    track_ptr_t track = dec_.decode_mp3(track_path);
+    track_ptr_t track = dec_.decode(track_path);
     if (dynamic_cast<ErrorTrack*>(track.get()) != nullptr) //Check type of returned track
     {
         showErrorPopup("Error opening file!");
