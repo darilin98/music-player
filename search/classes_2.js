@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['errortrack_0',['ErrorTrack',['../classErrorTrack.html',1,'']]]
+  ['generictrack_0',['GenericTrack',['../classGenericTrack.html',1,'']]]
 ];

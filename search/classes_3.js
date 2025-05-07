@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['generictrack_0',['GenericTrack',['../classGenericTrack.html',1,'']]]
+  ['idecoder_0',['IDecoder',['../classIDecoder.html',1,'']]]
 ];

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Music Player: Decoder Class Reference</title>
+<title>Music Player: Mp3Decoder Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('classDecoder.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('classMp3Decoder.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -97,37 +97,57 @@ $(document).ready(function(){initNavTree('classDecoder.html',''); initResizable(
 
 <div class="header">
   <div class="summary">
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pri-static-methods">Static Private Member Functions</a> &#124;
-<a href="classDecoder-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Decoder Class Reference</div></div>
+<a href="classMp3Decoder-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Mp3Decoder Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
 <p>Transforms valid file into PCM data and all necessary parameters for audio playback.  
- <a href="classDecoder.html#details">More...</a></p>
+ <a href="classMp3Decoder.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="decoder_8hpp_source.html">decoder.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for Mp3Decoder:</div>
+<div class="dyncontent">
+<div class="center"><img src="classMp3Decoder__inherit__graph.png" border="0" usemap="#aMp3Decoder_inherit__map" alt="Inheritance graph"/></div>
+<map name="aMp3Decoder_inherit__map" id="aMp3Decoder_inherit__map">
+<area shape="rect" title="Transforms valid file into PCM data and all necessary parameters for audio playback." alt="" coords="5,79,109,104"/>
+<area shape="rect" href="classIDecoder.html" title=" " alt="" coords="17,5,97,31"/>
+<area shape="poly" title=" " alt="" coords="60,44,60,79,55,79,55,44"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for Mp3Decoder:</div>
+<div class="dyncontent">
+<div class="center"><img src="classMp3Decoder__coll__graph.png" border="0" usemap="#aMp3Decoder_coll__map" alt="Collaboration graph"/></div>
+<map name="aMp3Decoder_coll__map" id="aMp3Decoder_coll__map">
+<area shape="rect" title="Transforms valid file into PCM data and all necessary parameters for audio playback." alt="" coords="5,79,109,104"/>
+<area shape="rect" href="classIDecoder.html" title=" " alt="" coords="17,5,97,31"/>
+<area shape="poly" title=" " alt="" coords="60,44,60,79,55,79,55,44"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a71cae1687140908eccfd476fcac675b8" id="r_a71cae1687140908eccfd476fcac675b8"><td class="memItemLeft" align="right" valign="top">static track_ptr_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDecoder.html#a71cae1687140908eccfd476fcac675b8">decode_mp3</a> (const name_t &amp;track_name)</td></tr>
-<tr class="memdesc:a71cae1687140908eccfd476fcac675b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to decode a file as an MP3.  <br /></td></tr>
-<tr class="separator:a71cae1687140908eccfd476fcac675b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a8ee18436f7e88274f409bf08ea52dc84" id="r_a8ee18436f7e88274f409bf08ea52dc84"><td class="memItemLeft" align="right" valign="top">track_ptr_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMp3Decoder.html#a8ee18436f7e88274f409bf08ea52dc84">decode</a> (const name_t &amp;track_name) override</td></tr>
+<tr class="memdesc:a8ee18436f7e88274f409bf08ea52dc84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to decode a file.  <br /></td></tr>
+<tr class="separator:a8ee18436f7e88274f409bf08ea52dc84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
-<tr class="memitem:af541913b0b3908199b9d6c16d2bf1acd" id="r_af541913b0b3908199b9d6c16d2bf1acd"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structMetaData.html">MetaData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDecoder.html#af541913b0b3908199b9d6c16d2bf1acd">parse_id3v1</a> (const name_t &amp;file_name)</td></tr>
-<tr class="memdesc:af541913b0b3908199b9d6c16d2bf1acd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses ID3v1 metadata from the file.  <br /></td></tr>
-<tr class="separator:af541913b0b3908199b9d6c16d2bf1acd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab018665a614d302a724e975cd6f0f05a" id="r_ab018665a614d302a724e975cd6f0f05a"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="structMetaData.html">MetaData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMp3Decoder.html#ab018665a614d302a724e975cd6f0f05a">parse_id3v1</a> (const name_t &amp;file_name)</td></tr>
+<tr class="memdesc:ab018665a614d302a724e975cd6f0f05a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses ID3v1 metadata from the file.  <br /></td></tr>
+<tr class="separator:ab018665a614d302a724e975cd6f0f05a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Transforms valid file into PCM data and all necessary parameters for audio playback. </p>
 
-<p class="definition">Definition at line <a class="el" href="decoder_8hpp_source.html#l00068">68</a> of file <a class="el" href="decoder_8hpp_source.html">decoder.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="decoder_8hpp_source.html#l00078">78</a> of file <a class="el" href="decoder_8hpp_source.html">decoder.hpp</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a71cae1687140908eccfd476fcac675b8" name="a71cae1687140908eccfd476fcac675b8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a71cae1687140908eccfd476fcac675b8">&#9670;&#160;</a></span>decode_mp3()</h2>
+<a id="a8ee18436f7e88274f409bf08ea52dc84" name="a8ee18436f7e88274f409bf08ea52dc84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ee18436f7e88274f409bf08ea52dc84">&#9670;&#160;</a></span>decode()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -136,7 +156,7 @@ Static Private Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">track_ptr_t Decoder::decode_mp3 </td>
+          <td class="memname">track_ptr_t Mp3Decoder::decode </td>
           <td>(</td>
           <td class="paramtype">const name_t &amp;&#160;</td>
           <td class="paramname"><em>track_name</em></td><td>)</td>
@@ -145,12 +165,12 @@ Static Private Member Functions</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p>Attempts to decode a file as an MP3. </p>
+<p>Attempts to decode a file. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">track_name</td><td>Path to target file </td></tr>
@@ -158,6 +178,8 @@ Static Private Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Pointer to a Track object, if decoding failed target is an <a class="el" href="classErrorTrack.html">ErrorTrack</a> </dd></dl>
+
+<p>Implements <a class="el" href="classIDecoder.html#aa5e4f6ba64e9ffaf5699f92c77e0d35c">IDecoder</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="decoder_8cpp_source.html#l00008">8</a> of file <a class="el" href="decoder_8cpp_source.html">decoder.cpp</a>.</p>
 <div class="fragment"><div class="line"><span class="lineno">    9</span>{</div>
@@ -202,19 +224,19 @@ Static Private Member Functions</h2></td></tr>
 <div class="line"><span class="lineno">   48</span>    <a class="code hl_struct" href="structAudioData.html">AudioData</a> audioData = {pcmData, samplesRead, 0, mp3dec.info.channels};</div>
 <div class="line"><span class="lineno">   49</span> </div>
 <div class="line"><span class="lineno">   50</span>    <span class="comment">// GET METADATA</span></div>
-<div class="line"><span class="lineno">   51</span>    <a class="code hl_struct" href="structMetaData.html">MetaData</a> metaData = <a class="code hl_function" href="classDecoder.html#af541913b0b3908199b9d6c16d2bf1acd">parse_id3v1</a>(track_name);</div>
+<div class="line"><span class="lineno">   51</span>    <a class="code hl_struct" href="structMetaData.html">MetaData</a> metaData = <a class="code hl_function" href="classMp3Decoder.html#ab018665a614d302a724e975cd6f0f05a">parse_id3v1</a>(track_name);</div>
 <div class="line"><span class="lineno">   52</span>    metaData.duration = audioData.total_samples / (mp3dec.info.hz * audioData.channels);</div>
 <div class="line"><span class="lineno">   53</span> </div>
 <div class="line"><span class="lineno">   54</span>    <span class="keywordflow">return</span> std::make_shared&lt;MP3Track&gt;(metaData, audioData, mp3dec.info.hz);</div>
 <div class="line"><span class="lineno">   55</span>};</div>
-<div class="ttc" id="aclassDecoder_html_af541913b0b3908199b9d6c16d2bf1acd"><div class="ttname"><a href="classDecoder.html#af541913b0b3908199b9d6c16d2bf1acd">Decoder::parse_id3v1</a></div><div class="ttdeci">static MetaData parse_id3v1(const name_t &amp;file_name)</div><div class="ttdoc">Parses ID3v1 metadata from the file.</div><div class="ttdef"><b>Definition</b> <a href="decoder_8cpp_source.html#l00057">decoder.cpp:57</a></div></div>
+<div class="ttc" id="aclassMp3Decoder_html_ab018665a614d302a724e975cd6f0f05a"><div class="ttname"><a href="classMp3Decoder.html#ab018665a614d302a724e975cd6f0f05a">Mp3Decoder::parse_id3v1</a></div><div class="ttdeci">static MetaData parse_id3v1(const name_t &amp;file_name)</div><div class="ttdoc">Parses ID3v1 metadata from the file.</div><div class="ttdef"><b>Definition</b> <a href="decoder_8cpp_source.html#l00057">decoder.cpp:57</a></div></div>
 <div class="ttc" id="astructAudioData_html"><div class="ttname"><a href="structAudioData.html">AudioData</a></div><div class="ttdoc">Contains PCM audio samples and playback-related data.</div><div class="ttdef"><b>Definition</b> <a href="decoder_8hpp_source.html#l00032">decoder.hpp:32</a></div></div>
 <div class="ttc" id="astructMetaData_html"><div class="ttname"><a href="structMetaData.html">MetaData</a></div><div class="ttdoc">Holds data related to track context.</div><div class="ttdef"><b>Definition</b> <a href="decoder_8hpp_source.html#l00044">decoder.hpp:44</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="af541913b0b3908199b9d6c16d2bf1acd" name="af541913b0b3908199b9d6c16d2bf1acd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af541913b0b3908199b9d6c16d2bf1acd">&#9670;&#160;</a></span>parse_id3v1()</h2>
+<a id="ab018665a614d302a724e975cd6f0f05a" name="ab018665a614d302a724e975cd6f0f05a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab018665a614d302a724e975cd6f0f05a">&#9670;&#160;</a></span>parse_id3v1()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -223,7 +245,7 @@ Static Private Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structMetaData.html">MetaData</a> Decoder::parse_id3v1 </td>
+          <td class="memname"><a class="el" href="structMetaData.html">MetaData</a> Mp3Decoder::parse_id3v1 </td>
           <td>(</td>
           <td class="paramtype">const name_t &amp;&#160;</td>
           <td class="paramname"><em>file_name</em></td><td>)</td>
@@ -247,7 +269,7 @@ Static Private Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="structMetaData.html" title="Holds data related to track context.">MetaData</a> structure containing track info. </dd></dl>
 
 <p class="definition">Definition at line <a class="el" href="decoder_8cpp_source.html#l00057">57</a> of file <a class="el" href="decoder_8cpp_source.html">decoder.cpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   57</span>                                                       {</div>
+<div class="fragment"><div class="line"><span class="lineno">   57</span>                                                          {</div>
 <div class="line"><span class="lineno">   58</span>    std::filesystem::path fallback_name(filename);</div>
 <div class="line"><span class="lineno">   59</span>    FILE* f = fopen(filename.c_str(), <span class="stringliteral">&quot;rb&quot;</span>);</div>
 <div class="line"><span class="lineno">   60</span>    <span class="keywordflow">if</span> (!f) {</div>
@@ -296,7 +318,7 @@ Static Private Member Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="classDecoder.html">Decoder</a></li>
+    <li class="navelem"><a class="el" href="classMp3Decoder.html">Mp3Decoder</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

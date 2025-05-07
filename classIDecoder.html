@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Music Player: Class Hierarchy</title>
+<title>Music Player: IDecoder Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('hierarchy.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('classIDecoder.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -96,31 +96,79 @@ $(document).ready(function(){initNavTree('hierarchy.html',''); initResizable(); 
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">Class Hierarchy</div></div>
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="classIDecoder-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">IDecoder Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock">
-<p><a href="inherits.html">Go to the graphical class hierarchy</a></p>
-This inheritance list is sorted roughly, but not completely, alphabetically:</div><div class="directory">
-<div class="levels">[detail level <span onclick="javascript:toggleLevel(1);">1</span><span onclick="javascript:toggleLevel(2);">2</span>]</div><table class="directory">
-<tr id="row_0_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structAudioData.html" target="_self">AudioData</a></td><td class="desc">Contains PCM audio samples and playback-related data </td></tr>
-<tr id="row_1_" class="odd"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_1_" class="arrow" onclick="toggleFolder('1_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classGenericTrack.html" target="_self">GenericTrack</a></td><td class="desc">Abstract base class for all track types </td></tr>
-<tr id="row_1_0_" class="even"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classErrorTrack.html" target="_self">ErrorTrack</a></td><td class="desc"></td></tr>
-<tr id="row_1_1_" class="odd"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classMP3Track.html" target="_self">MP3Track</a></td><td class="desc"></td></tr>
-<tr id="row_2_" class="even"><td class="entry"><span style="width:0px;display:inline-block;">&#160;</span><span id="arr_2_" class="arrow" onclick="toggleFolder('2_')">&#9660;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classIDecoder.html" target="_self">IDecoder</a></td><td class="desc"></td></tr>
-<tr id="row_2_0_" class="odd"><td class="entry"><span style="width:32px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classMp3Decoder.html" target="_self">Mp3Decoder</a></td><td class="desc">Transforms valid file into PCM data and all necessary parameters for audio playback </td></tr>
-<tr id="row_3_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structMetaData.html" target="_self">MetaData</a></td><td class="desc">Holds data related to track context </td></tr>
-<tr id="row_4_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classPlayer.html" target="_self">Player</a></td><td class="desc">Manages playback of data from a Track instance </td></tr>
-<tr id="row_5_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structTrackInfo.html" target="_self">TrackInfo</a></td><td class="desc">Couples together playback and context information for a specific track </td></tr>
-<tr id="row_6_" class="odd"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classUiController.html" target="_self">UiController</a></td><td class="desc">Takes care of user input handling and interaction between program components </td></tr>
-<tr id="row_7_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="classUiRenderer.html" target="_self">UiRenderer</a></td><td class="desc">Renders updated UI state based on data received from controller class </td></tr>
+<div class="dynheader">
+Inheritance diagram for IDecoder:</div>
+<div class="dyncontent">
+<div class="center"><img src="classIDecoder__inherit__graph.png" border="0" usemap="#aIDecoder_inherit__map" alt="Inheritance graph"/></div>
+<map name="aIDecoder_inherit__map" id="aIDecoder_inherit__map">
+<area shape="rect" title=" " alt="" coords="17,5,97,31"/>
+<area shape="rect" href="classMp3Decoder.html" title="Transforms valid file into PCM data and all necessary parameters for audio playback." alt="" coords="5,79,109,104"/>
+<area shape="poly" title=" " alt="" coords="60,44,60,79,55,79,55,44"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:aa5e4f6ba64e9ffaf5699f92c77e0d35c" id="r_aa5e4f6ba64e9ffaf5699f92c77e0d35c"><td class="memItemLeft" align="right" valign="top">virtual track_ptr_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIDecoder.html#aa5e4f6ba64e9ffaf5699f92c77e0d35c">decode</a> (const name_t &amp;track_name)=0</td></tr>
+<tr class="memdesc:aa5e4f6ba64e9ffaf5699f92c77e0d35c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to decode a file.  <br /></td></tr>
+<tr class="separator:aa5e4f6ba64e9ffaf5699f92c77e0d35c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-</div><!-- directory -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="decoder_8hpp_source.html#l00064">64</a> of file <a class="el" href="decoder_8hpp_source.html">decoder.hpp</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="aa5e4f6ba64e9ffaf5699f92c77e0d35c" name="aa5e4f6ba64e9ffaf5699f92c77e0d35c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5e4f6ba64e9ffaf5699f92c77e0d35c">&#9670;&#160;</a></span>decode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual track_ptr_t IDecoder::decode </td>
+          <td>(</td>
+          <td class="paramtype">const name_t &amp;&#160;</td>
+          <td class="paramname"><em>track_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Attempts to decode a file. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">track_name</td><td>Path to target file </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to a Track object, if decoding failed target is an <a class="el" href="classErrorTrack.html">ErrorTrack</a> </dd></dl>
+
+<p>Implemented in <a class="el" href="classMp3Decoder.html#a8ee18436f7e88274f409bf08ea52dc84">Mp3Decoder</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>src/<a class="el" href="decoder_8hpp_source.html">decoder.hpp</a></li>
+</ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
+    <li class="navelem"><a class="el" href="classIDecoder.html">IDecoder</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

@@ -152,7 +152,7 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="decoder_8hpp_source.html#l00103">103</a> of file <a class="el" href="decoder_8hpp_source.html">decoder.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="decoder_8hpp_source.html#l00108">108</a> of file <a class="el" href="decoder_8hpp_source.html">decoder.hpp</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a1c96221f6fbd1fe3b4497526db4b534d" name="a1c96221f6fbd1fe3b4497526db4b534d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1c96221f6fbd1fe3b4497526db4b534d">&#9670;&#160;</a></span>MP3Track()</h2>
@@ -194,8 +194,8 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="decoder_8hpp_source.html#l00105">105</a> of file <a class="el" href="decoder_8hpp_source.html">decoder.hpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  106</span>        : meta_data_(meta_data), audio_data_(data), sample_rate_(sample_rate) {}</div>
+<p class="definition">Definition at line <a class="el" href="decoder_8hpp_source.html#l00110">110</a> of file <a class="el" href="decoder_8hpp_source.html">decoder.hpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  111</span>        : meta_data_(meta_data), audio_data_(data), sample_rate_(sample_rate) {}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -227,8 +227,8 @@ Private Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classGenericTrack.html#af03a4e74f5d5298a381be63025d164f8">GenericTrack</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="decoder_8hpp_source.html#l00108">108</a> of file <a class="el" href="decoder_8hpp_source.html">decoder.hpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  108</span>{ <span class="keywordflow">return</span> audio_data_; }</div>
+<p class="definition">Definition at line <a class="el" href="decoder_8hpp_source.html#l00113">113</a> of file <a class="el" href="decoder_8hpp_source.html">decoder.hpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  113</span>{ <span class="keywordflow">return</span> audio_data_; }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -259,8 +259,8 @@ Private Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classGenericTrack.html#a4e5b3af086b9d0d3e645a3e9e5eaabea">GenericTrack</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="decoder_8hpp_source.html#l00107">107</a> of file <a class="el" href="decoder_8hpp_source.html">decoder.hpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  107</span>{ <span class="keywordflow">return</span> <a class="code hl_struct" href="structTrackInfo.html">TrackInfo</a> {meta_data_, audio_data_, sample_rate_};}</div>
+<p class="definition">Definition at line <a class="el" href="decoder_8hpp_source.html#l00112">112</a> of file <a class="el" href="decoder_8hpp_source.html">decoder.hpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  112</span>{ <span class="keywordflow">return</span> <a class="code hl_struct" href="structTrackInfo.html">TrackInfo</a> {meta_data_, audio_data_, sample_rate_};}</div>
 <div class="ttc" id="astructTrackInfo_html"><div class="ttname"><a href="structTrackInfo.html">TrackInfo</a></div><div class="ttdoc">Couples together playback and context information for a specific track.</div><div class="ttdef"><b>Definition</b> <a href="decoder_8hpp_source.html#l00055">decoder.hpp:55</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -291,8 +291,8 @@ Private Attributes</h2></td></tr>
 
 <p>Implements <a class="el" href="classGenericTrack.html">GenericTrack</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="decoder_8hpp_source.html#l00109">109</a> of file <a class="el" href="decoder_8hpp_source.html">decoder.hpp</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">  109</span>{ audio_data_.<a class="code hl_variable" href="structAudioData.html#a9bf6bf45bec8283c4272cd588dc642ce">current_sample</a> = position; }</div>
+<p class="definition">Definition at line <a class="el" href="decoder_8hpp_source.html#l00114">114</a> of file <a class="el" href="decoder_8hpp_source.html">decoder.hpp</a>.</p>
+<div class="fragment"><div class="line"><span class="lineno">  114</span>{ audio_data_.<a class="code hl_variable" href="structAudioData.html#a9bf6bf45bec8283c4272cd588dc642ce">current_sample</a> = position; }</div>
 <div class="ttc" id="astructAudioData_html_a9bf6bf45bec8283c4272cd588dc642ce"><div class="ttname"><a href="structAudioData.html#a9bf6bf45bec8283c4272cd588dc642ce">AudioData::current_sample</a></div><div class="ttdeci">size_t current_sample</div><div class="ttdoc">Current position during playback.</div><div class="ttdef"><b>Definition</b> <a href="decoder_8hpp_source.html#l00035">decoder.hpp:35</a></div></div>
 </div><!-- fragment -->
 </div>
@@ -318,7 +318,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="decoder_8hpp_source.html#l00112">112</a> of file <a class="el" href="decoder_8hpp_source.html">decoder.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="decoder_8hpp_source.html#l00117">117</a> of file <a class="el" href="decoder_8hpp_source.html">decoder.hpp</a>.</p>
 
 </div>
 </div>
@@ -342,7 +342,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="decoder_8hpp_source.html#l00111">111</a> of file <a class="el" href="decoder_8hpp_source.html">decoder.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="decoder_8hpp_source.html#l00116">116</a> of file <a class="el" href="decoder_8hpp_source.html">decoder.hpp</a>.</p>
 
 </div>
 </div>
@@ -366,7 +366,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="decoder_8hpp_source.html#l00113">113</a> of file <a class="el" href="decoder_8hpp_source.html">decoder.hpp</a>.</p>
+<p class="definition">Definition at line <a class="el" href="decoder_8hpp_source.html#l00118">118</a> of file <a class="el" href="decoder_8hpp_source.html">decoder.hpp</a>.</p>
 
 </div>
 </div>

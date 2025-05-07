@@ -141,7 +141,7 @@ Class design diagram</h1>
 Role of external libraries</h1>
 <ol type="1">
 <li><code>minimp3</code><ul>
-<li>minimp3 is used by the <code><a class="el" href="classDecoder.html" title="Transforms valid file into PCM data and all necessary parameters for audio playback.">Decoder</a></code> class specifically as the process of deciphering an mp3 file is very complex.</li>
+<li>minimp3 is used by the <code>Decoder</code> class specifically as the process of deciphering an mp3 file is very complex.</li>
 <li>It outputs raw PCM data that can later be used for audio streaming.</li>
 </ul>
 </li>
@@ -159,8 +159,8 @@ Role of external libraries</h1>
 </ol>
 <h1><a class="anchor" id="autotoc_md10"></a>
 API / Further possible expansions</h1>
-<p>The <a class="el" href="classDecoder.html" title="Transforms valid file into PCM data and all necessary parameters for audio playback.">Decoder</a> currently only has one public method: decode_mp3</p>
-<p>This however could be expanded by adding more methods to the <a class="el" href="classDecoder.html" title="Transforms valid file into PCM data and all necessary parameters for audio playback.">Decoder</a> and thus the app could support more audio formats</p>
+<p>The Decoder currently only has one public method: decode_mp3</p>
+<p>This however could be expanded by adding more methods to the Decoder and thus the app could support more audio formats</p>
 <ul>
 <li>WAV could be simple to implement as it does not feature any compression.</li>
 <li>The object design of <code>Track</code> is prepared for this as all Tracks have a common ancestor.</li>

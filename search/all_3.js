@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['dec_5f_0',['dec_',['../classUiController.html#a04c3a9d240f8ae78f2a36cc03d72dc3e',1,'UiController']]],
-  ['decode_5fmp3_1',['decode_mp3',['../classDecoder.html#a71cae1687140908eccfd476fcac675b8',1,'Decoder']]],
-  ['decoder_2',['decoder',['../classDecoder.html',1,'Decoder'],['../md_docs_2architecture.html#autotoc_md2',1,'Decoder']]],
+  ['dec_5f_0',['dec_',['../classUiController.html#af6b5e8e199bfd30007d05e3292cc0b26',1,'UiController']]],
+  ['decode_1',['decode',['../classIDecoder.html#aa5e4f6ba64e9ffaf5699f92c77e0d35c',1,'IDecoder::decode()'],['../classMp3Decoder.html#a8ee18436f7e88274f409bf08ea52dc84',1,'Mp3Decoder::decode()']]],
+  ['decoder_2',['Decoder',['../md_docs_2architecture.html#autotoc_md2',1,'']]],
   ['decoder_2ehpp_3',['decoder.hpp',['../decoder_8hpp.html',1,'']]],
   ['dependencies_4',['Dependencies',['../index.html#autotoc_md17',1,'']]],
   ['design_20diagram_5',['Class design diagram',['../md_docs_2architecture.html#autotoc_md8',1,'']]],

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['decoder_0',['Decoder',['../classDecoder.html',1,'']]]
+  ['errortrack_0',['ErrorTrack',['../classErrorTrack.html',1,'']]]
 ];
